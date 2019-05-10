@@ -1,0 +1,3 @@
+[submodule "UnityProject/Assets/Jalopy"]
+	path = UnityProject/Assets/Jalopy
+	url = git@github.com:aoe-games/Jalopy.git

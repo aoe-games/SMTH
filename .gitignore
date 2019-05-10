@@ -1,0 +1,14 @@
+Library
+Temp
+obj
+UnityTestTools
+
+Assembly-CSharp-Editor.csproj
+Assembly-CSharp-Editor-firstpass-vs.csproj
+Assembly-CSharp-Editor-firstpass.csproj
+Assembly-CSharp-firstpass-vs.csproj
+Assembly-CSharp-firstpass.csproj
+Assembly-CSharp-vs.csproj
+Assembly-CSharp.csproj
+ProjectSettings/ProjectSettings.asset
+us.stackdump
