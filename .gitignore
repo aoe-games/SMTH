@@ -1,16 +1,24 @@
-Library
-Temp
-obj
-UnityTestTools
+# =============== #
+# Unity generated #
+# =============== #
+Library/
+Temp/
+obj/
+UnityTestTools/
 
-Assembly-CSharp-Editor.csproj
-Assembly-CSharp-Editor-firstpass-vs.csproj
-Assembly-CSharp-Editor-firstpass.csproj
-Assembly-CSharp-firstpass-vs.csproj
-Assembly-CSharp-firstpass.csproj
-Assembly-CSharp-vs.csproj
-Assembly-CSharp.csproj
-ProjectSettings/ProjectSettings.asset
+# ================================= #
+# Development Environment generated #
+# ================================= #
+ExportedObj/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln
+*.user
+*.unityproj
+*.booproj
+.vs/
+
 us.stackdump
-UnityProject/UnityProject.sln
-UnityProject/.vs/UnityProject/v15/sqlite3/storage.ide
