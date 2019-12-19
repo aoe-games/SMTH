@@ -18,7 +18,7 @@ If you have any questions about the project in general, please contact Dave Bart
 
 ## Git Workflow
 ### General
-The CUBE project uses Git to manage source control. You can learn more about Git [here](https://git-scm.com/). Git is used to control and track the flow of changes into the project. This includes changes to various files that contribute to the overall project implementation like source code files, Unity project files, art exports, etc.
+The SMTH project uses Git to manage source control. You can learn more about Git [here](https://git-scm.com/). Git is used to control and track the flow of changes into the project. This includes changes to various files that contribute to the overall project implementation like source code files, Unity project files, art exports, etc.
   
 To clone and access this repository, you can download a visualization tool or use the command line. _SourceTree_ is recommended unless you have another preferred tool or are very comfortable with the command line interface. If you are often pushing changes to the repository, it is advised you [setup an SSH key](https://help.github.com/en/enterprise/2.15/user/articles/adding-a-new-ssh-key-to-your-github-account) so that you can easily push to the repository without having to always provide your access credentials.
 
