@@ -7,7 +7,7 @@ If you have any questions about the project in general, please contact Dave Bart
 
 ### Development Tools
 ###### These are some tools and supported versions recommended for working on this project.
-**Unity Editor:** 2019.1.1f1 ([download](https://unity3d.com/get-unity/download))  
+**Unity Editor:** 2019.1.1f1 ([download](https://unity3d.com/get-unity/download/archive))  
 
 **Code Editor:** Microsoft Visual Studio Community 2017 ([download](https://visualstudio.microsoft.com/downloads/))  
 **Text Editor:** Atom ([download](https://atom.io/))  
