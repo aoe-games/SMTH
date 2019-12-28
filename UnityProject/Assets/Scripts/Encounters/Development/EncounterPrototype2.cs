@@ -28,11 +28,11 @@ namespace Encounter2
     public int ID = -1;
     public int TeamID = -1;
 
-    // stats
-    public int Attack = 10;
-    public int Defence = 2;
+    // stats - warrior
+    public int Attack = 6;
+    public int Defence = 4;
     public int Health = 100;
-    public int Speed = 10;
+    public int Speed = 3;
 
     // combat variables
     public int ActionPoints;    
@@ -40,9 +40,6 @@ namespace Encounter2
 
   public class EncounterPrototype2 : MonoBehaviour
   {
-    public int Simulations = 100;
-    public bool Debug_ShowActionOrder = true;
-
     public Entity[] heroes = { new Entity(1, Entity.HERO_TEAM), new Entity(2, Entity.HERO_TEAM) };
     public Entity[] opponents = { new Entity(3, Entity.ENEMY_TEAM), new Entity(4, Entity.ENEMY_TEAM) };
 
@@ -125,7 +122,7 @@ namespace Encounter2
         Entity targetEntity = activeEntities[targetIndex];
 
         // attack target
-        targetEntity.Health -= actor.Attack - targetEntity.Defence;
+        targetEntity.Health -= Mathf.Max(actor.Attack - targetEntity.Defence,1);
 
         // if target is KO'd, remove them from the action sequence
         if (targetEntity.Health <= 0)
