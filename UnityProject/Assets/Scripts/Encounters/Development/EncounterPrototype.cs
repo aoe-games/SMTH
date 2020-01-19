@@ -6,25 +6,6 @@ using Jalopy;
 namespace Encounter
 {
 
-  [System.Serializable]
-  public class Entity
-  {
-    public Entity(Entity e) : this(e.ID, e.TeamID) { }
-    public Entity(int id, int teamID) { ID = id; TeamID = teamID; }
-
-    public int ID = -1;
-    public int Level = 1;
-    public float Attack = 10;
-    public float Defence = 2;
-    public float Health = 100;
-    public float Agro = 10;
-    public float Guile = 10;
-    public float CriticalHit = 0.1f;
-    public float Evasion = 0.1f;
-
-    public int TeamID = -1;
-  }
-
   public class EncounterPrototype : MonoBehaviour
   {
     public int Simulations = 100;
@@ -165,6 +146,25 @@ namespace Encounter
       }
     }
 
+  }
+
+  [System.Serializable]
+  public class Entity
+  {
+    public Entity(Entity e) : this(e.ID, e.TeamID) { }
+    public Entity(int id, int teamID) { ID = id; TeamID = teamID; }
+
+    public int ID = -1;
+    public int Level = 1;
+    public float Attack = 10;
+    public float Defence = 2;
+    public float Health = 100;
+    public float Agro = 10;
+    public float Guile = 10;
+    public float CriticalHit = 0.1f;
+    public float Evasion = 0.1f;
+
+    public int TeamID = -1;
   }
 
 }

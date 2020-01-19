@@ -4,40 +4,7 @@ using UnityEngine;
 namespace Encounter2
 {
 
-  [System.Serializable]
-  public class Entity
-  {
-    public Entity(Entity e) : this(e.ID, e.TeamID)
-    {
-      Attack = e.Attack;
-      Defence = e.Defence;
-      Health = e.Health;
-      Speed = e.Speed;
-    }
-
-    public Entity(int id, int teamID)
-    {
-      ID = id;
-      TeamID = teamID;
-      ActionPoints = Speed;
-    }
-
-    public const int HERO_TEAM = 1;
-    public const int ENEMY_TEAM = 2;
-
-    public int ID = -1;
-    public int TeamID = -1;
-
-    // stats - warrior
-    public int Attack = 6;
-    public int Defence = 4;
-    public int Health = 100;
-    public int Speed = 3;
-
-    // combat variables
-    public int ActionPoints;    
-  }
-
+  
   public class EncounterPrototype2 : MonoBehaviour
   {
     public Entity[] heroes = { new Entity(1, Entity.HERO_TEAM), new Entity(2, Entity.HERO_TEAM) };
@@ -164,6 +131,40 @@ namespace Encounter2
       Debug.Log("result: " + (float)remainingHeroHealth / totalHeroHealth);
     }
 
+  }
+
+  [System.Serializable]
+  public class Entity
+  {
+    public Entity(Entity e) : this(e.ID, e.TeamID)
+    {
+      Attack = e.Attack;
+      Defence = e.Defence;
+      Health = e.Health;
+      Speed = e.Speed;
+    }
+
+    public Entity(int id, int teamID)
+    {
+      ID = id;
+      TeamID = teamID;
+      ActionPoints = Speed;
+    }
+
+    public const int HERO_TEAM = 1;
+    public const int ENEMY_TEAM = 2;
+
+    public int ID = -1;
+    public int TeamID = -1;
+
+    // stats - warrior
+    public int Attack = 6;
+    public int Defence = 4;
+    public int Health = 100;
+    public int Speed = 3;
+
+    // combat variables
+    public int ActionPoints;
   }
 
 }
