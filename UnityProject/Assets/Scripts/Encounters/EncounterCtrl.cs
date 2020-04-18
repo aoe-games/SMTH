@@ -30,24 +30,8 @@ public class EncounterCtrl : MonoBehaviour
     {
         while (m_isEncounterRunning)
         {
-            if (m_actorTurnQueue != null)
-            {
-                while (m_actorTurnQueue.Count > 0)
-                {
-                    ActorCtrl actor = m_actorTurnQueue.Dequeue();
-                    yield return actor.ProcessTurn(this);
-                }
-            }
-
-            if (m_actors != null)
-            { 
-                foreach (ActorCtrl actor in m_actors)
-                {
-                    actor.ActorUpdate(this);
-                }
-            }
-
-            yield return new WaitForEndOfFrame();
+            UpdateActors();
+            yield return ProcessTurns(); 
         }
     }
 
@@ -62,5 +46,31 @@ public class EncounterCtrl : MonoBehaviour
     public void EnqueueActorTurn(ActorCtrl actor)
     {
         m_actorTurnQueue.Enqueue(actor);
+    }
+
+    protected void UpdateActors()
+    {
+        if (m_actors != null)
+        {
+            foreach (ActorCtrl actor in m_actors)
+            {
+                if (actor != null)
+                {
+                    actor.ActorUpdate(this);
+                }
+            }
+        }
+    }
+
+    IEnumerator ProcessTurns()
+    {
+        if (m_actorTurnQueue != null)
+        {
+            while (m_actorTurnQueue.Count > 0)
+            {
+                ActorCtrl actor = m_actorTurnQueue.Dequeue();
+                yield return actor.ProcessTurn(this);
+            }
+        }
     }
 }
