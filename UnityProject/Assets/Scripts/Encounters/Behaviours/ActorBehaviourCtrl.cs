@@ -23,6 +23,21 @@ public class ActorBehaviourCtrl
     protected ActorCtrl m_actor = null;
     protected ActorBehaviourCtrl m_decoratedBehaviour = null;
 
+    protected ActorData ActorData
+    {
+        get
+        {
+            ActorData actorData = null;
+
+            if (m_actor != null)
+            {
+                actorData = m_actor.ActorData;
+            }
+
+            return actorData;
+        }
+    }
+
     public ActorBehaviourCtrl(ActorCtrl actor)
     {
         m_actor = actor;
@@ -93,5 +108,45 @@ public class ActorBehaviourCtrl
     public virtual IEnumerator ProcessAction(ActorActionCtrl action, EncounterCtrl encounter)
     {
         yield return action.ProcessAction(this, encounter);
+    }
+
+    public AttackConfig GetAttackConfig()
+    {
+        AttackConfig config = null;
+
+        if (ActorData != null)
+        {
+            config = new AttackConfig
+            {
+                Attacker = m_actor,
+                BaseAttack = ActorData.Attack
+            };
+        }
+
+        return config;
+    }
+
+    public DefenceConfig GetDefenceConfig()
+    {
+        DefenceConfig config = null;
+
+        if (ActorData != null)
+        {
+            config = new DefenceConfig { BaseDefence = ActorData.Defence };
+        }
+
+        return config;
+    }
+
+    public int GetSpeed()
+    {
+        int value = 0;
+
+        if (ActorData != null)
+        {
+            value = ActorData.Speed;
+        }
+
+        return value;
     }
 }

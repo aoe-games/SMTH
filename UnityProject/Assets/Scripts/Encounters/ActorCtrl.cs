@@ -9,14 +9,28 @@ using UnityEngine;
 /// </summary>
 public class ActorCtrl : MonoBehaviour
 {
+    #region Fields
+
+    [SerializeField]
+    protected ActorData m_actorData = null;
+
     [SerializeField]
     protected ActorBehaviourCtrl m_behaviourCtrl = null;
 
-    protected Queue<ActorActionCtrl> m_actionQueue = new Queue<ActorActionCtrl>();
-
     [SerializeField]
     protected List<ActorActionCtrl> m_registeredActions = new List<ActorActionCtrl>();
+
+    protected Queue<ActorActionCtrl> m_actionQueue = new Queue<ActorActionCtrl>();
+
+    #endregion
+
+    #region Properties
+
     public List<ActorActionCtrl> RegisteredActions { get { return m_registeredActions; } }
+
+    public ActorData ActorData { get { return m_actorData; } }
+
+    #endregion
 
     private void Awake()
     {
@@ -72,4 +86,38 @@ public class ActorCtrl : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="config"></param>
+    /// <returns>damage taken</returns>
+    public int ProcessAttack(AttackConfig config)
+    {
+        int damageTaken = 0;
+        return damageTaken;
+    }
+
+    public AttackConfig GetAttackConfig()
+    {
+        AttackConfig config = null;
+
+        if (m_behaviourCtrl != null)
+        {
+            config = m_behaviourCtrl.GetAttackConfig();
+        }
+
+        return config;
+    }
+
+    public DefenceConfig GetDefenceConfig()
+    {
+        DefenceConfig config = null;
+
+        if (m_behaviourCtrl != null)
+        {
+            config = m_behaviourCtrl.GetDefenceConfig();
+        }
+
+        return config;
+    }
 }
