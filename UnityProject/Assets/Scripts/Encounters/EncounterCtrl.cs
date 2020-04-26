@@ -2,11 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The encounter controller facilitates the interations between actors and 
+/// is modelled after basic turn based RPG systems. This controller also
+/// leverages a state machine to break up logic into descrete paths at
+/// different points in the encounter (TODO: convert to Jalopy::StateMachine)
+/// </summary>
 public class EncounterCtrl : MonoBehaviour
 {
-    bool m_isEncounterRunning = true;
+    enum EncounterState { Initializing, Starting, Running, Complete, Ending };
 
-    Coroutine m_coroutine = null;
+    EncounterState m_encounterState = EncounterState.Initializing;
+    Coroutine m_runningCRT = null;
 
     [SerializeField]
     protected List<ActorCtrl> m_actors = new List<ActorCtrl>();
@@ -17,21 +24,33 @@ public class EncounterCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        m_encounterState = EncounterState.Starting;
+
+        if (m_actors != null && m_actors.Count > 0)
+        {
+            StartEncounter();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    void StartEncounter()
     {
-        m_coroutine = StartCoroutine(RunEncounter());
+        m_encounterState = EncounterState.Running;
+        m_runningCRT = StartCoroutine(RunEncounter());
     }
 
     IEnumerator RunEncounter()
     {
-        while (m_isEncounterRunning)
+        while (m_encounterState == EncounterState.Running)
         {
-            UpdateActors();
-            yield return ProcessTurns(); 
+            foreach (ActorCtrl actor in m_actors)
+            {
+                if (actor != null)
+                {
+                    actor.UpdateActor(this);
+                }
+
+                yield return ProcessTurns();
+            }
         }
     }
 
@@ -46,20 +65,6 @@ public class EncounterCtrl : MonoBehaviour
     public void EnqueueActorTurn(ActorCtrl actor)
     {
         m_actorTurnQueue.Enqueue(actor);
-    }
-
-    protected void UpdateActors()
-    {
-        if (m_actors != null)
-        {
-            foreach (ActorCtrl actor in m_actors)
-            {
-                if (actor != null)
-                {
-                    actor.ActorUpdate(this);
-                }
-            }
-        }
     }
 
     IEnumerator ProcessTurns()

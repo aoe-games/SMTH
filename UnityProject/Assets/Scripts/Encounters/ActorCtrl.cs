@@ -2,67 +2,72 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The actor controller is the interface between the environment and the actor's internal
+/// logic. Actors harbour behaviour and actions that it uses to decide how to interact
+/// with other actors within during an encounter.
+/// </summary>
 public class ActorCtrl : MonoBehaviour
 {
-    public KeyCode m_debugKeyCode = KeyCode.Space;
-    bool m_keyDown = false;
+    [SerializeField]
+    protected ActorBehaviourCtrl m_behaviourCtrl = null;
 
     protected Queue<ActorActionCtrl> m_actionQueue = new Queue<ActorActionCtrl>();
 
     [SerializeField]
     protected List<ActorActionCtrl> m_registeredActions = new List<ActorActionCtrl>();
+    public List<ActorActionCtrl> RegisteredActions { get { return m_registeredActions; } }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
+        m_behaviourCtrl = new ActorBehaviourCtrl(this);
     }
 
-    void Update()
+    private void Update()
     {
-        // TODO: Move this to a behaviour class
-        m_keyDown = Input.GetKeyDown(m_debugKeyCode);
-    }
-
-    public void ActorUpdate(EncounterCtrl encounterCtrl)
-    {
-        // TODO: Move this to a behaviour class
-        if (m_keyDown)
+        if (m_behaviourCtrl != null)
         {
-            m_keyDown = false;
+            m_behaviourCtrl.Update();
+        }
+    }
+
+    public void EnqueueAction(ActorActionCtrl action)
+    {
+        if (m_actionQueue != null)
+        {
+            m_actionQueue.Enqueue(action);
+        }
+    }
+
+    public void UpdateActor(EncounterCtrl encounterCtrl)
+    {
+        if (m_behaviourCtrl != null)
+        {
+            m_behaviourCtrl.UpdateBehaviour(encounterCtrl);
+        }
+
+        if (m_actionQueue.Count > 0)
+        {
             encounterCtrl.EnqueueActorTurn(this);
-
-            // update actions and take highest priority action
-            ActorActionCtrl actionToTake = null;
-            for (int i = 0; i < m_registeredActions.Count; i++)
-            {
-                ActorActionCtrl controller = m_registeredActions[i];
-
-                if (controller != null)
-                {
-                    controller.UpdateAction(encounterCtrl);
-                    int priorityRating = controller.Priority;
-
-                    if (actionToTake == null || actionToTake.Priority < controller.Priority)
-                    {
-                        actionToTake = controller;
-                    }
-                }
-            }
-
-            m_actionQueue.Enqueue(actionToTake);
         }
     }
 
     public IEnumerator ProcessTurn(EncounterCtrl encounterCtrl)
     {
+        // if we don't have an action and it's our turn, find something to do!
+        if (m_actionQueue.Count <= 0)
+        {
+            ActorActionCtrl actionCtrl = m_behaviourCtrl.ChooseAction(encounterCtrl);
+            m_actionQueue.Enqueue(actionCtrl);
+        }
+
         // process enqueued actions
         while (m_actionQueue.Count > 0)
         {
-            ActorActionCtrl controller = m_actionQueue.Dequeue();
-            if (controller != null)
+            ActorActionCtrl actionCtrl = m_actionQueue.Dequeue();
+            if (actionCtrl != null)
             {
-                yield return controller.ProcessAction(encounterCtrl);
+                yield return m_behaviourCtrl.ProcessAction(actionCtrl, encounterCtrl);
             }
         }
     }

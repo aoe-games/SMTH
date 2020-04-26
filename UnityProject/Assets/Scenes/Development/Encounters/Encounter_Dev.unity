@@ -179,7 +179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4b750b2cf372541b91c600d5871191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_debugKeyCode: 9
+  m_behaviourCtrl:
+    m_debugKeyCode: 9
   m_registeredActions:
   - {fileID: 245683829}
 --- !u!1 &484928057
@@ -226,7 +227,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4b750b2cf372541b91c600d5871191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_debugKeyCode: 32
+  m_behaviourCtrl:
+    m_debugKeyCode: 32
   m_registeredActions:
   - {fileID: 484928060}
 --- !u!114 &484928060
