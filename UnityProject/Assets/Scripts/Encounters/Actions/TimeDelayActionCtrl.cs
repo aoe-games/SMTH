@@ -13,7 +13,7 @@ public class TimeDelayActionCtrl : ActorActionCtrl
         protected set { m_secondsToDelay = value; }
     }
 
-    public override IEnumerator ProcessAction(ActorBehaviourCtrl behaviour, EncounterCtrl encounter)
+    public override IEnumerator ProcessAction(EncounterCtrl encounter)
     {
         Debug.Log("TimeDelayActionCtrl started: " + Time.time);
         yield return new WaitForSeconds(SecondsToDelay);

@@ -11,6 +11,8 @@ public class ActorCtrl : MonoBehaviour
 {
     #region Fields
 
+    public KeyCode m_debugKeyCode = KeyCode.Space;
+
     [SerializeField]
     protected ActorData m_actorData = null;
 
@@ -35,6 +37,7 @@ public class ActorCtrl : MonoBehaviour
     private void Awake()
     {
         m_behaviourCtrl = new ActorBehaviourCtrl(this);
+        m_behaviourCtrl.m_debugKeyCode = m_debugKeyCode;
     }
 
     private void Update()
@@ -119,5 +122,29 @@ public class ActorCtrl : MonoBehaviour
         }
 
         return config;
+    }
+
+    public ActorCtrl GetTarget(EncounterCtrl encounterCtrl)
+    {
+        ActorCtrl target = null;
+
+        if (m_behaviourCtrl != null)
+        {
+            target = m_behaviourCtrl.GetTarget(encounterCtrl);
+        }
+
+        return target;
+    }
+
+    public override string ToString()
+    {
+        string retStr = string.Empty;
+
+        if (m_actorData != null)
+        {
+            return m_actorData.ToString();
+        }
+
+        return retStr;
     }
 }

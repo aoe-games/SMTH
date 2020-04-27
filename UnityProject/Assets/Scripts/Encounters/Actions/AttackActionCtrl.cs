@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class AttackActionCtrl : ActorActionCtrl
 {
-    [SerializeField]
-    protected float m_secondsToDelay = 3f;
-
-    public float SecondsToDelay
+    public override IEnumerator ProcessAction(EncounterCtrl encounterCtrl)
     {
-        get { return m_secondsToDelay; }
-        protected set { m_secondsToDelay = value; }
-    }
+        Debug.Log("AttackActionCtrl: ProcessAction - Started");
 
-    public override IEnumerator ProcessAction(ActorBehaviourCtrl behaviour, EncounterCtrl encounter)
-    {
-        Debug.Log("TimeDelayActionCtrl started: " + Time.time);
-        yield return new WaitForSeconds(SecondsToDelay);
-        Debug.Log("TimeDelayActionCtrl finished: " + Time.time);
+        if (Actor)
+        {
+            ActorCtrl target = Actor.GetTarget(encounterCtrl);
+
+            if (target != null)
+                Debug.Log(target.ActorData.ToString());
+        }
+
+        yield return null;
     }
 }

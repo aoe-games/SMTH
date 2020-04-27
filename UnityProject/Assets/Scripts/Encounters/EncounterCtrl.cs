@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
 
 /// <summary>
@@ -20,6 +21,21 @@ public class EncounterCtrl : MonoBehaviour
 
     [SerializeField]
     protected Queue<ActorCtrl> m_actorTurnQueue = new Queue<ActorCtrl>();
+
+    public ReadOnlyCollection<ActorCtrl> Actors
+    {
+        get
+        {
+            ReadOnlyCollection<ActorCtrl> actors = null;
+
+            if (m_actors != null)
+            {
+                actors = m_actors.AsReadOnly();
+            }
+
+            return actors;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

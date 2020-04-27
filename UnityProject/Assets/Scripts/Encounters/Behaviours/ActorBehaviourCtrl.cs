@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
 
 /// <summary>
@@ -16,8 +17,7 @@ using UnityEngine;
 public class ActorBehaviourCtrl
 {
     // DEBUG
-    [SerializeField]
-    public KeyCode m_debugKeyCode_DEBUG = KeyCode.Space;
+    public KeyCode m_debugKeyCode = KeyCode.Space;
     protected bool m_actionTriggered_DEBUG = false;
 
     protected ActorCtrl m_actor = null;
@@ -47,7 +47,7 @@ public class ActorBehaviourCtrl
     {
         if (m_actionTriggered_DEBUG == false)
         {
-            m_actionTriggered_DEBUG = Input.GetKeyDown(m_debugKeyCode_DEBUG);
+            m_actionTriggered_DEBUG = Input.GetKeyDown(m_debugKeyCode);
         }
 
         if (m_decoratedBehaviour != null)
@@ -91,7 +91,7 @@ public class ActorBehaviourCtrl
 
                 if (action != null)
                 {
-                    action.UpdateAction(this, encounterCtrl);
+                    action.UpdateAction(encounterCtrl);
                     int priorityRating = action.Priority;
 
                     if (actionToTake == null || actionToTake.Priority < action.Priority)
@@ -107,7 +107,7 @@ public class ActorBehaviourCtrl
 
     public virtual IEnumerator ProcessAction(ActorActionCtrl action, EncounterCtrl encounter)
     {
-        yield return action.ProcessAction(this, encounter);
+        yield return action.ProcessAction(encounter);
     }
 
     public AttackConfig GetAttackConfig()
@@ -148,5 +148,40 @@ public class ActorBehaviourCtrl
         }
 
         return value;
+    }
+
+    public virtual ActorCtrl GetTarget(EncounterCtrl encounterCtrl)
+    {
+        ActorCtrl target = null;
+
+        ReadOnlyCollection<ActorCtrl> encounterActors = encounterCtrl.Actors;
+        if (encounterActors != null)
+        {
+            int count = encounterActors.Count;
+            for (int j = 0; j < count; j++)
+            {
+                ActorCtrl potentialTarget = encounterActors[j];
+                if (potentialTarget != null && potentialTarget.ActorData != null)
+                {
+                    ActorData potentialTargetData = potentialTarget.ActorData;
+                    if (potentialTargetData.TeamID != ActorData.TeamID)
+                    {
+                        if (target != null)
+                        {
+                            if (target.ActorData.Health < potentialTargetData.Health)
+                            {
+                                target = potentialTarget;
+                            }
+                        }
+                        else
+                        {
+                            target = potentialTarget;
+                        }
+                    }
+                }
+            }
+        }
+
+        return target;
     }
 }

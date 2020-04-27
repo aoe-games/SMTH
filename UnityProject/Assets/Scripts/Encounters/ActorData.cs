@@ -6,10 +6,19 @@ using UnityEngine;
 [Serializable]
 public class ActorData
 {
-    public string ID { get; set; }
-    public int Health { get; set; }
-    public int Attack { get; set; }
-    public int Defence { get; set; }
-    public int Speed { get; set; }
-    public int ActionPoints { get; set; }
+    public string ID;
+    public int TeamID;
+    public int Health;
+    public int Attack;
+    public int Defence;
+    public int Speed;
+    public int ActionPoints;
+
+    public override string ToString()
+    {
+        string str = "ID:{0} Team:[1]";
+        str = string.Format(str, ID, TeamID);
+
+        return str;            
+    }
 }

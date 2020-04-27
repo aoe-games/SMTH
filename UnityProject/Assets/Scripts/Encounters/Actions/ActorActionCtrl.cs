@@ -24,20 +24,18 @@ using UnityEngine;
 public abstract class ActorActionCtrl : MonoBehaviour
 {
     [SerializeField]
-    protected ActorCtrl m_actor;
-
-    [SerializeField]
     protected int m_priorityRating;
 
     public int Priority { get { return m_priorityRating; } }
 
-    public virtual void UpdateAction(ActorBehaviourCtrl behaviour, EncounterCtrl encounter) { }
+    public ActorCtrl Actor { get; protected set; }
 
-    public ActorCtrl Actor
+    public virtual void UpdateAction(EncounterCtrl encounter) { }
+
+    protected virtual void Start()
     {
-        get { return m_actor; }
-        set { m_actor = value; }
+        Actor = gameObject.GetComponent<ActorCtrl>();
     }
 
-    public abstract IEnumerator ProcessAction(ActorBehaviourCtrl behaviour, EncounterCtrl encounter);
+    public abstract IEnumerator ProcessAction(EncounterCtrl encounter);
 }
