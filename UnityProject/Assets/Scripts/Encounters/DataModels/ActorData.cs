@@ -16,7 +16,7 @@ public class ActorData
 
     public override string ToString()
     {
-        string str = "ID:{0} Team:[1]";
+        string str = "ID:{0} Team:{1}";
         str = string.Format(str, ID, TeamID);
 
         return str;            

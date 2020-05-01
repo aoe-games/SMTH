@@ -94,10 +94,14 @@ public class ActorCtrl : MonoBehaviour
     /// </summary>
     /// <param name="config"></param>
     /// <returns>damage taken</returns>
-    public int ProcessAttack(AttackConfig config)
+    public void ProcessAttack(AttackConfig attackConfig, out AttackResult attackResult)
     {
-        int damageTaken = 0;
-        return damageTaken;
+        attackResult = new AttackResult();
+
+        if (m_behaviourCtrl != null)
+        {
+            m_behaviourCtrl.ProcessAttack(attackConfig, ref attackResult);
+        }
     }
 
     public AttackConfig GetAttackConfig()

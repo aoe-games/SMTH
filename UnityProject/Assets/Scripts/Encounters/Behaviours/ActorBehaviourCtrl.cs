@@ -84,7 +84,7 @@ public class ActorBehaviourCtrl
         {
             List<ActorActionCtrl> actions = m_actor.RegisteredActions;
             int actionCount = actions.Count;
-            
+
             for (int i = 0; i < actionCount; i++)
             {
                 ActorActionCtrl action = actions[i];
@@ -183,5 +183,28 @@ public class ActorBehaviourCtrl
         }
 
         return target;
+    }
+
+    public bool ProcessAttack(AttackConfig attackConfig, ref AttackResult attackResult)
+    {
+        bool handled = false;
+        
+        if (m_decoratedBehaviour != null)
+        {
+            handled = m_decoratedBehaviour.ProcessAttack(attackConfig, ref attackResult);
+        }
+
+        if (!handled)
+        {
+            if (ActorData != null)
+            {
+                DefenceConfig defenceConfig = GetDefenceConfig();
+                attackResult.DamageTaken = attackConfig.BaseAttack - defenceConfig.BaseDefence;
+                ActorData.Health -= attackResult.DamageTaken;
+                handled = true;
+            }            
+        }       
+
+        return handled;
     }
 }
