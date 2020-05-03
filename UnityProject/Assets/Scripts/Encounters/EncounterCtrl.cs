@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
@@ -12,10 +13,17 @@ using UnityEngine;
 public class EncounterCtrl : MonoBehaviour
 {
     enum EncounterState { Initializing, Starting, Running, Complete, Ending };
-
+ 
     EncounterState m_encounterState = EncounterState.Initializing;
     Coroutine m_runningCRT = null;
 
+    // DEBUG
+    public KeyCode m_stepKeyCode = KeyCode.Space;
+    bool m_manualStepTriggered = false;
+
+    [SerializeField]
+    protected bool m_autoStepEnabled = false;
+    
     [SerializeField]
     protected List<ActorCtrl> m_actors = new List<ActorCtrl>();
 
@@ -44,8 +52,69 @@ public class EncounterCtrl : MonoBehaviour
 
         if (m_actors != null && m_actors.Count > 0)
         {
+            SetupActionPointCaps();
             StartEncounter();
         }
+    }
+
+    void Update()
+    {
+        if (m_manualStepTriggered == false)
+        {
+            m_manualStepTriggered = Input.GetKeyDown(m_stepKeyCode);
+        }
+    }
+
+    /// <summary>
+    /// On each update, each actor will add action points based on their speed.
+    /// When the ActionPointCap is reached, the actor will perform an action.
+    /// This method normalizes the action cap for all actors based on the fastest
+    /// actor's speed so that the fastest actor will act on every update, thus
+    /// ensuring there are no wasted update cycles waiting for the action cap to be hit.  
+    /// </summary>
+    protected void SetupActionPointCaps()
+    {
+        if (m_actors != null && m_actors.Count > 0)
+        {            
+            int highestSpeed = 0;
+
+            // find the highest speed
+            int actorCount = m_actors.Count;
+            for (int i = 0; i < actorCount; i++)
+            {
+                ActorData actorData = GetActorDataForIndex(i);
+                if (actorData != null)
+                {
+                    highestSpeed = Math.Max(highestSpeed, actorData.Speed);
+                }
+            }
+
+            // apply the highest speed to each actor as the action point cap
+            for (int i = 0; i < actorCount; i++)
+            {
+                ActorData actorData = GetActorDataForIndex(i);
+                if (actorData != null)
+                {
+                    actorData.ActionPointCap = highestSpeed;
+                }
+            }
+        }
+    }
+
+    ActorData GetActorDataForIndex(int index)
+    {
+        ActorData actorData = null;
+
+        if (m_actors != null && m_actors.Count > 0)
+        {
+            ActorCtrl actorCtrl = m_actors[index];
+            if (actorCtrl != null)
+            {
+                actorData = actorCtrl.ActorData;
+            }
+        }
+
+        return actorData;
     }
 
     void StartEncounter()
@@ -58,14 +127,23 @@ public class EncounterCtrl : MonoBehaviour
     {
         while (m_encounterState == EncounterState.Running)
         {
-            foreach (ActorCtrl actor in m_actors)
+            if (m_autoStepEnabled || m_manualStepTriggered)
             {
-                if (actor != null)
+                foreach (ActorCtrl actor in m_actors)
                 {
-                    actor.UpdateActor(this);
+                    if (actor != null)
+                    {
+                        actor.UpdateActor(this);
+                    }
+
+                    yield return ProcessTurns();
                 }
 
-                yield return ProcessTurns();
+                m_manualStepTriggered = false;
+            }
+            else // simulation step skipped, so simply allow the coroutine to return
+            {
+                yield return null;
             }
         }
     }

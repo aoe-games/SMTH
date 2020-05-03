@@ -130,6 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 245683828}
   - component: {fileID: 245683830}
+  - component: {fileID: 245683831}
   - component: {fileID: 245683829}
   m_Layer: 0
   m_Name: Actor (2)
@@ -164,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f66ec43a1c422e43a671d61240ac07a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_priorityRating: 1
+  m_priorityRating: 0
   m_secondsToDelay: 3
 --- !u!114 &245683830
 MonoBehaviour:
@@ -178,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4b750b2cf372541b91c600d5871191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_debugKeyCode: 9
+  m_debugKeyCode: 50
   m_actorData:
     ID: Enemy1
     TeamID: 1
@@ -187,10 +188,25 @@ MonoBehaviour:
     Defence: 1
     Speed: 3
     ActionPoints: 0
+    ActionPointCap: 0
   m_behaviourCtrl:
     m_debugKeyCode: 0
   m_registeredActions:
+  - {fileID: 245683831}
   - {fileID: 245683829}
+--- !u!114 &245683831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245683827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4fcef5580b93eb4ea37eab4383c08fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_priorityRating: 1
 --- !u!1 &484928057
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,8 +217,8 @@ GameObject:
   m_Component:
   - component: {fileID: 484928058}
   - component: {fileID: 484928059}
-  - component: {fileID: 484928060}
   - component: {fileID: 484928061}
+  - component: {fileID: 484928060}
   m_Layer: 0
   m_Name: Actor (1)
   m_TagString: Untagged
@@ -236,7 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4b750b2cf372541b91c600d5871191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_debugKeyCode: 32
+  m_debugKeyCode: 49
   m_actorData:
     ID: Hero
     TeamID: 0
@@ -245,6 +261,7 @@ MonoBehaviour:
     Defence: 0
     Speed: 5
     ActionPoints: 0
+    ActionPointCap: 0
   m_behaviourCtrl:
     m_debugKeyCode: 0
   m_registeredActions:
@@ -262,7 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f66ec43a1c422e43a671d61240ac07a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_priorityRating: 1
+  m_priorityRating: 0
   m_secondsToDelay: 1
 --- !u!114 &484928061
 MonoBehaviour:
@@ -276,7 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fcef5580b93eb4ea37eab4383c08fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_priorityRating: 2
+  m_priorityRating: 1
 --- !u!1 &811553785
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,6 +304,7 @@ GameObject:
   m_Component:
   - component: {fileID: 811553786}
   - component: {fileID: 811553788}
+  - component: {fileID: 811553789}
   - component: {fileID: 811553787}
   m_Layer: 0
   m_Name: Actor (3)
@@ -321,7 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f66ec43a1c422e43a671d61240ac07a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_priorityRating: 1
+  m_priorityRating: 0
   m_secondsToDelay: 1
 --- !u!114 &811553788
 MonoBehaviour:
@@ -335,7 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4b750b2cf372541b91c600d5871191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_debugKeyCode: 9
+  m_debugKeyCode: 51
   m_actorData:
     ID: Enemy2
     TeamID: 1
@@ -344,10 +362,25 @@ MonoBehaviour:
     Defence: 2
     Speed: 2
     ActionPoints: 0
+    ActionPointCap: 0
   m_behaviourCtrl:
     m_debugKeyCode: 0
   m_registeredActions:
+  - {fileID: 811553789}
   - {fileID: 811553787}
+--- !u!114 &811553789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811553785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4fcef5580b93eb4ea37eab4383c08fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_priorityRating: 1
 --- !u!1 &815247615
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,6 +493,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed5610d97626a2044962b41a531b6f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_stepKeyCode: 32
+  m_autoStepEnabled: 0
   m_actors:
   - {fileID: 484928059}
   - {fileID: 245683830}
@@ -472,7 +507,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1245895232}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.25569344, y: -0.28551435, z: -0.048674583}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 484928058}

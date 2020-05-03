@@ -13,6 +13,7 @@ public class ActorData
     public int Defence;
     public int Speed;
     public int ActionPoints;
+    public int ActionPointCap;
 
     public override string ToString()
     {

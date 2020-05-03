@@ -17,7 +17,7 @@ using UnityEngine;
 public class ActorBehaviourCtrl
 {
     // DEBUG
-    public KeyCode m_debugKeyCode = KeyCode.Space;
+    public KeyCode m_debugKeyCode = KeyCode.None;
     protected bool m_actionTriggered_DEBUG = false;
 
     protected ActorCtrl m_actor = null;
@@ -68,6 +68,18 @@ public class ActorBehaviourCtrl
         {
             m_decoratedBehaviour.UpdateBehaviour(encounterCtrl);
         }
+
+        if (ActorData != null)
+        {
+            ActorData.ActionPoints += ActorData.Speed;
+
+            // continue to action until we are out of action points
+            while (ActorData.ActionPoints >= ActorData.ActionPointCap)
+            {
+                encounterCtrl.EnqueueActorTurn(m_actor);
+                ActorData.ActionPoints -= ActorData.ActionPoints;
+            }
+        }
     }
 
     public virtual ActorActionCtrl ChooseAction(EncounterCtrl encounterCtrl)
@@ -103,11 +115,6 @@ public class ActorBehaviourCtrl
         }
 
         return actionToTake;
-    }
-
-    public virtual IEnumerator ProcessAction(ActorActionCtrl action, EncounterCtrl encounter)
-    {
-        yield return action.ProcessAction(encounter);
     }
 
     public AttackConfig GetAttackConfig()
@@ -185,7 +192,12 @@ public class ActorBehaviourCtrl
         return target;
     }
 
-    public bool ProcessAttack(AttackConfig attackConfig, ref AttackResult attackResult)
+    public virtual IEnumerator ProcessAction(ActorActionCtrl action, EncounterCtrl encounter)
+    {
+        yield return action.ProcessAction(encounter);
+    }
+
+    public virtual bool ProcessAttack(AttackConfig attackConfig, ref AttackResult attackResult)
     {
         bool handled = false;
         
