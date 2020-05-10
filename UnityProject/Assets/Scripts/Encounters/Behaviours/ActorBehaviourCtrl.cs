@@ -68,18 +68,6 @@ public class ActorBehaviourCtrl
         {
             m_decoratedBehaviour.UpdateBehaviour(encounterCtrl);
         }
-
-        if (ActorData != null)
-        {
-            ActorData.ActionPoints += ActorData.Speed;
-
-            // continue to action until we are out of action points
-            while (ActorData.ActionPoints >= ActorData.ActionPointCap)
-            {
-                encounterCtrl.EnqueueActorTurn(m_actor);
-                ActorData.ActionPoints -= ActorData.ActionPoints;
-            }
-        }
     }
 
     public virtual ActorActionCtrl ChooseAction(EncounterCtrl encounterCtrl)
@@ -117,44 +105,54 @@ public class ActorBehaviourCtrl
         return actionToTake;
     }
 
-    public AttackConfig GetAttackConfig()
+    public virtual void GetAttackConfig(ref AttackConfig attackConfig)
     {
-        AttackConfig config = null;
-
-        if (ActorData != null)
+        // if there is no attack config to adjust, create one
+        if (attackConfig == null && ActorData != null)
         {
-            config = new AttackConfig
-            {
+            attackConfig = new AttackConfig {
                 Attacker = m_actor,
                 BaseAttack = ActorData.Attack
             };
         }
 
-        return config;
+        if (m_decoratedBehaviour != null)
+        {
+            m_decoratedBehaviour.GetAttackConfig(ref attackConfig);
+        }             
     }
 
-    public DefenceConfig GetDefenceConfig()
+    public virtual void GetDefenceConfig(ref DefenceConfig defenceConfig)
     {
-        DefenceConfig config = null;
-
-        if (ActorData != null)
+        // if there is no defence config to adjust, create one
+        if (defenceConfig == null && ActorData != null)
         {
-            config = new DefenceConfig { BaseDefence = ActorData.Defence };
+            defenceConfig = new DefenceConfig {
+                Defender = m_actor,
+                BaseDefence = ActorData.Defence
+            };
         }
 
-        return config;
+        if (m_decoratedBehaviour != null)
+        {
+            m_decoratedBehaviour.GetDefenceConfig(ref defenceConfig);
+        }
     }
 
-    public int GetSpeed()
+    public virtual void GetSpeedConfig(ref SpeedConfig speedConfig)
     {
-        int value = 0;
-
-        if (ActorData != null)
+        // if there is no speed config to adjust, create one
+        if (speedConfig == null && ActorData != null)
         {
-            value = ActorData.Speed;
+            speedConfig = new SpeedConfig {
+                BaseSpeed = ActorData.Speed
+            };            
         }
 
-        return value;
+        if (m_decoratedBehaviour != null)
+        {
+            m_decoratedBehaviour.GetSpeedConfig(ref speedConfig);
+        }
     }
 
     public virtual ActorCtrl GetTarget(EncounterCtrl encounterCtrl)
@@ -190,33 +188,5 @@ public class ActorBehaviourCtrl
         }
 
         return target;
-    }
-
-    public virtual IEnumerator ProcessAction(ActorActionCtrl action, EncounterCtrl encounter)
-    {
-        yield return action.ProcessAction(encounter);
-    }
-
-    public virtual bool ProcessAttack(AttackConfig attackConfig, ref AttackResult attackResult)
-    {
-        bool handled = false;
-        
-        if (m_decoratedBehaviour != null)
-        {
-            handled = m_decoratedBehaviour.ProcessAttack(attackConfig, ref attackResult);
-        }
-
-        if (!handled)
-        {
-            if (ActorData != null)
-            {
-                DefenceConfig defenceConfig = GetDefenceConfig();
-                attackResult.DamageTaken = attackConfig.BaseAttack - defenceConfig.BaseDefence;
-                ActorData.Health -= attackResult.DamageTaken;
-                handled = true;
-            }            
-        }       
-
-        return handled;
     }
 }

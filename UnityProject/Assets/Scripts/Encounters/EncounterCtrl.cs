@@ -13,10 +13,14 @@ using UnityEngine;
 public class EncounterCtrl : MonoBehaviour
 {
     enum EncounterState { Initializing, Starting, Running, Complete, Ending };
- 
+
+    #region Fields
+
     EncounterState m_encounterState = EncounterState.Initializing;
     Coroutine m_runningCRT = null;
 
+    int m_participatingTeams = 0;
+    
     // DEBUG
     public KeyCode m_stepKeyCode = KeyCode.Space;
     bool m_manualStepTriggered = false;
@@ -29,6 +33,8 @@ public class EncounterCtrl : MonoBehaviour
 
     [SerializeField]
     protected Queue<ActorCtrl> m_actorTurnQueue = new Queue<ActorCtrl>();
+
+    #endregion
 
     public ReadOnlyCollection<ActorCtrl> Actors
     {
@@ -52,7 +58,7 @@ public class EncounterCtrl : MonoBehaviour
 
         if (m_actors != null && m_actors.Count > 0)
         {
-            SetupActionPointCaps();
+            SetupActors();
             StartEncounter();
         }
     }
@@ -64,6 +70,68 @@ public class EncounterCtrl : MonoBehaviour
             m_manualStepTriggered = Input.GetKeyDown(m_stepKeyCode);
         }
     }
+   
+    void StartEncounter()
+    {
+        m_encounterState = EncounterState.Running;
+        m_runningCRT = StartCoroutine(RunEncounter());
+    }
+
+    IEnumerator RunEncounter()
+    {
+        while (m_encounterState == EncounterState.Running)
+        {
+            if (m_autoStepEnabled || m_manualStepTriggered)
+            {
+                int count = m_actors.Count;
+                for (int i = 0; i < count; i++)
+                {
+                    // update the actors so they can run logic to queue actions
+                    ActorCtrl actorCtrl = m_actors[i];
+                    if (actorCtrl != null && actorCtrl.IsActive)
+                    {
+                        actorCtrl.UpdateActor(this);
+                    }
+
+                    // process any turns actors may have queued up during their update
+                    yield return ProcessTurns();
+                }
+
+                m_manualStepTriggered = false;
+            }
+            else // simulation step skipped, so simply allow the coroutine to return
+            {
+                yield return null;
+            }
+        }
+
+        Debug.Log("EncounterCtrl.RunEncounter - exiting");
+    }
+
+    public void EnqueueActorTurn(ActorCtrl actor)
+    {
+        m_actorTurnQueue.Enqueue(actor);
+    }
+
+    IEnumerator ProcessTurns()
+    {
+        if (m_actorTurnQueue != null)
+        {
+            while ((m_actorTurnQueue.Count > 0) && (m_encounterState == EncounterState.Running))
+            {
+                ActorCtrl actor = m_actorTurnQueue.Dequeue();
+                yield return actor.ProcessTurn(this);
+            }
+        }
+    }
+
+    public void AddActor(ActorCtrl actor)
+    {
+        if (m_actors != null && !m_actors.Contains(actor))
+        {
+            m_actors.Add(actor);
+        }
+    }
 
     /// <summary>
     /// On each update, each actor will add action points based on their speed.
@@ -72,16 +140,24 @@ public class EncounterCtrl : MonoBehaviour
     /// actor's speed so that the fastest actor will act on every update, thus
     /// ensuring there are no wasted update cycles waiting for the action cap to be hit.  
     /// </summary>
-    protected void SetupActionPointCaps()
+    protected void SetupActors()
     {
         if (m_actors != null && m_actors.Count > 0)
-        {            
+        {
             int highestSpeed = 0;
-
-            // find the highest speed
+                        
             int actorCount = m_actors.Count;
             for (int i = 0; i < actorCount; i++)
             {
+                // register for actor events
+                ActorCtrl actorCtrl = m_actors[i];
+                if (actorCtrl != null)
+                {
+                    m_participatingTeams |= actorCtrl.TeamID;
+                    actorCtrl.KnockedOut += OnActorKnockedOut;
+                }
+
+                // find the highest speed
                 ActorData actorData = GetActorDataForIndex(i);
                 if (actorData != null)
                 {
@@ -117,59 +193,29 @@ public class EncounterCtrl : MonoBehaviour
         return actorData;
     }
 
-    void StartEncounter()
-    {
-        m_encounterState = EncounterState.Running;
-        m_runningCRT = StartCoroutine(RunEncounter());
-    }
+    #region Callbacks
 
-    IEnumerator RunEncounter()
+    protected void OnActorKnockedOut(ActorCtrl actorCtrl)
     {
-        while (m_encounterState == EncounterState.Running)
+        int activeTeams = 0;
+
+        int count = 0;
+        for (int i = 0; i < count; i++)
         {
-            if (m_autoStepEnabled || m_manualStepTriggered)
+            ActorCtrl actor = m_actors[i];
+            if (actor != null && actor.IsActive)
             {
-                foreach (ActorCtrl actor in m_actors)
-                {
-                    if (actor != null)
-                    {
-                        actor.UpdateActor(this);
-                    }
-
-                    yield return ProcessTurns();
-                }
-
-                m_manualStepTriggered = false;
+                activeTeams |= actor.TeamID;
             }
-            else // simulation step skipped, so simply allow the coroutine to return
-            {
-                yield return null;
-            }
+        }
+
+        // when there are no longer teams available to conflict, 
+        // the encounter ends
+        if (activeTeams != m_participatingTeams)
+        {
+            m_encounterState = EncounterState.Complete;
         }
     }
 
-    public void AddActor(ActorCtrl actor)
-    {
-        if (m_actors != null && !m_actors.Contains(actor))
-        {
-            m_actors.Add(actor);
-        }
-    }
-
-    public void EnqueueActorTurn(ActorCtrl actor)
-    {
-        m_actorTurnQueue.Enqueue(actor);
-    }
-
-    IEnumerator ProcessTurns()
-    {
-        if (m_actorTurnQueue != null)
-        {
-            while (m_actorTurnQueue.Count > 0)
-            {
-                ActorCtrl actor = m_actorTurnQueue.Dequeue();
-                yield return actor.ProcessTurn(this);
-            }
-        }
-    }
+    #endregion
 }

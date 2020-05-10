@@ -16,10 +16,16 @@ public class AttackActionCtrl : ActorActionCtrl
             ActorCtrl target = Actor.GetTarget(encounterCtrl);
 
             if (target != null)
-            {                
-                AttackConfig attackConfig = Actor.GetAttackConfig();
-                AttackResult attackResult;
-                target.ProcessAttack(attackConfig, out attackResult);
+            {
+                AttackConfig attackConfig = null;                
+                yield return Actor.PerformAttack(target, (config) => {
+                    attackConfig = config;
+                });
+
+                AttackResult attackResult = null;
+                yield return target.ProcessAttack(attackConfig, (result) => {
+                    attackResult = result;
+                });
 
                 // debug
                 str = "Target: {0} damageTaken: {1} healthRemaining: {2}";

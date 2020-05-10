@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class DefenceConfig
 {
+    public ActorCtrl Defender { get; set; }
     public int BaseDefence { get; set; }
 }
