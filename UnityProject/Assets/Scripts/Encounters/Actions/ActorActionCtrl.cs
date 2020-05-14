@@ -35,6 +35,10 @@ public abstract class ActorActionCtrl : MonoBehaviour
     protected virtual void Start()
     {
         Actor = gameObject.GetComponent<ActorCtrl>();
+        if (Actor != null)
+        {
+            Actor.RegisterAction(this);
+        }
     }
 
     public abstract IEnumerator ProcessAction(EncounterCtrl encounter);

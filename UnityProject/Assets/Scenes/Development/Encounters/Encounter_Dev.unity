@@ -191,9 +191,6 @@ MonoBehaviour:
     m_health: 20
   m_behaviourCtrl:
     m_debugKeyCode: 0
-  m_registeredActions:
-  - {fileID: 245683831}
-  - {fileID: 245683829}
 --- !u!114 &245683831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,9 +261,6 @@ MonoBehaviour:
     m_health: 100
   m_behaviourCtrl:
     m_debugKeyCode: 0
-  m_registeredActions:
-  - {fileID: 484928060}
-  - {fileID: 484928061}
 --- !u!114 &484928060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,9 +359,6 @@ MonoBehaviour:
     m_health: 25
   m_behaviourCtrl:
     m_debugKeyCode: 0
-  m_registeredActions:
-  - {fileID: 811553789}
-  - {fileID: 811553787}
 --- !u!114 &811553789
 MonoBehaviour:
   m_ObjectHideFlags: 0

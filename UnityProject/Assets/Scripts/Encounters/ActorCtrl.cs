@@ -20,10 +20,7 @@ public class ActorCtrl : MonoBehaviour
     [SerializeField]
     protected ActorBehaviourCtrl m_behaviourCtrl = null;
 
-    [SerializeField]
-    protected List<ActorActionCtrl> m_registeredActions = new List<ActorActionCtrl>();
-
-    protected Queue<ActorActionCtrl> m_actionQueue = new Queue<ActorActionCtrl>();
+    private Queue<ActorActionCtrl> m_actionQueue = new Queue<ActorActionCtrl>();
 
     #endregion
 
@@ -35,7 +32,7 @@ public class ActorCtrl : MonoBehaviour
 
     #region Properties
 
-    public List<ActorActionCtrl> RegisteredActions { get { return m_registeredActions; } }
+    public List<ActorActionCtrl> RegisteredActions { get; } = new List<ActorActionCtrl>();
 
     public ActorData ActorData { get { return m_actorData; } }
 
@@ -81,8 +78,9 @@ public class ActorCtrl : MonoBehaviour
 
     private void Awake()
     {
-        m_behaviourCtrl = new ActorBehaviourCtrl(this);
-        m_behaviourCtrl.m_debugKeyCode = m_debugKeyCode;
+        m_behaviourCtrl = new ActorBehaviourCtrl(this) {
+            m_debugKeyCode = m_debugKeyCode
+        };
     }
 
     private void Start()
@@ -109,11 +107,30 @@ public class ActorCtrl : MonoBehaviour
         }
     }
 
+    public bool RegisterAction(ActorActionCtrl actionCtrl)
+    {
+        bool actionAdded = false;
+        if (RegisteredActions != null && !RegisteredActions.Contains(actionCtrl))
+        {
+            RegisteredActions.Add(actionCtrl);
+        }        
+        return actionAdded;
+    }
+
+    public bool DeregisterAction(ActorActionCtrl actionCtrl)
+    {
+        bool actionDeregistered = false;
+        if (RegisteredActions != null)
+        {
+            actionDeregistered = RegisteredActions.Remove(actionCtrl);
+        }
+        return actionDeregistered;
+    }
+
     public void UpdateActor(EncounterCtrl encounterCtrl)
     {
         SpeedConfig speedConfig = null;
 
-        // allow our behaviour to update
         if (m_behaviourCtrl != null)
         {
             m_behaviourCtrl.UpdateBehaviour(encounterCtrl);
