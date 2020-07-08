@@ -199,7 +199,7 @@ public class EncounterCtrl : MonoBehaviour
     {
         int activeTeams = 0;
 
-        int count = 0;
+        int count = m_actors.Count;
         for (int i = 0; i < count; i++)
         {
             ActorCtrl actor = m_actors[i];
