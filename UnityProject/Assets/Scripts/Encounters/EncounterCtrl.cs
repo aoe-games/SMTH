@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 using UnityEngine;
 
 /// <summary>
-/// The encounter controller facilitates the interations between actors and 
+/// The encounter controller facilitates the interactions between actors and 
 /// is modelled after basic turn based RPG systems. This controller also
 /// leverages a state machine to break up logic into descrete paths at
 /// different points in the encounter (TODO: convert to Jalopy::StateMachine)
@@ -52,15 +52,12 @@ public class EncounterCtrl : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    public void StartEncounter()
     {
         m_encounterState = EncounterState.Starting;
 
-        if (m_actors != null && m_actors.Count > 0)
-        {
-            SetupActors();
-            StartEncounter();
-        }
+        SetupActors();
+        RunEncounter();
     }
 
     void Update()
@@ -71,13 +68,13 @@ public class EncounterCtrl : MonoBehaviour
         }
     }
    
-    void StartEncounter()
+    void RunEncounter()
     {
         m_encounterState = EncounterState.Running;
-        m_runningCRT = StartCoroutine(RunEncounter());
+        m_runningCRT = StartCoroutine(EncounterRunning());
     }
 
-    IEnumerator RunEncounter()
+    IEnumerator EncounterRunning()
     {
         while (m_encounterState == EncounterState.Running)
         {

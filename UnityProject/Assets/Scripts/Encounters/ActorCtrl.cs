@@ -20,6 +20,9 @@ public class ActorCtrl : MonoBehaviour
     [SerializeField]
     protected ActorBehaviourCtrl m_behaviourCtrl = null;
 
+    [SerializeField]
+    private List<ActorActionCtrl> m_registeredActions = new List<ActorActionCtrl>();
+
     private Queue<ActorActionCtrl> m_actionQueue = new Queue<ActorActionCtrl>();
 
     #endregion
@@ -32,7 +35,7 @@ public class ActorCtrl : MonoBehaviour
 
     #region Properties
 
-    public List<ActorActionCtrl> RegisteredActions { get; } = new List<ActorActionCtrl>();
+    public List<ActorActionCtrl> RegisteredActions { get { return m_registeredActions; } }
 
     public ActorData ActorData { get { return m_actorData; } }
 
@@ -75,6 +78,11 @@ public class ActorCtrl : MonoBehaviour
     }
 
     #endregion
+
+    public void Initialize(ActorData actorData)
+    {
+        m_actorData = actorData;
+    }
 
     private void Awake()
     {
