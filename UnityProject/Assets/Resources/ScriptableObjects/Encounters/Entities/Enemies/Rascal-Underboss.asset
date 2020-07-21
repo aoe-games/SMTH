@@ -9,10 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8f1b494a224a5f4f860882586ae9f41, type: 3}
-  m_Name: Enemies_1
+  m_Script: {fileID: 11500000, guid: bbbf89da18200834e9f4c40596aa0044, type: 3}
+  m_Name: Rascal-Underboss
   m_EditorClassIdentifier: 
-  m_teamID: 2
-  m_partyMembers:
-  - {fileID: 11400000, guid: 4667a00845bc8c34ba6dce3983dd9794, type: 2}
-  - {fileID: 11400000, guid: 4667a00845bc8c34ba6dce3983dd9794, type: 2}
+  m_ID: rascal
+  m_name: Dirty Rascal Underboss
+  m_attack: 8
+  m_defence: 5
+  m_speed: 2
+  m_maxHealth: 38
+  m_currentHealth: 38
+  m_actions: 0000

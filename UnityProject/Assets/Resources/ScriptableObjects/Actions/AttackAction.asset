@@ -9,13 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbbf89da18200834e9f4c40596aa0044, type: 3}
-  m_Name: Rascal
+  m_Script: {fileID: 11500000, guid: a122ab75842b94a4da28233e97832c0a, type: 3}
+  m_Name: AttackAction
   m_EditorClassIdentifier: 
-  m_ID: rascal
-  m_name: Dirty Rascal Thug
-  m_attack: 3
-  m_defence: 1
-  m_speed: 2
-  m_maxHealth: 15
-  m_currentHealth: 15
+  wtf: 

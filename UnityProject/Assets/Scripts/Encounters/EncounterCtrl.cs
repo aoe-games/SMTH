@@ -12,11 +12,11 @@ using UnityEngine;
 /// </summary>
 public class EncounterCtrl : MonoBehaviour
 {
-    enum EncounterState { Initializing, Starting, Running, Complete, Ending };
+    enum EncounterState { Stopped, Starting, Running, Ending  };
 
     #region Fields
 
-    EncounterState m_encounterState = EncounterState.Initializing;
+    EncounterState m_encounterState = EncounterState.Stopped;
     Coroutine m_runningCRT = null;
 
     int m_participatingTeams = 0;
@@ -26,11 +26,9 @@ public class EncounterCtrl : MonoBehaviour
     bool m_manualStepTriggered = false;
 
     [SerializeField]
-    protected bool m_autoStepEnabled = false;
-    
+    protected bool m_autoStepEnabled = false;      
     [SerializeField]
     protected List<ActorCtrl> m_actors = new List<ActorCtrl>();
-
     [SerializeField]
     protected Queue<ActorCtrl> m_actorTurnQueue = new Queue<ActorCtrl>();
 
@@ -51,6 +49,21 @@ public class EncounterCtrl : MonoBehaviour
         }
     }
 
+    public void Reset()
+    {
+        int count = m_actors.Count;
+        while (m_actors.Count > 0)
+        {
+            Destroy(m_actors[0].gameObject);
+            m_actors.RemoveAt(0);
+        }
+
+        m_actorTurnQueue.Clear();
+        StopAllCoroutines();
+
+        m_encounterState = EncounterState.Stopped;
+    }
+
     // Start is called before the first frame update
     public void StartEncounter()
     {
@@ -59,7 +72,7 @@ public class EncounterCtrl : MonoBehaviour
         SetupActors();
         RunEncounter();
     }
-
+        
     void Update()
     {
         if (m_manualStepTriggered == false)
@@ -122,11 +135,11 @@ public class EncounterCtrl : MonoBehaviour
         }
     }
 
-    public void AddActor(ActorCtrl actor)
+    public void AddActor(ActorCtrl actorCtrl)
     {
-        if (m_actors != null && !m_actors.Contains(actor))
+        if (!m_actors.Contains(actorCtrl))
         {
-            m_actors.Add(actor);
+            m_actors.Add(actorCtrl);
         }
     }
 
@@ -210,7 +223,7 @@ public class EncounterCtrl : MonoBehaviour
         // the encounter ends
         if (activeTeams != m_participatingTeams)
         {
-            m_encounterState = EncounterState.Complete;
+            m_encounterState = EncounterState.Ending;
         }
     }
 

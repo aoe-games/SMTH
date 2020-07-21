@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -28,10 +29,12 @@ public class ActorData
     #region Properties
 
     // wrapped properties
-    public string ID { get { return m_entityData.ID; } }      
+    public string ID { get { return m_entityData.ID; } }
+    public string Name { get { return m_entityData.Name; } }
     public int Attack { get { return m_entityData.Attack; } }
     public int Defence { get { return m_entityData.Defence; } }
     public int Speed { get { return m_entityData.Speed; } }
+    public List<ActionID> Actions { get { return m_entityData.Actions; } }
 
     // actor properties
     public int TeamID { get { return m_teamID; } }

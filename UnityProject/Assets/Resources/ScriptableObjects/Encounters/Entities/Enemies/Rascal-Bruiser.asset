@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbbf89da18200834e9f4c40596aa0044, type: 3}
-  m_Name: Rascal
+  m_Name: Rascal-Bruiser
   m_EditorClassIdentifier: 
   m_ID: rascal
-  m_name: Dirty Rascal Thug
-  m_attack: 3
-  m_defence: 1
-  m_speed: 2
-  m_maxHealth: 15
-  m_currentHealth: 15
+  m_name: Dirty Rascal Bruiser
+  m_attack: 6
+  m_defence: 0
+  m_speed: 1
+  m_maxHealth: 22
+  m_currentHealth: 22
+  m_actions: 0000

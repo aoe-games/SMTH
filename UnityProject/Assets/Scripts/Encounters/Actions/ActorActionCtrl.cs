@@ -25,10 +25,11 @@ public abstract class ActorActionCtrl : MonoBehaviour
 {
     [SerializeField]
     protected int m_priorityRating;
+      
+    public virtual int Priority { get => m_priorityRating; }
 
-    public int Priority { get { return m_priorityRating; } }
-
-    public ActorCtrl Actor { get; protected set; }
+    public ActionData ActionData { get; set;  }
+    public ActorCtrl Actor { get; protected set; }    
 
     public virtual void UpdateAction(EncounterCtrl encounter) { }
 
@@ -41,5 +42,5 @@ public abstract class ActorActionCtrl : MonoBehaviour
         }
     }
 
-    public abstract IEnumerator ProcessAction(EncounterCtrl encounter);
+    public abstract IEnumerator ProcessAction(EncounterCtrl encounterCtrl);
 }

@@ -21,6 +21,8 @@ public class EntityData : ScriptableObject
     protected int m_maxHealth;
     [SerializeField]
     protected int m_currentHealth;
+    [SerializeField]
+    protected List<ActionID> m_actions;
 
     #endregion
 
@@ -33,6 +35,7 @@ public class EntityData : ScriptableObject
     public int Speed { get { return m_speed; } }
     public int MaxHealth { get { return m_maxHealth; } }
     public int CurrentHealth { get { return m_currentHealth; } }
+    public List<ActionID> Actions { get { return m_actions; } }
 
     #endregion
 
@@ -43,7 +46,8 @@ public class EntityData : ScriptableObject
         int defence = 5,
         int speed = 5,
         int maxHealth = 25,
-        int currentHealth = 25
+        int currentHealth = 25,
+        List<ActionID> actions = null
     )
     {
         m_ID = id;
@@ -53,5 +57,6 @@ public class EntityData : ScriptableObject
         m_speed = speed;
         m_maxHealth = maxHealth;
         m_currentHealth = currentHealth;
+        m_actions = actions;
     }
 }

@@ -9,13 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbbf89da18200834e9f4c40596aa0044, type: 3}
-  m_Name: Bruce Wayne
+  m_Script: {fileID: 11500000, guid: 894ed50c99364df47b9052ac720091b9, type: 3}
+  m_Name: ActionRegistry
   m_EditorClassIdentifier: 
-  m_ID: bruce_wayne
-  m_name: Batman
-  m_attack: 7
-  m_defence: 2
-  m_speed: 5
-  m_maxHealth: 50
-  m_currentHealth: 50
+  m_actionDataList:
+  - {fileID: 11400000, guid: bc82d7215dfa5174f9db3edcadfcf169, type: 2}
