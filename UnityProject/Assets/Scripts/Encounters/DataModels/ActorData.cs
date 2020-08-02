@@ -31,6 +31,7 @@ public class ActorData
     // wrapped properties
     public string ID { get { return m_entityData.ID; } }
     public string Name { get { return m_entityData.Name; } }
+    public int MaxHealth { get { return m_entityData.MaxHealth; } }
     public int Attack { get { return m_entityData.Attack; } }
     public int Defence { get { return m_entityData.Defence; } }
     public int Speed { get { return m_entityData.Speed; } }

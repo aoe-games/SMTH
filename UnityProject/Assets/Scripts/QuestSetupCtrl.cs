@@ -9,9 +9,9 @@ public class QuestSetupCtrl : MonoBehaviour
     [SerializeField]
     protected ActorFactory m_actorFactory = null;
     [SerializeField]
-    public List<PartyData> m_parties = new List<PartyData>();
-           
-    void Start()
+    public List<PartyData> m_parties = new List<PartyData>();    
+
+    public void StartEncounter()
     {
         m_encounterCtrl.Reset();
 
@@ -25,16 +25,8 @@ public class QuestSetupCtrl : MonoBehaviour
                 m_encounterCtrl.AddActor(actorCtrl);
             }
         }
-        
-        m_encounterCtrl.StartEncounter();
-    }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            Start();
-        }
+        m_encounterCtrl.StartEncounter();
     }
 
 }

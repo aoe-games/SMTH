@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ID: rascal
   m_name: Dirty Rascal Bruiser
-  m_attack: 6
-  m_defence: 0
-  m_speed: 1
-  m_maxHealth: 22
-  m_currentHealth: 22
+  m_attack: 12
+  m_defence: 1
+  m_speed: 3
+  m_maxHealth: 55
+  m_currentHealth: 55
   m_actions: 0000

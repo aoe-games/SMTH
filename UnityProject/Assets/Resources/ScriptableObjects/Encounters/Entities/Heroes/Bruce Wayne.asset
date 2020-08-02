@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ID: bruce_wayne
   m_name: Batman
-  m_attack: 7
+  m_attack: 18
   m_defence: 3
   m_speed: 7
-  m_maxHealth: 75
-  m_currentHealth: 75
+  m_maxHealth: 120
+  m_currentHealth: 120
   m_actions: 0000

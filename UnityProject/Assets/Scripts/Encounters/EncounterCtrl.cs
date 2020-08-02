@@ -12,11 +12,11 @@ using UnityEngine;
 /// </summary>
 public class EncounterCtrl : MonoBehaviour
 {
-    enum EncounterState { Stopped, Starting, Running, Ending  };
+    public enum State { Stopped, Starting, Running, Ending  };
 
     #region Fields
 
-    EncounterState m_encounterState = EncounterState.Stopped;
+    protected State m_state = State.Stopped;
     Coroutine m_runningCRT = null;
 
     int m_participatingTeams = 0;
@@ -31,6 +31,34 @@ public class EncounterCtrl : MonoBehaviour
     protected List<ActorCtrl> m_actors = new List<ActorCtrl>();
     [SerializeField]
     protected Queue<ActorCtrl> m_actorTurnQueue = new Queue<ActorCtrl>();
+
+    #endregion
+
+    #region Properties
+
+    public State EncounterState { get => m_state; }
+
+    #endregion
+
+    #region Events
+
+    public event Action<ActorCtrl> ActorAdded;
+    void FireActorAddedEvent(ActorCtrl actorCtrl)
+    {
+        ActorAdded?.Invoke(actorCtrl);
+    }
+
+    public event Action<State> StateChanged;
+    void FireStateChangedEvent(State encounterState)
+    {
+        StateChanged?.Invoke(encounterState);
+    }
+
+    public event Action EncounterReset;
+    void FireEncounterResetEvent()
+    {
+        EncounterReset?.Invoke();
+    }
 
     #endregion
 
@@ -49,8 +77,19 @@ public class EncounterCtrl : MonoBehaviour
         }
     }
 
+    protected void SetState(State encounterState)
+    {
+        if (m_state != encounterState)
+        {
+            m_state = encounterState;
+            FireStateChangedEvent(encounterState);
+        }
+    }
+
     public void Reset()
     {
+        StopEncounter();
+
         int count = m_actors.Count;
         while (m_actors.Count > 0)
         {
@@ -58,16 +97,20 @@ public class EncounterCtrl : MonoBehaviour
             m_actors.RemoveAt(0);
         }
 
-        m_actorTurnQueue.Clear();
-        StopAllCoroutines();
+        FireEncounterResetEvent();
+    }
 
-        m_encounterState = EncounterState.Stopped;
+    public void StopEncounter()
+    {
+        m_actorTurnQueue.Clear();
+        StopAllCoroutines(); 
+        SetState(State.Stopped);
     }
 
     // Start is called before the first frame update
     public void StartEncounter()
     {
-        m_encounterState = EncounterState.Starting;
+        SetState(State.Starting);
 
         SetupActors();
         RunEncounter();
@@ -83,13 +126,13 @@ public class EncounterCtrl : MonoBehaviour
    
     void RunEncounter()
     {
-        m_encounterState = EncounterState.Running;
+        SetState(State.Running);
         m_runningCRT = StartCoroutine(EncounterRunning());
     }
 
     IEnumerator EncounterRunning()
     {
-        while (m_encounterState == EncounterState.Running)
+        while (m_state == State.Running)
         {
             if (m_autoStepEnabled || m_manualStepTriggered)
             {
@@ -115,6 +158,7 @@ public class EncounterCtrl : MonoBehaviour
             }
         }
 
+        StopEncounter();
         Debug.Log("EncounterCtrl.RunEncounter - exiting");
     }
 
@@ -127,7 +171,7 @@ public class EncounterCtrl : MonoBehaviour
     {
         if (m_actorTurnQueue != null)
         {
-            while ((m_actorTurnQueue.Count > 0) && (m_encounterState == EncounterState.Running))
+            while ((m_actorTurnQueue.Count > 0) && (m_state == State.Running))
             {
                 ActorCtrl actor = m_actorTurnQueue.Dequeue();
                 yield return actor.ProcessTurn(this);
@@ -140,6 +184,7 @@ public class EncounterCtrl : MonoBehaviour
         if (!m_actors.Contains(actorCtrl))
         {
             m_actors.Add(actorCtrl);
+            FireActorAddedEvent(actorCtrl);
         }
     }
 
@@ -223,9 +268,10 @@ public class EncounterCtrl : MonoBehaviour
         // the encounter ends
         if (activeTeams != m_participatingTeams)
         {
-            m_encounterState = EncounterState.Ending;
+            SetState(State.Ending);
         }
     }
 
     #endregion
+
 }
