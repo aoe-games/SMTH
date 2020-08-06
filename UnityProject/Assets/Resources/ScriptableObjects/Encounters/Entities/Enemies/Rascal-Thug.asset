@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ID: rascal
   m_name: Dirty Rascal Thug
-  m_attack: 6
-  m_defence: 2
+  m_physicalAttack: 6
+  m_spiritualAttack: 0
+  m_physicalDefense: 2
+  m_spiritualDefense: 0
   m_speed: 4
   m_maxHealth: 30
   m_currentHealth: 30

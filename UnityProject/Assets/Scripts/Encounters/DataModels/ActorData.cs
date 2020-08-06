@@ -32,8 +32,10 @@ public class ActorData
     public string ID { get { return m_entityData.ID; } }
     public string Name { get { return m_entityData.Name; } }
     public int MaxHealth { get { return m_entityData.MaxHealth; } }
-    public int Attack { get { return m_entityData.Attack; } }
-    public int Defence { get { return m_entityData.Defence; } }
+    public int PhysicalAttack { get { return m_entityData.PhysicalAttack; } }
+    public int SpiritualAttack { get { return m_entityData.SpiritualAttack; } }
+    public int PhysicalDefense { get { return m_entityData.PhysicalDefense; } }
+    public int SpiritualDefense { get { return m_entityData.SpiritualDefense; } }
     public int Speed { get { return m_entityData.Speed; } }
     public List<ActionID> Actions { get { return m_entityData.Actions; } }
 

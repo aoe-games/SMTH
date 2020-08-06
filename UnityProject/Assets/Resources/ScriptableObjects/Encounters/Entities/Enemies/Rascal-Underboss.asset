@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ID: rascal
   m_name: Dirty Rascal Underboss
-  m_attack: 20
-  m_defence: 2
+  m_physicalAttack: 20
+  m_spiritualAttack: 0
+  m_physicalDefense: 2
+  m_spiritualDefense: 0
   m_speed: 2
   m_maxHealth: 90
   m_currentHealth: 90

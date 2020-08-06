@@ -213,7 +213,9 @@ public class ActorCtrl : MonoBehaviour
         AttackResult attackResult = new AttackResult();
         if (defenceConfig != null && ActorData != null)
         {
-            attackResult.DamageTaken = attackConfig.BaseAttack - defenceConfig.BaseDefence;
+            int physDmg = attackConfig.PhysicalAttack - defenceConfig.PhysicalDefense;
+            int sprDmg = attackConfig.SpiritualAttack - defenceConfig.SpiritualDefense;
+            attackResult.DamageTaken = physDmg + sprDmg;
             ActorData.AdjustHealth(-attackResult.DamageTaken);
         }
 

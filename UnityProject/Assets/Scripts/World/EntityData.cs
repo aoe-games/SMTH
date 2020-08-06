@@ -12,9 +12,13 @@ public class EntityData : ScriptableObject
     [SerializeField]
     protected string m_name;
     [SerializeField]
-    protected int m_attack;
+    protected int m_physicalAttack;
     [SerializeField]
-    protected int m_defence;
+    protected int m_spiritualAttack;
+    [SerializeField]
+    protected int m_physicalDefense;
+    [SerializeField]
+    protected int m_spiritualDefense;
     [SerializeField]
     protected int m_speed;
     [SerializeField]
@@ -30,8 +34,10 @@ public class EntityData : ScriptableObject
 
     public string ID { get { return m_ID; } }
     public string Name { get { return m_name; } }
-    public int Attack { get { return m_attack; } }
-    public int Defence { get { return m_defence; } }
+    public int PhysicalAttack { get { return m_physicalAttack; } }
+    public int SpiritualAttack { get { return m_spiritualAttack; } }
+    public int PhysicalDefense { get { return m_physicalDefense; } }
+    public int SpiritualDefense { get { return m_spiritualDefense; } }
     public int Speed { get { return m_speed; } }
     public int MaxHealth { get { return m_maxHealth; } }
     public int CurrentHealth { get { return m_currentHealth; } }
@@ -42,8 +48,10 @@ public class EntityData : ScriptableObject
     public EntityData(
         string id = "New Entity",
         string name = "No Name",
-        int attack = 10,
-        int defence = 5,
+        int physicalAttack = 10,
+        int spiritualAttack = 10,
+        int physicalDefense = 5,
+        int spiritualDefense = 5,
         int speed = 5,
         int maxHealth = 25,
         int currentHealth = 25,
@@ -52,8 +60,10 @@ public class EntityData : ScriptableObject
     {
         m_ID = id;
         m_name = name;
-        m_attack = attack;
-        m_defence = defence;
+        m_physicalAttack = physicalAttack;
+        m_spiritualAttack = spiritualAttack;
+        m_physicalDefense = physicalDefense;
+        m_spiritualDefense = spiritualDefense;
         m_speed = speed;
         m_maxHealth = maxHealth;
         m_currentHealth = currentHealth;

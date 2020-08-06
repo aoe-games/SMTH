@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ID: dick_greyson
   m_name: Robin
-  m_attack: 10
-  m_defence: 4
+  m_physicalAttack: 10
+  m_spiritualAttack: 0
+  m_physicalDefense: 4
+  m_spiritualDefense: 0
   m_speed: 14
   m_maxHealth: 85
   m_currentHealth: 85

@@ -5,5 +5,6 @@ using UnityEngine;
 public class AttackConfig
 {
     public ActorCtrl Attacker { get; set; }
-    public int BaseAttack { get; set; }
+    public int PhysicalAttack { get; set; }
+    public int SpiritualAttack { get; set; }
 }
