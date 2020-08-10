@@ -8,8 +8,12 @@ Story format: Harlowe
 ------------------------------------------------
 */
 
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using Cradle;
 using IStoryThread = System.Collections.Generic.IEnumerable<Cradle.StoryOutput>;
+using Cradle.StoryFormats.Harlowe;
 
 public partial class @prologue: Cradle.StoryFormats.Harlowe.HarloweStory
 {
