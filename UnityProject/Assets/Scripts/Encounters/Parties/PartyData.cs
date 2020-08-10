@@ -7,8 +7,5 @@ using UnityEngine;
 public class PartyData : ScriptableObject
 {
     [SerializeField]
-    public int m_teamID = 0;
-
-    [SerializeField]
     public List<EntityData> m_partyMembers = new List<EntityData>();
 }
