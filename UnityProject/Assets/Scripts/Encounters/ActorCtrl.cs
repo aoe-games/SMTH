@@ -24,7 +24,7 @@ public class ActorCtrl : MonoBehaviour
     private List<ActorActionCtrl> m_registeredActions = new List<ActorActionCtrl>();
 
     private Queue<ActorActionCtrl> m_actionQueue = new Queue<ActorActionCtrl>();
-
+    
     #endregion
 
     #region Events

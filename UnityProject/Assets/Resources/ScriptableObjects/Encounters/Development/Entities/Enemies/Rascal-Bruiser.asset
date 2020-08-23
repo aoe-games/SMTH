@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbbf89da18200834e9f4c40596aa0044, type: 3}
+  m_Name: Rascal-Bruiser
+  m_EditorClassIdentifier: 
+  m_ID: rascal_bruiser
+  m_name: Dirty Rascal Bruiser
+  m_physicalAttack: 12
+  m_spiritualAttack: 0
+  m_physicalDefense: 1
+  m_spiritualDefense: 0
+  m_speed: 3
+  m_maxHealth: 55
+  m_currentHealth: 55
+  m_viewCatalog: {fileID: 11400000, guid: bd5280c58eda1f64091a376b7efd6223, type: 2}
+  m_actions: 0000

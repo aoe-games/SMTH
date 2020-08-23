@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Jalopy.Cataloging;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class EntityData : ScriptableObject
     protected string m_ID;
     [SerializeField]
     protected string m_name;
+
     [SerializeField]
     protected int m_physicalAttack;
     [SerializeField]
@@ -25,8 +27,18 @@ public class EntityData : ScriptableObject
     protected int m_maxHealth;
     [SerializeField]
     protected int m_currentHealth;
+
     [SerializeField]
-    protected List<ActionID> m_actions;
+    protected ResourcePathCatalog m_viewCatalog;
+
+    // used as indeces for the view catalog path
+    public enum ViewTypes : byte
+    {
+        RosterPortrait = 0
+    }
+
+    [SerializeField]
+    protected List<ActionID> m_actions;    
 
     #endregion
 
@@ -34,6 +46,7 @@ public class EntityData : ScriptableObject
 
     public string ID { get { return m_ID; } }
     public string Name { get { return m_name; } }
+
     public int PhysicalAttack { get { return m_physicalAttack; } }
     public int SpiritualAttack { get { return m_spiritualAttack; } }
     public int PhysicalDefense { get { return m_physicalDefense; } }
@@ -42,6 +55,11 @@ public class EntityData : ScriptableObject
     public int MaxHealth { get { return m_maxHealth; } }
     public int CurrentHealth { get { return m_currentHealth; } }
     public List<ActionID> Actions { get { return m_actions; } }
+
+    public string RosterPortraitPath
+    {
+        get => m_viewCatalog.GetPath(ID, (int)ViewTypes.RosterPortrait);
+    }
 
     #endregion
 
@@ -55,7 +73,7 @@ public class EntityData : ScriptableObject
         int speed = 5,
         int maxHealth = 25,
         int currentHealth = 25,
-        List<ActionID> actions = null
+        List<ActionID> actions = null              
     )
     {
         m_ID = id;
@@ -67,6 +85,6 @@ public class EntityData : ScriptableObject
         m_speed = speed;
         m_maxHealth = maxHealth;
         m_currentHealth = currentHealth;
-        m_actions = actions;
+        m_actions = actions;                              
     }
 }

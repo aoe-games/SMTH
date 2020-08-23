@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d08ba136444d74c93ac25ba625e2c118, type: 3}
+  m_Name: EntityViewPaths
+  m_EditorClassIdentifier: 
+  m_allowDebug: 1
+  m_directory: Sprites/Development/Portraits/
+  m_resourcePaths:
+  - m_ID: charlotte_warrior
+    m_resourcePaths:
+    - portrait_knight
+  - m_ID: dwayne_berserker
+    m_resourcePaths:
+    - portrait_knight
+  - m_ID: kathleen_mage
+    m_resourcePaths:
+    - portrait_mage
+  - m_ID: parker_technician
+    m_resourcePaths:
+    - portrait_gunman
+  - m_ID: randall_illusionist
+    m_resourcePaths:
+    - portrait_druid
+  - m_ID: sandra_ranger
+    m_resourcePaths:
+    - portrait_gunman
+  - m_ID: rascal_underboss
+    m_resourcePaths:
+    - portrait_rascal_underboss
+  - m_ID: rascal_bruiser
+    m_resourcePaths:
+    - portrait_rascal_bruiser
+  - m_ID: rascal_thug
+    m_resourcePaths:
+    - portrait_rascal_thug
