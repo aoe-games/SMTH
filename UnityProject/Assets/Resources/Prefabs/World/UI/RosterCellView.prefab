@@ -223,6 +223,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: RosterCellPortraitView (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8437791737814583849, guid: 7fdc1a70531a77347858f8978eb67bb8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437791737814583849, guid: 7fdc1a70531a77347858f8978eb67bb8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2693826456163403322}
+    - target: {fileID: 8437791737814583849, guid: 7fdc1a70531a77347858f8978eb67bb8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnCellOneSelected
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437791737814583849, guid: 7fdc1a70531a77347858f8978eb67bb8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437791737814583849, guid: 7fdc1a70531a77347858f8978eb67bb8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437791737814583849, guid: 7fdc1a70531a77347858f8978eb67bb8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fdc1a70531a77347858f8978eb67bb8, type: 3}
 --- !u!224 &6101102750785576095 stripped
@@ -360,6 +390,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: RosterCellPortraitView (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8437791737814583849, guid: 7fdc1a70531a77347858f8978eb67bb8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437791737814583849, guid: 7fdc1a70531a77347858f8978eb67bb8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2693826456163403322}
+    - target: {fileID: 8437791737814583849, guid: 7fdc1a70531a77347858f8978eb67bb8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnCellThreeSelected
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437791737814583849, guid: 7fdc1a70531a77347858f8978eb67bb8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437791737814583849, guid: 7fdc1a70531a77347858f8978eb67bb8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437791737814583849, guid: 7fdc1a70531a77347858f8978eb67bb8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fdc1a70531a77347858f8978eb67bb8, type: 3}
 --- !u!224 &6599749073597898735 stripped
@@ -496,6 +556,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RosterCellPortraitView (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437791737814583849, guid: 7fdc1a70531a77347858f8978eb67bb8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437791737814583849, guid: 7fdc1a70531a77347858f8978eb67bb8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2693826456163403322}
+    - target: {fileID: 8437791737814583849, guid: 7fdc1a70531a77347858f8978eb67bb8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnCellTwoSelected
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437791737814583849, guid: 7fdc1a70531a77347858f8978eb67bb8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437791737814583849, guid: 7fdc1a70531a77347858f8978eb67bb8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437791737814583849, guid: 7fdc1a70531a77347858f8978eb67bb8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fdc1a70531a77347858f8978eb67bb8, type: 3}

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class QuestSetupCtrl : MonoBehaviour
 {
+
     [SerializeField]
-    protected PartyData m_heroRoster = null; // note - this will be controlled from player data [Dß]
+    protected QuestSetupPartySelectionCtrl m_partySelectionCtrl = null;
+
     [SerializeField]
     protected PartyData m_enemyRoster = null; // note - this will be controlled from the quest entry data [Dß]
     [SerializeField]
@@ -15,9 +17,7 @@ public class QuestSetupCtrl : MonoBehaviour
     [SerializeField]
     protected List<PartyData> m_parties = new List<PartyData>();
 
-    // data providers
-    [SerializeField]
-    QuestSetupRosterCtrl m_heroRosterCtrl = null;
+    // data providers     
     [SerializeField]
     QuestSetupRosterCtrl m_enemyRosterCtrl = null;
 
@@ -29,7 +29,7 @@ public class QuestSetupCtrl : MonoBehaviour
 
     public void Show()
     {
-        m_heroRosterCtrl.Roster = m_heroRoster;
+        m_partySelectionCtrl.StartSetup();
         m_enemyRosterCtrl.Roster = m_enemyRoster;
     }
 

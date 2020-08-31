@@ -1,4 +1,5 @@
 ﻿using Jalopy;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class QuestSetupRosterCtrl : DataSource
     protected InfiniteScrollManager m_scrollView = null;
 
     protected PartyData m_roster = null;
+
+    public event Action<EntityData> RosterMemberSelectedEvent = null;
 
     /// <summary>
     /// Set's the roster data used to present the roster list.
@@ -39,14 +42,16 @@ public class QuestSetupRosterCtrl : DataSource
         QuestSetupRosterCellView cellView = cell as QuestSetupRosterCellView;
         if (cellView != null)
         {
+            cellView.OnCellSelectedEvent += OnRosterCellSelected;
+
             int portraitCount = cellView.PortraitCount;
             for (int i = 0; i < portraitCount; i++)
-            {
+            {            
                 int idx = (index * portraitCount) + i;
                 if (idx < Roster.m_partyMembers.Count)
                 {
                     string spriteName = Roster.m_partyMembers[idx].RosterPortraitPath;
-                    cellView.SetImageForIndex(spriteName, i);
+                    cellView.SetImageForIndex(spriteName, i);                     
                 }
                 else
                 {
@@ -54,5 +59,10 @@ public class QuestSetupRosterCtrl : DataSource
                 }
             }
         }
+    }
+
+    protected void OnRosterCellSelected(int index)
+    {
+        RosterMemberSelectedEvent?.Invoke(Roster.m_partyMembers[index]);
     }
 }
