@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,20 @@ public class QuestSetupPartyMemberView : MonoBehaviour
 
     [SerializeField]
     Image m_portrait = null;
+    [SerializeField]
+    TextMeshProUGUI m_nameTxt = null;
+    [SerializeField]
+    TextMeshProUGUI m_physAtkTxt = null;
+    [SerializeField]
+    TextMeshProUGUI m_physDefTxt = null;
+    [SerializeField]
+    TextMeshProUGUI m_sprtAtkTxt = null;
+    [SerializeField]
+    TextMeshProUGUI m_sprtDefTxt = null;
+    [SerializeField]
+    TextMeshProUGUI m_healthTxt = null;
+    [SerializeField]
+    TextMeshProUGUI m_speedTxt = null;
 
     #endregion
 
@@ -30,6 +45,13 @@ public class QuestSetupPartyMemberView : MonoBehaviour
             {
                 // reset all view elements using data model
                 m_portrait.sprite = ResourceManager.Instance.Inventory.GetRawResourceAtPath<Sprite>(entityData.RosterPortraitPath);
+                m_nameTxt.text = entityData.Name;
+                m_healthTxt.text = entityData.MaxHealth.ToString();
+                m_speedTxt.text = entityData.Speed.ToString();
+                m_physAtkTxt.text = entityData.PhysicalAttack.ToString();
+                m_physDefTxt.text = entityData.PhysicalDefense.ToString();
+                m_sprtAtkTxt.text = entityData.SpiritualAttack.ToString();
+                m_sprtDefTxt.text = entityData.SpiritualDefense.ToString();                
             }
             else
             {
