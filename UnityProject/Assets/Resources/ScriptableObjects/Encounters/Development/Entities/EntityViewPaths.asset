@@ -42,3 +42,6 @@ MonoBehaviour:
   - m_ID: rascal_thug
     m_resourcePaths:
     - portrait_rascal_thug
+  - m_ID: unknown
+    m_resourcePaths:
+    - portrait_unknown

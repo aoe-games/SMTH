@@ -1,20 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QuestSetupPartySelectionCtrl : MonoBehaviour
 {
     [SerializeField]
-    protected PartyData m_heroRoster = null; // note - this will be controlled from player data [Dß]           
-   
+    protected PartyData m_heroRoster = null; // note - this will be controlled from player data [Dß]         
     [SerializeField]
     QuestSetupRosterCtrl m_heroRosterCtrl = null;
+    [SerializeField]
+    RectTransform m_partySelectionView = null;
 
     [SerializeField]
     protected List<QuestSetupPartyMemberView> m_memberViews = new List<QuestSetupPartyMemberView>();
-    protected QuestSetupPartyMemberView m_selectedMemberView = null;  
+    protected QuestSetupPartyMemberView m_selectedMemberView = null;
 
     protected List<EntityData> m_memberData = null;
+
+    public PartyData SelectedMembers
+    {
+        get
+        {
+            PartyData partyData = new PartyData();
+            partyData.m_partyMembers.AddRange(m_memberData);
+            return partyData;
+        }
+    }
 
     protected void Awake()
     {     
@@ -24,13 +37,16 @@ public class QuestSetupPartySelectionCtrl : MonoBehaviour
 
         for (int i = 0; i < partyMemberCount; i++)
         {
-            m_memberData.Add(null);
+            EntityData entityData = null;
+            m_memberData.Add(entityData);
 
             QuestSetupPartyMemberView view = m_memberViews[i];
             if (view != null)
             {
-                view.Index = i;
-                view.MemberSelectedEvent += OnPartyMemberCharacterSelected;
+                view.index = i;
+                view.MemberSelectedEvent += OnPartyMemberPortraitSelected;
+                view.RemoveSelectedEvent += OnRemovePartyMemberSelected;
+                view.UpdateView(entityData);
             }
         }
 
@@ -40,9 +56,14 @@ public class QuestSetupPartySelectionCtrl : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    public void  StartSetup()
+    public void StartSelection()
     {
-        
+        m_partySelectionView.gameObject.SetActive(true);
+    }
+
+    public void EndSelection()
+    {
+        m_partySelectionView.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -53,45 +74,84 @@ public class QuestSetupPartySelectionCtrl : MonoBehaviour
 
     #region Member View
 
-    void OnPartyMemberCharacterSelected(int index)
+    void OnRemovePartyMemberSelected(int index)
     {
-        SwapCurrentMember(index);
+        m_memberData[index] = null;
+
+        QuestSetupPartyMemberView memberView = m_memberViews[index];
+        memberView.UpdateView(null);
+        
+        UpdateRosterSelectionStates();
     }
 
-    void SwapCurrentMember(int newIndex)
+    void OnPartyMemberPortraitSelected(int index)
+    {
+        UpdateSelectedMember(index);
+    }
+
+    void UpdateSelectedMember(int newIndex)
     {
         // deselect the currently selected view
         if (m_selectedMemberView != null)
         {
-            m_selectedMemberView.Deselect();
+            m_selectedMemberView.SetSelected(false);
         }
 
         // setup newly selected view
-        QuestSetupPartyMemberView newView = null; 
-        if (newIndex >= 0 && newIndex < m_memberViews.Count)
-        {
-            newView = m_memberViews[newIndex];
-        }
-
-        m_selectedMemberView = newView;
+        m_selectedMemberView = m_memberViews[newIndex];
+        m_selectedMemberView.SetSelected(true);
+                      
+        UpdateRosterSelectionStates();
     }
 
     #endregion
 
     void OnRosterMemberSelected(EntityData entityData)
-    {           
-        if (m_selectedMemberView != null)
-        {
-            int selectedViewIndex = m_selectedMemberView.Index;
+    {
+        // a hero can only be assigned to the party once, so make sure the selected
+        // entity isn't added to the party twice
+        if (!m_memberData.Contains(entityData) && m_selectedMemberView != null)
+        {  
+            m_selectedMemberView.UpdateView(entityData);
+
+            int selectedViewIndex = m_selectedMemberView.index;
             m_memberData[selectedViewIndex] = entityData;
 
-            m_selectedMemberView.UpdateView(entityData);
+            UpdateRosterSelectionStates();            
         }  
-    }       
+    }
 
-    #region Helper
+    #region Helpers
 
-    
+    void UpdateRosterSelectionStates()
+    {
+        // update roster highlight and available entries to match selected entity
+        EntityData selectedEntityData = null;
+        if (m_selectedMemberView != null)
+        {
+            int index = m_selectedMemberView.index;
+            selectedEntityData = m_memberData[index];
+        }                 
+        
+        string highlightId = selectedEntityData == null ? string.Empty : selectedEntityData.ID;
+        m_heroRosterCtrl.SetRosterEntryToHighlight(highlightId);
+
+        // -1 because we don't include the selected party member, since it will have a different visual highlight
+        List<string> unavailableEntries = new List<string>(m_memberData.Count - 1);
+        for (int i = 0; i < m_memberData.Count; i++)
+        {
+            EntityData entityData = m_memberData[i];
+            if (entityData != null)
+            {
+                if (selectedEntityData == null || entityData.ID != selectedEntityData.ID)
+                {
+                    unavailableEntries.Add(entityData.ID);
+                }
+            }
+        }
+
+        m_heroRosterCtrl.SetUnavailableEntries(unavailableEntries);
+    }
 
     #endregion
 }

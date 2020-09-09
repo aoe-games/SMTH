@@ -31,11 +31,12 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: ac6bb1409af485041922733864494f08, type: 3}
-    totalSpriteSurfaceArea: 87024
+    totalSpriteSurfaceArea: 99456
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 17bc2412d64922f4aa56cc4d62d1da2c, type: 3}
+  - {fileID: 21300000, guid: dbb6abe3d217c204ca61c2379e401719, type: 3}
   - {fileID: 21300000, guid: ce18e61496b66d1448f925edacce7624, type: 3}
   - {fileID: 21300000, guid: b91b3daca61a81c4ab35ab2678f18195, type: 3}
   - {fileID: 21300000, guid: 8bd4a17dcd1ab3b458abbabce5936d28, type: 3}
@@ -44,6 +45,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 0a4809fe100ff54449eee7075c9a3c6a, type: 3}
   m_PackedSpriteNamesToIndex:
   - portrait_rascal_underboss
+  - portrait_unknown
   - portrait_rascal_bruiser
   - portrait_mage
   - portrait_druid

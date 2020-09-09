@@ -705,10 +705,10 @@ TextureImporter:
       name: colour_icons_19
       rect:
         serializedVersion: 2
-        x: 83
-        y: 73
-        width: 83.333336
-        height: 73
+        x: 121
+        y: 93
+        width: 45
+        height: 45
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

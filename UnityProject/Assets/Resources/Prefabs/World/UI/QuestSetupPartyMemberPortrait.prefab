@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300102, guid: bddf04b349b79454cb28704f5904c93f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dbb6abe3d217c204ca61c2379e401719, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -139,6 +139,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2510571845152953156}
+  - component: {fileID: 8349200836361965009}
   - component: {fileID: 2510571845152953154}
   - component: {fileID: 2510571845152953155}
   m_Layer: 5
@@ -168,6 +169,22 @@ RectTransform:
   m_AnchoredPosition: {x: -256.5, y: -62}
   m_SizeDelta: {x: 251, y: 254.0441}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8349200836361965009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2510571845152953157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f3efc8f8d95dfe459b59b50bb2ec191, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_portraitImg: {fileID: 2510571844770924710}
+  m_frameImg: {fileID: 2510571845152953155}
+  m_neutralColour: {r: 1, g: 1, b: 1, a: 1}
+  m_highlightedColour: {r: 0.8301887, g: 0.8275893, b: 0, a: 1}
 --- !u!222 &2510571845152953154
 CanvasRenderer:
   m_ObjectHideFlags: 0

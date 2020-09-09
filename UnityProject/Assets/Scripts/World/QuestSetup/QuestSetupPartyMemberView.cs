@@ -8,16 +8,19 @@ using UnityEngine.UI;
 
 public class QuestSetupPartyMemberView : MonoBehaviour
 {
+    const string k_unknownPortraitPath = "Sprites/Development/Portraits/portrait_unknown";
+
     EntityData m_entityData = null;
 
     public event Action<int> MemberSelectedEvent = null;
+    public event Action<int> RemoveSelectedEvent = null;
 
-    public int Index { get; set; }
+    public int index { get; set; }
 
     #region View Elements
 
     [SerializeField]
-    Image m_portrait = null;
+    QuestSetupPartyMemberPortraitView m_portraitView = null;
     [SerializeField]
     TextMeshProUGUI m_nameTxt = null;
     [SerializeField]
@@ -32,8 +35,16 @@ public class QuestSetupPartyMemberView : MonoBehaviour
     TextMeshProUGUI m_healthTxt = null;
     [SerializeField]
     TextMeshProUGUI m_speedTxt = null;
+    [SerializeField]
+    Button m_removeBtn = null;
 
     #endregion
+
+    // Start is called before the first frame update
+    void Awake()
+    {
+        ResetView();
+    }
 
     public void UpdateView(EntityData entityData)
     {
@@ -44,7 +55,8 @@ public class QuestSetupPartyMemberView : MonoBehaviour
             if (m_entityData != null)
             {
                 // reset all view elements using data model
-                m_portrait.sprite = ResourceManager.Instance.Inventory.GetRawResourceAtPath<Sprite>(entityData.RosterPortraitPath);
+                m_removeBtn.gameObject.SetActive(true);
+                m_portraitView.SetPortraitImage(entityData.RosterPortraitPath);
                 m_nameTxt.text = entityData.Name;
                 m_healthTxt.text = entityData.MaxHealth.ToString();
                 m_speedTxt.text = entityData.Speed.ToString();
@@ -55,30 +67,39 @@ public class QuestSetupPartyMemberView : MonoBehaviour
             }
             else
             {
-                // reset to an empty view
+                ResetView(); 
             }
         }
     }
 
-    public void Deselect()
+    void ResetView()
     {
+        // reset to an empty view
+        m_removeBtn.gameObject.SetActive(false);
+        m_portraitView.SetPortraitImage(k_unknownPortraitPath);
+        m_nameTxt.text = "Select Hero";
 
+        const string defaultValue = "-";
+        m_healthTxt.text = defaultValue;
+        m_speedTxt.text = defaultValue;
+        m_physAtkTxt.text = defaultValue;
+        m_physDefTxt.text = defaultValue;
+        m_sprtAtkTxt.text = defaultValue;
+        m_sprtDefTxt.text = defaultValue;
+    }
+
+    public void SetSelected(bool isSelected)
+    {
+        m_portraitView.SetHighlighted(isSelected);
     }
    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void OnPortraitSelected()
     {
-        MemberSelectedEvent?.Invoke(Index);
+        MemberSelectedEvent?.Invoke(index);
+    }
+
+    public void OnRemoveSelected()
+    {
+        RemoveSelectedEvent?.Invoke(index);
     }
 }

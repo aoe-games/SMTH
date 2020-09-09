@@ -10,7 +10,7 @@ public class QuestSetupRosterCellView : InfiniteScrollCell
     [SerializeField]
     RectTransform m_rectTransform = null;
     [SerializeField]
-    List<Button> m_portraitBtns = new List<Button>();
+    List<QuestSetupRosterCellPortraitView> m_portraitViews = new List<QuestSetupRosterCellPortraitView>();
 
     public event Action<int> OnCellSelectedEvent = null;
 
@@ -20,19 +20,30 @@ public class QuestSetupRosterCellView : InfiniteScrollCell
     }
 
     // number of portraits that this parent view supports
-    public int PortraitCount { get => m_portraitBtns.Count; }
+    public int PortraitCount { get => m_portraitViews.Count; }
 
     public void SetImageForIndex(string resourceID, int index)
     {
-        //m_portraitBtns[index].image.sprite = Resources.Load<Sprite>(resourceID);
-        m_portraitBtns[index].image.sprite = ResourceManager.Instance.Inventory.GetRawResourceAtPath<Sprite>(resourceID);
+        m_portraitViews[index].SetPortraitImage(resourceID);
         ShowPortraitAtIndex(true, index);
     }
 
     public void ShowPortraitAtIndex(bool shouldShow, int index)
     {
-        m_portraitBtns[index].image.enabled = shouldShow;
+        m_portraitViews[index].SetVisible(shouldShow);
     }
+
+    public void SetHighlighted(bool isHighlighted, int index)
+    {
+        m_portraitViews[index].SetHighlighted(isHighlighted);
+    }
+
+    public void SetSelectable(bool isSelectable, int index)
+    {
+        m_portraitViews[index].SetSelectable(isSelectable);
+    }
+
+    #region Event Triggers
 
     public void OnCellOneSelected()
     {
@@ -53,4 +64,6 @@ public class QuestSetupRosterCellView : InfiniteScrollCell
     {
         OnCellSelectedEvent?.Invoke((index * PortraitCount) + portraitOffset);
     }
+
+    #endregion
 }

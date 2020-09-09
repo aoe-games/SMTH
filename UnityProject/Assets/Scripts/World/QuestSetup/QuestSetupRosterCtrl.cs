@@ -10,6 +10,8 @@ public class QuestSetupRosterCtrl : DataSource
     protected InfiniteScrollManager m_scrollView = null;
 
     protected PartyData m_roster = null;
+    protected string m_entryToHighlight = string.Empty;
+    protected List<string> m_unavailableEntries = new List<string>();
 
     public event Action<EntityData> RosterMemberSelectedEvent = null;
 
@@ -31,8 +33,8 @@ public class QuestSetupRosterCtrl : DataSource
     {
         get
         {
-            QuestSetupRosterCellView view = m_scrollView.m_cellPrototype.GetComponent<QuestSetupRosterCellView>();            
-            float portraitsPerRow = view != null ? (float)view.PortraitCount : 0f;          
+            QuestSetupRosterCellView view = m_scrollView.m_cellPrototype.GetComponent<QuestSetupRosterCellView>();
+            float portraitsPerRow = view != null ? (float)view.PortraitCount : 0f;
             return Mathf.CeilToInt(Roster.m_partyMembers.Count / portraitsPerRow);
         }        
     }
@@ -50,8 +52,13 @@ public class QuestSetupRosterCtrl : DataSource
                 int idx = (index * portraitCount) + i;
                 if (idx < Roster.m_partyMembers.Count)
                 {
-                    string spriteName = Roster.m_partyMembers[idx].RosterPortraitPath;
-                    cellView.SetImageForIndex(spriteName, i);                     
+                    EntityData entityData = Roster.m_partyMembers[idx];
+
+                    string spriteName = entityData.RosterPortraitPath;
+                    cellView.SetImageForIndex(spriteName, i);
+                    cellView.ShowPortraitAtIndex(true, i);
+                    cellView.SetHighlighted(m_entryToHighlight == entityData.ID, i);
+                    cellView.SetSelectable(!m_unavailableEntries.Contains(entityData.ID), i);
                 }
                 else
                 {
@@ -59,6 +66,19 @@ public class QuestSetupRosterCtrl : DataSource
                 }
             }
         }
+    }
+
+    public void SetRosterEntryToHighlight(string ID)
+    {
+        m_entryToHighlight = ID;
+        m_scrollView.RefreshView();
+    }
+
+    public void SetUnavailableEntries(List<string> IDs)
+    {
+        m_unavailableEntries.Clear();
+        m_unavailableEntries.AddRange(IDs);
+        m_scrollView.RefreshView();
     }
 
     protected void OnRosterCellSelected(int index)
