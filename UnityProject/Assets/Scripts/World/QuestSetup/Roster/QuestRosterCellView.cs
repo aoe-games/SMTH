@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class QuestSetupRosterCellView : InfiniteScrollCell
+public class QuestRosterCellView : InfiniteScrollCell
 {
     [SerializeField]
     RectTransform m_rectTransform = null;
     [SerializeField]
-    List<QuestSetupRosterCellPortraitView> m_portraitViews = new List<QuestSetupRosterCellPortraitView>();
+    List<QuestRosterCellPortraitView> m_portraitViews = new List<QuestRosterCellPortraitView>();
 
     public event Action<int> OnCellSelectedEvent = null;
 

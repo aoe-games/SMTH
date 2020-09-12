@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class QuestSetupPartyMemberView : MonoBehaviour
+public class QuestPartyMemberView : MonoBehaviour
 {
     const string k_unknownPortraitPath = "Sprites/Development/Portraits/portrait_unknown";
 
@@ -20,7 +20,7 @@ public class QuestSetupPartyMemberView : MonoBehaviour
     #region View Elements
 
     [SerializeField]
-    QuestSetupPartyMemberPortraitView m_portraitView = null;
+    QuestPartyMemberPortraitView m_portraitView = null;
     [SerializeField]
     TextMeshProUGUI m_nameTxt = null;
     [SerializeField]

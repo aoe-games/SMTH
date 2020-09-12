@@ -1,4 +1,5 @@
 ﻿using Jalopy;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,8 @@ public class EncounterObserver : DataSource
     EncounterCtrl m_encounterCtrl;
     [SerializeField]
     InfiniteScrollManager m_actorScrollView;
+
+    public event System.Action EncounterObservationComplete = null;
 
     public override int NumberOfCells
     {
@@ -81,6 +84,11 @@ public class EncounterObserver : DataSource
             default:
                 break;
         }
+    }
+
+    public void OnExitSelected()
+    {
+        EncounterObservationComplete?.Invoke();
     }
 
     #endregion

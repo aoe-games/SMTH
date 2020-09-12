@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: QuestIcons
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: f4dcb61224ea52e4e9b4576fcbf14da0, type: 3}
+    totalSpriteSurfaceArea: 152668
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 0a5ab150645174843bb340f6aa5bdada, type: 3}
+  - {fileID: 21300000, guid: e8a86ee2b1945a94aa335c99e0420ade, type: 3}
+  - {fileID: 21300000, guid: 4a4565a437b612b4a84d685a74513772, type: 3}
+  - {fileID: 21300000, guid: 747f60b658746a3458d497d0a25fec81, type: 3}
+  - {fileID: 21300000, guid: 81f401875f2c61848a1a9239c7f3bfae, type: 3}
+  - {fileID: 21300000, guid: 474da7c7dd81f834aaea65be3af81948, type: 3}
+  - {fileID: 21300000, guid: 7a77b139b07b08c46bc318040acc6c32, type: 3}
+  - {fileID: 21300000, guid: 6f1db7fcc19d87849980df0bedc6a12d, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - quest_star
+  - indicator_bg
+  - indicator
+  - sword
+  - quest_SELECTOR
+  - quest_baclglow
+  - quest_starOutline
+  - quest_outline
+  m_Tag: QuestIcons
+  m_IsVariant: 0

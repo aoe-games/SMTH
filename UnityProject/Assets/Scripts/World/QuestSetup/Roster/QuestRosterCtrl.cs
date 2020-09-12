@@ -2,12 +2,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class QuestSetupRosterCtrl : DataSource
+public class QuestRosterCtrl : DataSource
 {
+    #region View Elements - todo: move to view class
+
     [SerializeField]
     protected InfiniteScrollManager m_scrollView = null;
+    [SerializeField]
+    TextMeshProUGUI m_partyName;
+
+    #endregion
 
     protected PartyData m_roster = null;
     protected string m_entryToHighlight = string.Empty;
@@ -19,12 +26,25 @@ public class QuestSetupRosterCtrl : DataSource
     /// Set's the roster data used to present the roster list.
     /// The view displaying the roster will be reset with this new data.
     /// </summary>
-    public PartyData Roster
+    public virtual PartyData Roster
     {
         get => m_roster;
         set
         {
             m_roster = value;
+            UpdateView();
+        }
+    }
+
+    protected void UpdateView()
+    {
+        if (m_partyName != null)
+        {
+            m_partyName.text = m_roster.m_name;
+        }
+
+        if (m_scrollView != null)
+        {
             m_scrollView.ResetView();
         }
     }
@@ -33,7 +53,7 @@ public class QuestSetupRosterCtrl : DataSource
     {
         get
         {
-            QuestSetupRosterCellView view = m_scrollView.m_cellPrototype.GetComponent<QuestSetupRosterCellView>();
+            QuestRosterCellView view = m_scrollView.m_cellPrototype.GetComponent<QuestRosterCellView>();
             float portraitsPerRow = view != null ? (float)view.PortraitCount : 0f;
             return Mathf.CeilToInt(Roster.m_partyMembers.Count / portraitsPerRow);
         }        
@@ -41,7 +61,7 @@ public class QuestSetupRosterCtrl : DataSource
 
     public override void CellAtIndex(InfiniteScrollCell cell, int index)
     {
-        QuestSetupRosterCellView cellView = cell as QuestSetupRosterCellView;
+        QuestRosterCellView cellView = cell as QuestRosterCellView;
         if (cellView != null)
         {
             cellView.OnCellSelectedEvent += OnRosterCellSelected;

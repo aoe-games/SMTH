@@ -1,33 +1,27 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class QuestSetupPartySelectionCtrl : MonoBehaviour
+public class QuestPartySelectionCtrl : MonoBehaviour
 {
     [SerializeField]
     protected PartyData m_heroRoster = null; // note - this will be controlled from player data [Dß]         
     [SerializeField]
-    QuestSetupRosterCtrl m_heroRosterCtrl = null;
+    QuestRosterCtrl m_heroRosterCtrl = null;
     [SerializeField]
     RectTransform m_partySelectionView = null;
 
     [SerializeField]
-    protected List<QuestSetupPartyMemberView> m_memberViews = new List<QuestSetupPartyMemberView>();
-    protected QuestSetupPartyMemberView m_selectedMemberView = null;
+    protected List<QuestPartyMemberView> m_memberViews = new List<QuestPartyMemberView>();
+    protected QuestPartyMemberView m_selectedMemberView = null;
 
     protected List<EntityData> m_memberData = null;
 
-    public PartyData SelectedMembers
-    {
-        get
-        {
-            PartyData partyData = new PartyData();
-            partyData.m_partyMembers.AddRange(m_memberData);
-            return partyData;
-        }
-    }
+    public event Action<PartyData> SelectionConfirmedEvent = null;
+    public event Action SelectionCancelledEvent = null;
 
     protected void Awake()
     {     
@@ -40,7 +34,7 @@ public class QuestSetupPartySelectionCtrl : MonoBehaviour
             EntityData entityData = null;
             m_memberData.Add(entityData);
 
-            QuestSetupPartyMemberView view = m_memberViews[i];
+            QuestPartyMemberView view = m_memberViews[i];
             if (view != null)
             {
                 view.index = i;
@@ -78,7 +72,7 @@ public class QuestSetupPartySelectionCtrl : MonoBehaviour
     {
         m_memberData[index] = null;
 
-        QuestSetupPartyMemberView memberView = m_memberViews[index];
+        QuestPartyMemberView memberView = m_memberViews[index];
         memberView.UpdateView(null);
         
         UpdateRosterSelectionStates();
@@ -121,7 +115,24 @@ public class QuestSetupPartySelectionCtrl : MonoBehaviour
         }  
     }
 
+    public void OnConfirmPartySelection()
+    {
+        SelectionConfirmedEvent?.Invoke(GetSelectedMembersAsParty()); 
+    }
+
+    public void OnCancelPartySelection()
+    {
+        SelectionCancelledEvent?.Invoke();
+    }
+
     #region Helpers
+
+    protected PartyData GetSelectedMembersAsParty()
+    { 
+        PartyData partyData = new PartyData();
+        partyData.m_partyMembers.AddRange(m_memberData);
+        return partyData;
+    }
 
     void UpdateRosterSelectionStates()
     {

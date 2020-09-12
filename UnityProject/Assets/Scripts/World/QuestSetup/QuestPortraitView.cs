@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestSetupPortraitView : InfiniteScrollCell
+public class QuestPortraitView : InfiniteScrollCell
 {
     [SerializeField]
     RectTransform m_rectTransform;

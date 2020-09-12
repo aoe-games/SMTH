@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class QuestSetupRosterCellPortraitView : MonoBehaviour
+public class QuestRosterCellPortraitView : MonoBehaviour
 {
     [SerializeField]
     Button m_portraitBtn = null;
