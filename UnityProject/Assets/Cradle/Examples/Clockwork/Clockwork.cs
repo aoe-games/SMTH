@@ -85,7 +85,8 @@ public partial class @Clockwork: Cradle.StoryFormats.Harlowe.HarloweStory
 	#region Initialization
 	// ---------------
 
-	public readonly Cradle.StoryFormats.Harlowe.HarloweRuntimeMacros macros1;
+	public readonly CradleCustomMacros macros1;
+	public readonly Cradle.StoryFormats.Harlowe.HarloweRuntimeMacros macros2;
 
 	@Clockwork()
 	{
@@ -93,7 +94,8 @@ public partial class @Clockwork: Cradle.StoryFormats.Harlowe.HarloweStory
 
 		base.Vars = new VarDefs() { Story = this, StrictMode = true };
 
-		macros1 = new Cradle.StoryFormats.Harlowe.HarloweRuntimeMacros() { Story = this };
+		macros1 = new CradleCustomMacros() { Story = this };
+		macros2 = new Cradle.StoryFormats.Harlowe.HarloweRuntimeMacros() { Story = this };
 
 		base.Init();
 		passage1_Init();
@@ -1958,7 +1960,7 @@ public partial class @Clockwork: Cradle.StoryFormats.Harlowe.HarloweStory
 		yield return text(".");
 		yield return lineBreak();
 		yield return lineBreak();
-		if(macros1.history().Contains("disembark")) {
+		if(macros2.history().Contains("disembark")) {
 		yield return link("Follow Mowgli", "Dive Floor", null);
 			yield return text(" ");
 			yield return text("or ");
@@ -3312,7 +3314,7 @@ public partial class @Clockwork: Cradle.StoryFormats.Harlowe.HarloweStory
 		yield return lineBreak();
 		yield return lineBreak();
 		yield return text("\"Go\", it cups a hand around your shoulder and pulls, \"go inside and feed.");
-		if(macros1.history().Contains("harvest the human")) {
+		if(macros2.history().Contains("harvest the human")) {
 			yield return text("\"");
 		}
 		else {
@@ -3695,7 +3697,7 @@ public partial class @Clockwork: Cradle.StoryFormats.Harlowe.HarloweStory
 
 	IStoryThread passage76_Main()
 	{
-		if(macros1.history().Contains("harvest the human")) {
+		if(macros2.history().Contains("harvest the human")) {
 			yield return text("You look upon the valley to the south.");
 			yield return lineBreak();
 			yield return htmlTag("<div style=\"display: none;\">");
