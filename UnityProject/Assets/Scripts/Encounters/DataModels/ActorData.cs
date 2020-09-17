@@ -32,10 +32,12 @@ public class ActorData
     public string ID { get { return m_entityData.ID; } }
     public string Name { get { return m_entityData.Name; } }
     public int MaxHealth { get { return m_entityData.MaxHealth; } }
-    public int PhysicalAttack { get { return m_entityData.PhysicalAttack; } }
-    public int SpiritualAttack { get { return m_entityData.SpiritualAttack; } }
-    public int PhysicalDefense { get { return m_entityData.PhysicalDefense; } }
-    public int SpiritualDefense { get { return m_entityData.SpiritualDefense; } }
+    public int BruteAttack { get { return m_entityData.BruteAttack; } }
+    public int BruteDefense { get { return m_entityData.BruteDefense; } }
+    public int SpiritAttack { get { return m_entityData.SpiritAttack; } }
+    public int SpiritDefense { get { return m_entityData.SpiritDefense; } }
+    public int PrecisionAttack { get { return m_entityData.PrecisionAttack; } }
+    public int PrecisionDefense { get { return m_entityData.PrecisionDefense; } }
     public int Speed { get { return m_entityData.Speed; } }
     public List<ActionID> Actions { get { return m_entityData.Actions; } }
 
@@ -65,10 +67,7 @@ public class ActorData
 
     #region Constructor
 
-    public ActorData(
-        EntityData entityData,
-        int teamID = 0       
-    )
+    public ActorData(EntityData entityData, int teamID = 0)
     {
         m_entityData = entityData;
         m_teamID = teamID;

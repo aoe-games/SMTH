@@ -5,6 +5,7 @@ using UnityEngine;
 public class DefenceConfig
 {
     public ActorCtrl Defender { get; set; }
-    public int PhysicalDefense { get; set; }
-    public int SpiritualDefense { get; set; }
+    public int BruteDefense { get; set; }
+    public int SpiritDefense { get; set; }
+    public int PrecisionDefense { get; set; }
 }

@@ -31,7 +31,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: ac6bb1409af485041922733864494f08, type: 3}
-    totalSpriteSurfaceArea: 99456
+    totalSpriteSurfaceArea: 111888
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -39,6 +39,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: dbb6abe3d217c204ca61c2379e401719, type: 3}
   - {fileID: 21300000, guid: ce18e61496b66d1448f925edacce7624, type: 3}
   - {fileID: 21300000, guid: b91b3daca61a81c4ab35ab2678f18195, type: 3}
+  - {fileID: 21300000, guid: e6de1dbc4553a5349ab1fa0a3913884e, type: 3}
   - {fileID: 21300000, guid: 8bd4a17dcd1ab3b458abbabce5936d28, type: 3}
   - {fileID: 21300000, guid: bb457f7d355cf454684070d7d0cdf049, type: 3}
   - {fileID: 21300000, guid: 52e6938d4a1ae1d42b2566c1da014a70, type: 3}
@@ -48,8 +49,9 @@ SpriteAtlas:
   - portrait_unknown
   - portrait_rascal_bruiser
   - portrait_mage
+  - portrait_rascal_shaman
   - portrait_druid
-  - portrait_rascal_thug
+  - portrait_rascal_blade
   - portrait_knight
   - portrait_gunman
   m_Tag: PortraitAtlas

@@ -112,8 +112,9 @@ public class ActorBehaviourCtrl
         {
             attackConfig = new AttackConfig {
                 Attacker = m_actor,
-                PhysicalAttack = ActorData.PhysicalAttack,
-                SpiritualAttack = ActorData.SpiritualAttack
+                BruteAttack = ActorData.BruteAttack,
+                SpiritAttack = ActorData.SpiritAttack,
+                PrecisionAttack = ActorData.PrecisionAttack
             };
         }
 
@@ -130,8 +131,9 @@ public class ActorBehaviourCtrl
         {
             defenceConfig = new DefenceConfig {
                 Defender = m_actor,
-                PhysicalDefense = ActorData.PhysicalDefense,
-                SpiritualDefense = ActorData.SpiritualDefense
+                BruteDefense = ActorData.BruteDefense,
+                SpiritDefense = ActorData.SpiritDefense,
+                PrecisionDefense = ActorData.PrecisionDefense
             };
         }
 

@@ -14,9 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_name: Woodland Gang
   m_partyMembers:
-  - {fileID: 11400000, guid: 4667a00845bc8c34ba6dce3983dd9794, type: 2}
-  - {fileID: 11400000, guid: 4667a00845bc8c34ba6dce3983dd9794, type: 2}
-  - {fileID: 11400000, guid: 4667a00845bc8c34ba6dce3983dd9794, type: 2}
-  - {fileID: 11400000, guid: c7d1b118532b2494f8dcbc383088558b, type: 2}
-  - {fileID: 11400000, guid: c7d1b118532b2494f8dcbc383088558b, type: 2}
-  - {fileID: 11400000, guid: 92250a36bf04ff648990d65ef081bc45, type: 2}
+  - {fileID: 11400000, guid: a7e2a3b2b3118564ab3c836d70fced84, type: 2}
+  - {fileID: 11400000, guid: a7e2a3b2b3118564ab3c836d70fced84, type: 2}
+  - {fileID: 11400000, guid: a7e2a3b2b3118564ab3c836d70fced84, type: 2}

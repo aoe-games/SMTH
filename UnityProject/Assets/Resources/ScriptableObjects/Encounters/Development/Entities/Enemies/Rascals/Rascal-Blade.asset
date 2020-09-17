@@ -10,15 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbbf89da18200834e9f4c40596aa0044, type: 3}
-  m_Name: Robin
+  m_Name: Rascal-Blade
   m_EditorClassIdentifier: 
-  m_ID: dick_greyson
-  m_name: Robin
-  m_physicalAttack: 10
-  m_spiritualAttack: 0
-  m_physicalDefense: 4
-  m_spiritualDefense: 0
+  m_ID: rascal_blade
+  m_name: Dirty Rascal Blade
+  m_bruteAttack: 2
+  m_bruteDefense: 6
+  m_spiritAttack: 2
+  m_spiritDefense: 2
+  m_precisionAttack: 6
+  m_precisionDefense: 2
   m_speed: 14
-  m_maxHealth: 85
-  m_currentHealth: 85
+  m_maxHealth: 5
+  m_currentHealth: 5
+  m_viewCatalog: {fileID: 11400000, guid: bd5280c58eda1f64091a376b7efd6223, type: 2}
   m_actions: 0000

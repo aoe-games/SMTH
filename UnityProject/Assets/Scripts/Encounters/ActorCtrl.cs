@@ -198,7 +198,8 @@ public class ActorCtrl : MonoBehaviour
     }
 
     /// <summary>
-    /// The actor will process the attack by allowing its behaviour to take in a 
+    /// The actor will process an attack against it by taking in the attack config
+    /// and processing it against the actor's defence config, then calling back when it's done.
     /// </summary>
     /// <param name="config"></param>
     /// <returns>damage taken</returns>
@@ -213,9 +214,11 @@ public class ActorCtrl : MonoBehaviour
         AttackResult attackResult = new AttackResult();
         if (defenceConfig != null && ActorData != null)
         {
-            int physDmg = attackConfig.PhysicalAttack - defenceConfig.PhysicalDefense;
-            int sprDmg = attackConfig.SpiritualAttack - defenceConfig.SpiritualDefense;
-            attackResult.DamageTaken = physDmg + sprDmg;
+            int physDmg = Mathf.Max(attackConfig.BruteAttack - defenceConfig.BruteDefense, 0);
+            int sprtDmg = Mathf.Max(attackConfig.SpiritAttack - defenceConfig.SpiritDefense, 0);
+            int prcsDmg = Mathf.Max(attackConfig.PrecisionAttack - defenceConfig.PrecisionDefense, 0);
+            attackResult.DamageTaken = Mathf.Max(physDmg + sprtDmg + prcsDmg, 1);
+            
             ActorData.AdjustHealth(-attackResult.DamageTaken);
         }
 

@@ -14,9 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_name: Bruiser Crew Beta
   m_partyMembers:
-  - {fileID: 11400000, guid: 4667a00845bc8c34ba6dce3983dd9794, type: 2}
-  - {fileID: 11400000, guid: 4667a00845bc8c34ba6dce3983dd9794, type: 2}
-  - {fileID: 11400000, guid: c7d1b118532b2494f8dcbc383088558b, type: 2}
   - {fileID: 11400000, guid: c7d1b118532b2494f8dcbc383088558b, type: 2}
   - {fileID: 11400000, guid: c7d1b118532b2494f8dcbc383088558b, type: 2}
   - {fileID: 11400000, guid: c7d1b118532b2494f8dcbc383088558b, type: 2}

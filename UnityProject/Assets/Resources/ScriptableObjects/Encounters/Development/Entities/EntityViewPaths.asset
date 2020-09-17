@@ -18,7 +18,7 @@ MonoBehaviour:
   - m_ID: charlotte_warrior
     m_resourcePaths:
     - portrait_knight
-  - m_ID: dwayne_berserker
+  - m_ID: dwayne_brawler
     m_resourcePaths:
     - portrait_knight
   - m_ID: kathleen_mage
@@ -39,9 +39,18 @@ MonoBehaviour:
   - m_ID: rascal_bruiser
     m_resourcePaths:
     - portrait_rascal_bruiser
-  - m_ID: rascal_thug
+  - m_ID: rascal_blade
     m_resourcePaths:
-    - portrait_rascal_thug
+    - portrait_rascal_blade
+  - m_ID: rascal_shaman
+    m_resourcePaths:
+    - portrait_rascal_shaman
+  - m_ID: aurthur_mage
+    m_resourcePaths:
+    - portrait_mage
+  - m_ID: anna_technician
+    m_resourcePaths:
+    - portrait_gunman
   - m_ID: unknown
     m_resourcePaths:
     - portrait_unknown

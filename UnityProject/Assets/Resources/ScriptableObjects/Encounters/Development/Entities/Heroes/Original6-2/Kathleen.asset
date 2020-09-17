@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbbf89da18200834e9f4c40596aa0044, type: 3}
-  m_Name: Charlotte
+  m_Name: Kathleen
   m_EditorClassIdentifier: 
-  m_ID: charlotte_warrior
-  m_name: Charlotte
-  m_physicalAttack: 18
-  m_spiritualAttack: 0
-  m_physicalDefense: 3
-  m_spiritualDefense: 0
-  m_speed: 7
-  m_maxHealth: 120
-  m_currentHealth: 120
+  m_ID: kathleen_mage
+  m_name: Kathleen
+  m_bruteAttack: 2
+  m_bruteDefense: 2
+  m_spiritAttack: 6
+  m_spiritDefense: 2
+  m_precisionAttack: 2
+  m_precisionDefense: 6
+  m_speed: 9
+  m_maxHealth: 9
+  m_currentHealth: 9
   m_viewCatalog: {fileID: 11400000, guid: bd5280c58eda1f64091a376b7efd6223, type: 2}
   m_actions: 0000

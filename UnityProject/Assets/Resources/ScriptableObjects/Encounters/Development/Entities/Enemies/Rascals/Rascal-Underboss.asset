@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbbf89da18200834e9f4c40596aa0044, type: 3}
-  m_Name: Rascal-Bruiser
+  m_Name: Rascal-Underboss
   m_EditorClassIdentifier: 
-  m_ID: rascal_bruiser
-  m_name: Dirty Rascal Bruiser
-  m_physicalAttack: 12
-  m_spiritualAttack: 0
-  m_physicalDefense: 1
-  m_spiritualDefense: 0
-  m_speed: 3
-  m_maxHealth: 55
-  m_currentHealth: 55
+  m_ID: rascal_underboss
+  m_name: Dirty Rascal Underboss
+  m_bruteAttack: 21
+  m_bruteDefense: 0
+  m_spiritAttack: 0
+  m_spiritDefense: 18
+  m_precisionAttack: 4
+  m_precisionDefense: 4
+  m_speed: 7
+  m_maxHealth: 39
+  m_currentHealth: 39
   m_viewCatalog: {fileID: 11400000, guid: bd5280c58eda1f64091a376b7efd6223, type: 2}
   m_actions: 0000

@@ -32,6 +32,10 @@ public class QuestPartyMemberView : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI m_sprtDefTxt = null;
     [SerializeField]
+    TextMeshProUGUI m_prcsAtkTxt = null;
+    [SerializeField]
+    TextMeshProUGUI m_prcsDefTxt = null;
+    [SerializeField]
     TextMeshProUGUI m_healthTxt = null;
     [SerializeField]
     TextMeshProUGUI m_speedTxt = null;
@@ -60,10 +64,12 @@ public class QuestPartyMemberView : MonoBehaviour
                 m_nameTxt.text = entityData.Name;
                 m_healthTxt.text = entityData.MaxHealth.ToString();
                 m_speedTxt.text = entityData.Speed.ToString();
-                m_physAtkTxt.text = entityData.PhysicalAttack.ToString();
-                m_physDefTxt.text = entityData.PhysicalDefense.ToString();
-                m_sprtAtkTxt.text = entityData.SpiritualAttack.ToString();
-                m_sprtDefTxt.text = entityData.SpiritualDefense.ToString();                
+                m_physAtkTxt.text = entityData.BruteAttack.ToString();
+                m_physDefTxt.text = entityData.BruteDefense.ToString();
+                m_sprtAtkTxt.text = entityData.SpiritAttack.ToString();
+                m_sprtDefTxt.text = entityData.SpiritDefense.ToString();
+                m_prcsAtkTxt.text = entityData.PrecisionAttack.ToString();
+                m_prcsDefTxt.text = entityData.PrecisionDefense.ToString();
             }
             else
             {
@@ -86,6 +92,8 @@ public class QuestPartyMemberView : MonoBehaviour
         m_physDefTxt.text = defaultValue;
         m_sprtAtkTxt.text = defaultValue;
         m_sprtDefTxt.text = defaultValue;
+        m_prcsAtkTxt.text = defaultValue;
+        m_prcsDefTxt.text = defaultValue;
     }
 
     public void SetSelected(bool isSelected)

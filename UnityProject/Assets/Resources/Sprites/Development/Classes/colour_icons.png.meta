@@ -642,10 +642,10 @@ TextureImporter:
       name: colour_icons_16
       rect:
         serializedVersion: 2
-        x: 332
-        y: 146
-        width: 83.333336
-        height: 73
+        x: 350
+        y: 150
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

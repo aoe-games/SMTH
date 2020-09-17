@@ -129,7 +129,7 @@ public class QuestPartySelectionCtrl : MonoBehaviour
 
     protected PartyData GetSelectedMembersAsParty()
     { 
-        PartyData partyData = new PartyData();
+        PartyData partyData = ScriptableObject.CreateInstance<PartyData>();
         partyData.m_partyMembers.AddRange(m_memberData);
         return partyData;
     }

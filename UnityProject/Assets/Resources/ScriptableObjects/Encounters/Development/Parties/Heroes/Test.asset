@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8f1b494a224a5f4f860882586ae9f41, type: 3}
-  m_Name: BruiserCrewAlpha
+  m_Name: Test
   m_EditorClassIdentifier: 
-  m_name: Bruiser Crew Alpha
+  m_name: 
   m_partyMembers:
-  - {fileID: 11400000, guid: 4667a00845bc8c34ba6dce3983dd9794, type: 2}
-  - {fileID: 11400000, guid: 4667a00845bc8c34ba6dce3983dd9794, type: 2}
-  - {fileID: 11400000, guid: c7d1b118532b2494f8dcbc383088558b, type: 2}
-  - {fileID: 11400000, guid: c7d1b118532b2494f8dcbc383088558b, type: 2}
+  - {fileID: 11400000, guid: 6c60b9b8ba3e0ef46a039459a12a8a84, type: 2}
+  - {fileID: 11400000, guid: 6c60b9b8ba3e0ef46a039459a12a8a84, type: 2}
+  - {fileID: 11400000, guid: 6c60b9b8ba3e0ef46a039459a12a8a84, type: 2}

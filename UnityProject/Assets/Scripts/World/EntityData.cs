@@ -14,13 +14,17 @@ public class EntityData : ScriptableObject
     protected string m_name;
 
     [SerializeField]
-    protected int m_physicalAttack;
+    protected int m_bruteAttack;
     [SerializeField]
-    protected int m_spiritualAttack;
+    protected int m_bruteDefense;
     [SerializeField]
-    protected int m_physicalDefense;
+    protected int m_spiritAttack;    
     [SerializeField]
-    protected int m_spiritualDefense;
+    protected int m_spiritDefense;
+    [SerializeField]
+    protected int m_precisionAttack;
+    [SerializeField]
+    protected int m_precisionDefense;
     [SerializeField]
     protected int m_speed;
     [SerializeField]
@@ -47,10 +51,12 @@ public class EntityData : ScriptableObject
     public string ID { get { return m_ID; } }
     public string Name { get { return m_name; } }
 
-    public int PhysicalAttack { get { return m_physicalAttack; } }
-    public int SpiritualAttack { get { return m_spiritualAttack; } }
-    public int PhysicalDefense { get { return m_physicalDefense; } }
-    public int SpiritualDefense { get { return m_spiritualDefense; } }
+    public int BruteAttack { get { return m_bruteAttack; } }      
+    public int BruteDefense { get { return m_bruteDefense; } }
+    public int SpiritAttack { get { return m_spiritAttack; } }
+    public int SpiritDefense { get { return m_spiritDefense; } }
+    public int PrecisionAttack { get { return m_precisionAttack; } }
+    public int PrecisionDefense { get { return m_precisionDefense; } }
     public int Speed { get { return m_speed; } }
     public int MaxHealth { get { return m_maxHealth; } }
     public int CurrentHealth { get { return m_currentHealth; } }
@@ -66,10 +72,12 @@ public class EntityData : ScriptableObject
     public EntityData(
         string id = "New Entity",
         string name = "No Name",
-        int physicalAttack = 10,
-        int spiritualAttack = 10,
-        int physicalDefense = 5,
-        int spiritualDefense = 5,
+        int bruteAttack = 10,        
+        int bruteDefense = 5,
+        int spiritAttack = 10,
+        int spiritDefense = 5,
+        int precisionAttack = 10,
+        int precisionDefense = 5,
         int speed = 5,
         int maxHealth = 25,
         int currentHealth = 25,
@@ -78,10 +86,12 @@ public class EntityData : ScriptableObject
     {
         m_ID = id;
         m_name = name;
-        m_physicalAttack = physicalAttack;
-        m_spiritualAttack = spiritualAttack;
-        m_physicalDefense = physicalDefense;
-        m_spiritualDefense = spiritualDefense;
+        m_bruteAttack = bruteAttack;
+        m_bruteDefense = bruteDefense;
+        m_spiritAttack = spiritAttack;        
+        m_spiritDefense = spiritDefense;
+        m_precisionAttack = precisionAttack;
+        m_precisionDefense = precisionDefense;
         m_speed = speed;
         m_maxHealth = maxHealth;
         m_currentHealth = currentHealth;
