@@ -5,7 +5,7 @@ using Jalopy;
 using UnityEngine;
 
 public class PlayerRoster : PlayerComponent
-{         
+{
   [SerializeField]
   PartyData m_playerRoster = null; // NOTE: temporary - this will come from a persistent, serialized party file
 
