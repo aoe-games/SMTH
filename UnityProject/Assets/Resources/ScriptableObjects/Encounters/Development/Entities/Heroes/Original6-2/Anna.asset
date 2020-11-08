@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbbf89da18200834e9f4c40596aa0044, type: 3}
-  m_Name: Parker
+  m_Name: Anna
   m_EditorClassIdentifier: 
-  m_ID: parker_technician
-  m_name: Parker
+  m_ID: anna_technician
+  m_name: Anna
   m_bruteAttack: 2
   m_bruteDefense: 6
   m_spiritAttack: 2
