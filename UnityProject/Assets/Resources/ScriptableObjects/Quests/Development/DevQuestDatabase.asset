@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c334cccb44be74e4cb717adc69bc8818, type: 3}
+  m_Name: DevQuestDatabase
+  m_EditorClassIdentifier: 
+  m_questList:
+  - {fileID: 11400000, guid: 0363c0886a1704640b1a3ca450112e53, type: 2}
+  - {fileID: 11400000, guid: 1a13e6d91cd3f1d489a0cbe40a8dc95b, type: 2}
+  - {fileID: 11400000, guid: 09ee87edebb89844ab7a359be1f22815, type: 2}
