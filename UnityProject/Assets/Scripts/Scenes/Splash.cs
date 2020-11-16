@@ -10,7 +10,10 @@ public class Splash : Scene
 {
   [SerializeField]
   Player m_playerPrototype;
-  
+
+  [SerializeField]
+  GameServices m_services;
+
   public override IEnumerator LoadScene(ProgressDelegate progressDelegate = null)
   {    
     progressDelegate(1.0f, "", (int)Status.Succeeded);
@@ -30,19 +33,34 @@ public class Splash : Scene
   protected IEnumerator Start()
   {
     yield return new WaitUntil(() => IsLoaded);
-   
+
+    // load player
+    bool playerLoaded = false;
     Action<Player, List<Exception>> onPlayerLoaded = 
       (player, exceptions) => 
         {
           PlayerManager playerManager = PlayerManager.Instance;
           playerManager.AddPlayer(LocalPlayer.k_localPlayerId, player);
           player.transform.parent = playerManager.transform;
-
-          SceneManager.Instance.SwitchScene("Encounter_Dev", (GameObject)Resources.Load("Prefabs/Jalopy/UI/Loading/SimpleLoadingView"));
+          playerLoaded = true;
         };
 
     Player newPlayer = Instantiate(m_playerPrototype);
     newPlayer.Load(onPlayerLoaded);
+
+    // load services
+    bool servicesLoaded = false;
+    GameServices.Services = m_services;
+    GameServices.Services.LoadCompletedCallback += (exceptions) => 
+      {
+        servicesLoaded = true;
+      };
+
+    GameServices.Services.LoadServices(this);
+
+    yield return new WaitUntil(() => playerLoaded && servicesLoaded);
+
+    SceneManager.Instance.SwitchScene("QuestInterfaceScene", (GameObject)Resources.Load("Prefabs/Jalopy/UI/Loading/SimpleLoadingView"));
   }
   
 }

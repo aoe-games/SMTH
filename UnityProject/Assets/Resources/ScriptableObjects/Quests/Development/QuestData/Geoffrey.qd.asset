@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4ee6bac486611444a74a60fdce795e1, type: 3}
-  m_Name: QuestData_2.qd
+  m_Name: Geoffrey.qd
   m_EditorClassIdentifier: 
-  m_id: qd_2
+  m_id: geoffrey
   m_rewards: []
+  m_enemyParty: {fileID: 11400000, guid: e7ada568c7bd40a46865fc099f7a2fb3, type: 2}

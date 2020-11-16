@@ -17,5 +17,10 @@ public class QuestData : ScriptableObject
   [SerializeField]
   List<QuestReward> m_rewards;
 
+  [SerializeField]
+  PartyData m_enemyParty;
+
+  public PartyData EnemyParty { get => m_enemyParty; }
+
   public string ID { get => m_id; }
 }

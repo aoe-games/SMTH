@@ -23,8 +23,10 @@ public class QuestPartySelectionCtrl : MonoBehaviour
   public event System.Action<PartyData> SelectionConfirmedEvent = null;
   public event System.Action SelectionCancelledEvent = null;
 
-  protected void Awake()
+  protected void Start()
   {
+    Player player = PlayerManager.Instance.GetPlayer(LocalPlayer.k_localPlayerId);
+
     // initialize party members
     int partyMemberCount = m_memberViews.Count;
     m_memberData = new List<EntityData>(partyMemberCount);
@@ -45,7 +47,6 @@ public class QuestPartySelectionCtrl : MonoBehaviour
     }
 
     // initialize hero roster
-    Player player = Jalopy.PlayerManager.Instance.GetPlayer(LocalPlayer.k_localPlayerId);
     m_heroRosterCtrl.Roster = player.GetComponent<PlayerRoster>().RosterData;
     m_heroRosterCtrl.RosterMemberSelectedEvent += OnRosterMemberSelected;
   }

@@ -11,18 +11,23 @@ public class QuestDatabaseEditor : Editor
     QuestDatabase myScript = target as QuestDatabase;
     if (GUILayout.Button("Build Database"))
     {
-      Dictionary<string, QuestData> data = BuildDatabase();
+      List<QuestData> data = BuildDatabase();
       ((QuestDatabase)target).UpdateDatabase(data);
       EditorUtility.SetDirty(target);
       AssetDatabase.SaveAssets();
     }
 
+    if (GUILayout.Button("Output Database"))
+    {       
+      Debug.Log(((QuestDatabase)target).ToString());
+    }
+
     DrawDefaultInspector();
   }
 
-  protected Dictionary<string,QuestData> BuildDatabase()
+  protected List<QuestData> BuildDatabase()
   {
-    Dictionary<string, QuestData> questDatabaseContent = new Dictionary<string, QuestData>();
+    List<QuestData> questDatabaseContent = new List<QuestData>();
     string path = string.Empty;
 
     path = AssetDatabase.GetAssetPath(target);
@@ -35,7 +40,7 @@ public class QuestDatabaseEditor : Editor
     foreach (string questDataPath in questDataPaths)
     {       
       QuestData questData = AssetDatabase.LoadAssetAtPath<QuestData>(questDataPath);
-      questDatabaseContent.Add(questData.ID, questData);
+      questDatabaseContent.Add(questData);
       pathLog += questDataPath + "\n";
     }
 

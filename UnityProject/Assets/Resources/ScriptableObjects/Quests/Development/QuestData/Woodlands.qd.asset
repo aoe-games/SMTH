@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4ee6bac486611444a74a60fdce795e1, type: 3}
-  m_Name: QuestData_1.qd
+  m_Name: Woodlands.qd
   m_EditorClassIdentifier: 
-  m_id: qd_1
+  m_id: woodlands
   m_rewards:
   - m_id: asd
     type: 0
     m_value: 0
+  m_enemyParty: {fileID: 11400000, guid: 419d05310cd56ba449806303a5fabb49, type: 2}

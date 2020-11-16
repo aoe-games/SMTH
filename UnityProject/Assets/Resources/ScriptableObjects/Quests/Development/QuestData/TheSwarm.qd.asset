@@ -10,7 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4ee6bac486611444a74a60fdce795e1, type: 3}
-  m_Name: QuestData_3.qd
+  m_Name: TheSwarm.qd
   m_EditorClassIdentifier: 
-  m_id: qd_3
-  m_rewards: []
+  m_id: the_swarm
+  m_rewards:
+  - m_id: asd
+    type: 0
+    m_value: 0
+  m_enemyParty: {fileID: 11400000, guid: 60549f91f3c14424cb759b79b8e93807, type: 2}

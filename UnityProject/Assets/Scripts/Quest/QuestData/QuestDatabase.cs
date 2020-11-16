@@ -3,50 +3,55 @@ using System;
 using System.Collections.Generic;
 
 [CreateAssetMenu(menuName = "ScriptableObjects/Quest/Quest Data Database", fileName = "QuestDatabase")]
-public class QuestDatabase : ScriptableObject, ISerializationCallbackReceiver
+public class QuestDatabase : ScriptableObject
 {
   [SerializeField]
   List<QuestData> m_questList = new List<QuestData>();
 
-  Dictionary<string, QuestData> m_questData = new Dictionary<string, QuestData>();
+  Dictionary<string, int> m_questDataIndeces = null;
 
   public QuestData this[string id] { get => GetQuestData(id); }
 
   public QuestData GetQuestData(string id)
   {
-    QuestData questData = null;               
-    m_questData.TryGetValue(id, out questData);
+    int index = 0;               
+    m_questDataIndeces.TryGetValue(id, out index);
+
+    QuestData questData = m_questList[index];
     return questData;
   }
 
-  void RefreshKeyValueLists()
+  public void Load()
   {
-    m_questList.Clear();
-
-    foreach (var data in m_questData)
+    if (m_questDataIndeces != null)
     {
-      m_questList.Add(data.Value);
+      return;
+    }
+
+    int count = m_questList.Count;
+    m_questDataIndeces = new Dictionary<string, int>(count);
+
+    for (int i = 0; i < count; i++)
+    {
+      QuestData data = m_questList[i];
+      m_questDataIndeces.Add(data.ID, i);
     }
   }
 
-  public void UpdateDatabase(Dictionary<string, QuestData> questData)
+  public void UpdateDatabase(List<QuestData> questList)
   {
-    m_questData = questData;
-    RefreshKeyValueLists();
+    m_questList = questList;
   }
 
-  public void OnBeforeSerialize()
+  public override string ToString()
   {
-    RefreshKeyValueLists();
-  }
+    string retString = string.Empty;
 
-  public void OnAfterDeserialize()
-  {
-    m_questData = new Dictionary<string, QuestData>();
-
-    foreach (QuestData questData in m_questList)
+    foreach (int index in m_questDataIndeces.Values)
     {
-      m_questData.Add(questData.ID, questData);
+      retString += m_questList[index].ID + "\n";
     }
+
+    return retString;
   }
 }

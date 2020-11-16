@@ -251,6 +251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_playerPrototype: {fileID: 2924750925048472174, guid: b7f28eee08a7fff4fba88913f67c4808,
     type: 3}
+  m_services: {fileID: 11400000, guid: be71511b5655502458183e296f12c742, type: 2}
 --- !u!4 &1992914129
 Transform:
   m_ObjectHideFlags: 0

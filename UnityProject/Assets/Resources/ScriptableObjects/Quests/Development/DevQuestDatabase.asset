@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: DevQuestDatabase
   m_EditorClassIdentifier: 
   m_questList:
+  - {fileID: 11400000, guid: 268912534d6e24f45ac6f050d22f1da2, type: 2}
+  - {fileID: 11400000, guid: 4ff429710074c204d801579b5ca6e7d8, type: 2}
+  - {fileID: 11400000, guid: 220b5ee6f2c968543983c31dab8c4b37, type: 2}
+  - {fileID: 11400000, guid: adb7bee2b22970a41a3caf236d84a015, type: 2}
+  - {fileID: 11400000, guid: 97414cc94d09e2b43891fbfaf2ed26ee, type: 2}
   - {fileID: 11400000, guid: 0363c0886a1704640b1a3ca450112e53, type: 2}
-  - {fileID: 11400000, guid: 1a13e6d91cd3f1d489a0cbe40a8dc95b, type: 2}
-  - {fileID: 11400000, guid: 09ee87edebb89844ab7a359be1f22815, type: 2}
