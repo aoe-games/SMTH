@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Raiders.qd
   m_EditorClassIdentifier: 
   m_id: raiders
-  m_rewards: []
+  m_rewards:
+  - m_id: 
+    type: 1
+    m_value: 300
   m_enemyParty: {fileID: 11400000, guid: 383c705dc5bcd9f4db1550f95960989a, type: 2}
   m_visibilityConditions:
   - m_type: 0

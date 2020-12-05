@@ -12,7 +12,7 @@ using UnityEngine;
 /// </summary>
 public class EncounterCtrl : MonoBehaviour
 {
-    public enum State { Stopped, Starting, Running, Ending  };
+    public enum State { Stopped, Starting, Running, Ending };
 
     #region Fields
 
@@ -60,9 +60,15 @@ public class EncounterCtrl : MonoBehaviour
         EncounterReset?.Invoke();
     }
 
-    #endregion
+    public event Action<EncounterResultData> EncounterCompleted;
+    void FireEncounterCompletedEvent(EncounterResultData encounterResult)
+    {
+      EncounterCompleted?.Invoke(encounterResult);
+    }
 
-    public ReadOnlyCollection<ActorCtrl> Actors
+  #endregion
+
+  public ReadOnlyCollection<ActorCtrl> Actors
     {
         get
         {
@@ -269,6 +275,12 @@ public class EncounterCtrl : MonoBehaviour
         if (activeTeams != m_participatingTeams)
         {
             SetState(State.Ending);
+
+            EncounterResultDataBuilder builder =
+              new EncounterResultDataBuilder()
+              .WithWinningPartyId(activeTeams);
+
+            FireEncounterCompletedEvent(builder.CreateResultData());
         }
     }
 

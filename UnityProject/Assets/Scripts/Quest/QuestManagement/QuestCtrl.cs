@@ -8,8 +8,12 @@ using UnityEngine;
 
 public class QuestCtrl : MonoBehaviour
 {
+  public const int k_playerPartyId = 1;
+
   [SerializeField]
   protected QuestPartySelectionCtrl m_partySelectionCtrl = null;
+  [SerializeField]
+  protected QuestResultCtrl m_questResultCtrl = null;
 
   [SerializeField]
   QuestRosterCtrl m_enemyRosterCtrl = null;
@@ -73,7 +77,10 @@ public class QuestCtrl : MonoBehaviour
     int count = m_parties.Count;
     for (int i = 0; i < count; i++)
     {
-      int teamId = 1 << i; // encounter system uses bit flag to determine active teams
+      // encounter system uses bit flag to determine active teams
+      // bit shift 1 for each additional party so that each has a unique flag value
+      // TODO: somehow have this driven by the encounter API; this is not an obvious requirement of the system
+      int teamId = k_playerPartyId << i; 
       PartyData partyData = m_parties[i];
       foreach (EntityData partyMemberData in partyData.m_partyMembers)
       {
@@ -87,6 +94,7 @@ public class QuestCtrl : MonoBehaviour
       }
     }
 
+    m_encounterCtrl.EncounterCompleted += OnEncounterCompleted;
     m_encounterCtrl.StartEncounter();
   }
 
@@ -120,22 +128,38 @@ public class QuestCtrl : MonoBehaviour
 
   protected void OnBackToPartySelectionSelected()
   {
-    QuestStateData stateData = m_questStateDatabase[m_questData.ID];
-    if (stateData != null)
-    {
-      stateData = new QuestStateData(stateData.ID, QuestStateData.Status.Complete, stateData.CompletionTime);      
-    }
-    else if (stateData == null)
-    {
-      stateData = new QuestStateData(m_questData.ID, QuestStateData.Status.Complete, DateTime.UtcNow);
-    }
-
-    m_questStateDatabase[stateData.ID] = stateData;
-
     m_encounterObserver.EncounterObservationComplete -= OnBackToPartySelectionSelected;
     StartQuestSetup();
   }
 
+  protected void OnEncounterCompleted(EncounterResultData resultData)
+  {
+    m_encounterCtrl.EncounterCompleted -= OnEncounterCompleted;
+
+    ResultDisplayConfig.ResultState resultState = 
+      resultData.WinningPartyId == k_playerPartyId ? 
+        ResultDisplayConfig.ResultState.Victory : 
+        ResultDisplayConfig.ResultState.Defeat;
+
+    if (resultState == ResultDisplayConfig.ResultState.Victory)
+    {
+      QuestStateData stateData = m_questStateDatabase[m_questData.ID];
+      if (stateData != null)
+      {
+        stateData = new QuestStateData(stateData.ID, QuestStateData.Status.Complete, stateData.CompletionTime);
+      }
+      else if (stateData == null)
+      {
+        stateData = new QuestStateData(m_questData.ID, QuestStateData.Status.Complete, DateTime.UtcNow);
+      }
+
+      m_questStateDatabase[stateData.ID] = stateData;
+    }
+
+    ResultDisplayConfig config = new ResultDisplayConfig(resultState, resultData);
+    m_questResultCtrl.StartResultsDisplay(config);
+  }
+  
   #endregion
 
   #region Helpers
