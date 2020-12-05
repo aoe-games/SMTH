@@ -15,3 +15,7 @@ MonoBehaviour:
   m_id: raiders
   m_rewards: []
   m_enemyParty: {fileID: 11400000, guid: 383c705dc5bcd9f4db1550f95960989a, type: 2}
+  m_visibilityConditions:
+  - m_type: 0
+    m_id: woodlands
+    m_value: 0

@@ -18,3 +18,10 @@ MonoBehaviour:
     type: 0
     m_value: 0
   m_enemyParty: {fileID: 11400000, guid: 894c9160c93f3544baf1ae9e6f39b100, type: 2}
+  m_visibilityConditions:
+  - m_type: 0
+    m_id: the_swarm
+    m_value: 0
+  - m_type: 0
+    m_id: the_coven
+    m_value: 0

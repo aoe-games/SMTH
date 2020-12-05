@@ -24,7 +24,12 @@ public class QuestEntryView : MonoBehaviour
   [SerializeField]
   Color m_baseImgComplete;
 
-  public void SetComplete()
+  public void SetVisible(bool visible)
+  {
+    gameObject.SetActive(visible);
+  }
+
+    public void SetComplete()
   {
     ColorBlock colourBlock = m_entryBtn.colors;
     colourBlock.normalColor = m_btnCompleteIdle;

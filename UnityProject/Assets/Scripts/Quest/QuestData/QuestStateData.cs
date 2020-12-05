@@ -23,7 +23,7 @@ public class QuestStateData
     }
   }
 
-  public QuestStateData(string id, DateTime completionTime, Status status = Status.Unavailable)
+  public QuestStateData(string id, Status status = Status.Unavailable, DateTime completionTime = default(DateTime))
   {
     ID = id;
     CompletionTime = completionTime;

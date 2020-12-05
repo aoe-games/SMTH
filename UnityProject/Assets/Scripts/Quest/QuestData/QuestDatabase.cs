@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
-
+using System.Collections.ObjectModel;
+                                    
 [CreateAssetMenu(menuName = "ScriptableObjects/Quest/Quest Data Database", fileName = "QuestDatabase")]
 public class QuestDatabase : ScriptableObject
 {
@@ -9,6 +10,8 @@ public class QuestDatabase : ScriptableObject
   List<QuestData> m_questList = new List<QuestData>();
 
   Dictionary<string, int> m_questDataIndeces = null;
+
+  public ReadOnlyCollection<QuestData> QuestDataCollection { get => m_questList.AsReadOnly(); }
 
   public QuestData this[string id] { get => GetQuestData(id); }
 

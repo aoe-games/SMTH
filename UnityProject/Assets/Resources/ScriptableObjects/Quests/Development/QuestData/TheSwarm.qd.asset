@@ -18,3 +18,7 @@ MonoBehaviour:
     type: 0
     m_value: 0
   m_enemyParty: {fileID: 11400000, guid: 60549f91f3c14424cb759b79b8e93807, type: 2}
+  m_visibilityConditions:
+  - m_type: 0
+    m_id: geoffrey
+    m_value: 0

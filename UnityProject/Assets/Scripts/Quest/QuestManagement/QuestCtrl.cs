@@ -99,7 +99,7 @@ public class QuestCtrl : MonoBehaviour
 
   protected void OnQuestSelected(string questId)
   {
-    m_questData = m_questManager.Database[questId];
+    m_questData = m_questManager.QuestDatabase[questId];
     StartQuestSetup();
   }
 
@@ -123,11 +123,11 @@ public class QuestCtrl : MonoBehaviour
     QuestStateData stateData = m_questStateDatabase[m_questData.ID];
     if (stateData != null)
     {
-      stateData = new QuestStateData(stateData.ID, stateData.CompletionTime, QuestStateData.Status.Complete);      
+      stateData = new QuestStateData(stateData.ID, QuestStateData.Status.Complete, stateData.CompletionTime);      
     }
     else if (stateData == null)
     {
-      stateData = new QuestStateData(m_questData.ID, DateTime.UtcNow, QuestStateData.Status.Complete);
+      stateData = new QuestStateData(m_questData.ID, QuestStateData.Status.Complete, DateTime.UtcNow);
     }
 
     m_questStateDatabase[stateData.ID] = stateData;

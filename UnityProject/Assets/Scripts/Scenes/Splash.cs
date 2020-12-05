@@ -34,33 +34,41 @@ public class Splash : Scene
   {
     yield return new WaitUntil(() => IsLoaded);
 
-    // load player
+    // load player    
     bool playerLoaded = false;
+    Player player = Instantiate(m_playerPrototype);
     Action<Player, List<Exception>> onPlayerLoaded = 
-      (player, exceptions) => 
+      (loadedPlayer, exceptions) => 
         {
+          player = loadedPlayer;
           PlayerManager playerManager = PlayerManager.Instance;
           playerManager.AddPlayer(LocalPlayer.k_localPlayerId, player);
-          player.transform.parent = playerManager.transform;
+          player.transform.parent = playerManager.transform;          
           playerLoaded = true;
-        };
-
-    Player newPlayer = Instantiate(m_playerPrototype);
-    newPlayer.Load(onPlayerLoaded);
+        };    
+    player.Load(onPlayerLoaded);
 
     // load services
     bool servicesLoaded = false;
     GameServices.Services = m_services;
-    GameServices.Services.LoadCompletedCallback += (exceptions) => 
-      {
-        servicesLoaded = true;
-      };
-
+    Action<Exception[]> onServicesLoaded =
+      (exceptions) =>
+        {
+          GameServices.Services.GetService<QuestManager>().SetPlayer(player);
+          servicesLoaded = true;
+        };
+    GameServices.Services.LoadCompletedCallback += onServicesLoaded;
     GameServices.Services.LoadServices(this);
 
     yield return new WaitUntil(() => playerLoaded && servicesLoaded);
+    GameServices.Services.LoadCompletedCallback -= onServicesLoaded;
 
     SceneManager.Instance.SwitchScene("QuestInterfaceScene", (GameObject)Resources.Load("Prefabs/Jalopy/UI/Loading/SimpleLoadingView"));
   }
-  
+
+  void AddInitialQuest(Player player)
+  {
+    QuestStateData intialQuestData = new QuestStateData("woodlands", QuestStateData.Status.Available);
+    player.GetComponent<PlayerQuestLog>().QuestStateDatabase.SetQuestState(intialQuestData);
+  }  
 }
