@@ -11,18 +11,27 @@ public class QuestData : ScriptableObject
 
   [SerializeField]
   string m_id;
-  [SerializeField]
-  TimeSpan m_duration;
-  [SerializeField]
-  List<QuestReward> m_rewards;
+
   [SerializeField]
   PartyData m_enemyParty;
+
+  [Header("Quest Duration")]
   [SerializeField]
+  int m_hours;
+  [SerializeField]
+  int m_minutes;
+  [SerializeField]
+  int m_seconds;  
+   
+  [SerializeField, Header("Rewards")]
+  List<QuestReward> m_rewards;
+  
+  [SerializeField, Header("Conditions")]
   List<QuestCondition> m_visibilityConditions = new List<QuestCondition>();
 
-  public PartyData EnemyParty { get => m_enemyParty; }
-
   public string ID { get => m_id; }
-
+  public TimeSpan Duration { get => new TimeSpan(m_hours, m_minutes, m_seconds); }
+  public PartyData EnemyParty { get => m_enemyParty; }
+                                    
   public ReadOnlyCollection<QuestCondition> VisibilityConditions { get => m_visibilityConditions.AsReadOnly(); }
 }

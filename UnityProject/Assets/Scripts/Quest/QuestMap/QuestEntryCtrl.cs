@@ -34,7 +34,7 @@ public class QuestEntryCtrl : MonoBehaviour
 
   public void OnQuestSelected()
   {
-    GameServices.Services.GetService<QuestManager>().OnQuestSelected(m_questId);
+    QuestManager.OnQuestSelected(m_questId);
   }
 
   protected void OnQuestStateUpdated(QuestStateData questStateData)
@@ -48,9 +48,27 @@ public class QuestEntryCtrl : MonoBehaviour
     {
       m_entryView.SetVisible(true);
 
-      if (questStateData.QuestStatus == QuestStateData.Status.Complete)
+      switch (questStateData.QuestStatus)
       {
-        m_entryView.SetComplete();
+        case QuestStateData.Status.InProgress:
+          {
+            m_entryView.SetInProgress();
+          }
+          break;
+        case QuestStateData.Status.Resolved:
+          {
+            m_entryView.SetResolved();
+          } break;
+        case QuestStateData.Status.Complete:
+          {
+            m_entryView.SetComplete();
+          } break;
+        case QuestStateData.Status.Available: // fall through
+        default:
+          {
+            m_entryView.SetAvailable();
+          } break;
+
       }
     }    
   }

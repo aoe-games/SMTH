@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class QuestPartySelectionCtrl : MonoBehaviour
+public class QuestPartySelectionViewCtrl : MonoBehaviour
 {
   [SerializeField]
   QuestRosterCtrl m_heroRosterCtrl = null;

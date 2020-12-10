@@ -218,12 +218,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_entryBtn: {fileID: 7987479201833416141}
   m_baseImg: {fileID: 8848830864202860393}
-  m_btnNormalIdle: {r: 0.6784314, g: 0.6509804, b: 0, a: 1}
-  m_btnNormalHighlight: {r: 1, g: 0.9333334, b: 0, a: 1}
-  m_btnCompleteIdle: {r: 0, g: 0.6792453, b: 0.042614453, a: 1}
-  m_btnCompleteHighlight: {r: 0, g: 0.9433962, b: 0.20968981, a: 1}
-  m_baseImgNormal: {r: 1, g: 0.9333334, b: 0, a: 1}
-  m_baseImgComplete: {r: 0, g: 0.9450981, b: 0.20784315, a: 1}
+  m_availableColours:
+    m_NormalColor: {r: 0.69803923, g: 0.68235296, b: 0.30588236, a: 1}
+    m_HighlightedColor: {r: 0.9811321, g: 0.9554005, b: 0.33784264, a: 1}
+    m_PressedColor: {r: 0.9803922, g: 0.9568628, b: 0.3372549, a: 1}
+    m_SelectedColor: {r: 0.9803922, g: 0.9568628, b: 0.3372549, a: 1}
+    m_DisabledColor: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_inProgressColours:
+    m_NormalColor: {r: 0.3773585, g: 0.36917052, b: 0.17265932, a: 1}
+    m_HighlightedColor: {r: 0.7169812, g: 0.7020224, b: 0.32805273, a: 1}
+    m_PressedColor: {r: 0.7176471, g: 0.7019608, b: 0.32941177, a: 1}
+    m_SelectedColor: {r: 0.7176471, g: 0.7019608, b: 0.32941177, a: 1}
+    m_DisabledColor: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_resolvedColours:
+    m_NormalColor: {r: 0.29803923, g: 0.37254903, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.6745098, g: 0.7058824, b: 0.9607844, a: 1}
+    m_PressedColor: {r: 0.6745098, g: 0.7058824, b: 0.9607844, a: 1}
+    m_SelectedColor: {r: 0.6745098, g: 0.7058824, b: 0.9607844, a: 1}
+    m_DisabledColor: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_completeColours:
+    m_NormalColor: {r: 0.24296904, g: 0.7924528, b: 0.3020116, a: 1}
+    m_HighlightedColor: {r: 0.47899607, g: 0.8679245, b: 0.4981133, a: 1}
+    m_PressedColor: {r: 0.4784314, g: 0.86666673, b: 0.49803925, a: 1}
+    m_SelectedColor: {r: 0.4784314, g: 0.86666673, b: 0.49803925, a: 1}
+    m_DisabledColor: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 0}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
 --- !u!222 &7987479201833416139
 CanvasRenderer:
   m_ObjectHideFlags: 0

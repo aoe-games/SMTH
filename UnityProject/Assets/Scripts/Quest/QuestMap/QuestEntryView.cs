@@ -9,33 +9,52 @@ public class QuestEntryView : MonoBehaviour
   Button m_entryBtn;
   [SerializeField]
   Image m_baseImg;
+  [SerializeField]
+  float defaultScale = 1.0f;
+  [SerializeField]
+  float completeScale = 0.5f;
 
-  [SerializeField]
-  Color m_btnNormalIdle;
-  [SerializeField]
-  Color m_btnNormalHighlight;
-  [SerializeField]
-  Color m_btnCompleteIdle;
-  [SerializeField]
-  Color m_btnCompleteHighlight;
-
-  [SerializeField]
-  Color m_baseImgNormal;
-  [SerializeField]
-  Color m_baseImgComplete;
+  [SerializeField, Header("Available")]
+  ColorBlock m_availableColours;
+  [SerializeField, Header("In Progress")]
+  ColorBlock m_inProgressColours;
+  [SerializeField, Header("Resolved")]
+  ColorBlock m_resolvedColours;
+  [SerializeField, Header("Complete")]
+  ColorBlock m_completeColours;  
 
   public void SetVisible(bool visible)
   {
     gameObject.SetActive(visible);
   }
 
-    public void SetComplete()
+  public void SetAvailable()
   {
-    ColorBlock colourBlock = m_entryBtn.colors;
-    colourBlock.normalColor = m_btnCompleteIdle;
-    colourBlock.highlightedColor = m_btnCompleteHighlight;
-    m_entryBtn.colors = colourBlock;
+    SetColours(m_availableColours);
+    transform.localScale = new Vector3(defaultScale, defaultScale);
+  }
 
-    m_baseImg.color = m_baseImgComplete;
+  public void SetInProgress()
+  {
+    SetColours(m_inProgressColours);
+    transform.localScale = new Vector3(defaultScale, defaultScale);
+  }
+
+  public void SetResolved()
+  {
+    SetColours(m_resolvedColours);
+    transform.localScale = new Vector3(defaultScale, defaultScale);
+  }
+
+  public void SetComplete()
+  {
+    SetColours(m_completeColours);
+    transform.localScale = new Vector3(completeScale, completeScale);
+  }
+
+  protected void SetColours(ColorBlock colourBlock)
+  {
+    m_entryBtn.colors = colourBlock;
+    m_baseImg.color = colourBlock.highlightedColor;
   }
 }

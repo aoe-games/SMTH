@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Woodlands-2.qd
   m_EditorClassIdentifier: 
   m_id: woodlands-2
+  m_enemyParty: {fileID: 11400000, guid: 419d05310cd56ba449806303a5fabb49, type: 2}
+  m_hours: 0
+  m_minutes: 0
+  m_seconds: 15
   m_rewards:
   - m_id: asd
     type: 0
     m_value: 0
-  m_enemyParty: {fileID: 11400000, guid: 419d05310cd56ba449806303a5fabb49, type: 2}
-  m_visibilityConditions:
-  - m_type: 0
-    m_id: 
-    m_value: 0
+  m_visibilityConditions: []

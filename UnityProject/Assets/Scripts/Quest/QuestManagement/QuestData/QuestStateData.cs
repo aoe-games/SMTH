@@ -9,24 +9,38 @@ using UnityEngine;
 /// </summary>
 public class QuestStateData
 {
-  public enum Status : byte { Unavailable, Available, InProgress, Complete  }
+  public enum Status : byte
+  {
+    Unavailable, // quest is visible to the player, but they cannot access it
+    Available, // quest is ready to be started by the player
+    InProgress, // quest currently underway 
+    Resolved, // quest has reached a conclusion, but player has not acknowledged it (eg. results not processed)
+    Complete // quest has successfully been completed and player has acknowledged the quest completion 
+  }
 
   public string ID { get; protected set; }
   public Status QuestStatus { get; protected set; }
   public DateTime CompletionTime { get; protected set; }
+  public EncounterResultData ResultData { get; protected set; }
 
   public bool HasCompletionTimeExpired
   {
     get
     {
-      return CompletionTime >= DateTime.UtcNow;
+      return CompletionTime <= DateTime.UtcNow;
     }
   }
 
-  public QuestStateData(string id, Status status = Status.Unavailable, DateTime completionTime = default(DateTime))
+  public QuestStateData(
+    string id, 
+    Status status = Status.Unavailable,
+    DateTime completionTime = default(DateTime), 
+    EncounterResultData resultData = null
+  )
   {
     ID = id;
     CompletionTime = completionTime;
     QuestStatus = status;
+    ResultData = resultData;
   }
 }
