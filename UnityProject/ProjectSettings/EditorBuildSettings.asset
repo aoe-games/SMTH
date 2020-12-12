@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Development/Encounters/QuestInterfaceScene.unity
     guid: 21d91d0d569f1844f91d709c7ca169b6
+  - enabled: 1
+    path: Assets/Scenes/Development/Story/SmithingScene.unity
+    guid: 19b1ed890f6784a43964951554ecb949
+  - enabled: 1
+    path: Assets/Scenes/Development/Story/SplashScene-Smithy.unity
+    guid: 294c9e17e331c2848a44a72588f13e0c
   m_configObjects: {}

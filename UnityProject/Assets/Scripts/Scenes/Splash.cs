@@ -9,10 +9,11 @@ using UnityEngine;
 public class Splash : Scene
 {
   [SerializeField]
-  Player m_playerPrototype;
-
+  Player m_playerPrototype;  
   [SerializeField]
   GameServices m_services;
+  [SerializeField]
+  SplashView m_splashView;
 
   public override IEnumerator LoadScene(ProgressDelegate progressDelegate = null)
   {    
@@ -32,6 +33,7 @@ public class Splash : Scene
   
   protected IEnumerator Start()
   {
+    m_splashView.SetSplashText("Loading...");
     yield return new WaitUntil(() => IsLoaded);
 
     // load player    
@@ -61,14 +63,22 @@ public class Splash : Scene
     GameServices.Services.LoadServices(this);
 
     yield return new WaitUntil(() => playerLoaded && servicesLoaded);
-    GameServices.Services.LoadCompletedCallback -= onServicesLoaded;
+    yield return new WaitForSeconds(2.0f);
 
-    SceneManager.Instance.SwitchScene("QuestInterfaceScene", (GameObject)Resources.Load("Prefabs/Jalopy/UI/Loading/SimpleLoadingView"));
+    GameServices.Services.LoadCompletedCallback -= onServicesLoaded;
+    m_splashView.SetSplashText("Press to Start");
+    m_splashView.StartSelected += OnStartSelected;
   }
 
   void AddInitialQuest(Player player)
   {
     QuestStateData intialQuestData = new QuestStateData("woodlands", QuestStateData.Status.Available);
     player.GetComponent<PlayerQuestLog>().QuestStateDatabase.SetQuestState(intialQuestData);
-  }  
+  }
+
+  public void OnStartSelected()
+  {
+    m_splashView.StartSelected -= OnStartSelected;
+    SceneManager.Instance.SwitchScene("QuestInterfaceScene", (GameObject)Resources.Load("Prefabs/Jalopy/UI/Loading/SimpleLoadingView"));
+  }
 }
