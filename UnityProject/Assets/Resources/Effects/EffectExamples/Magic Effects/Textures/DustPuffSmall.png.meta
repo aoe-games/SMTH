@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 271edbc011d9e03489f73cef81b2d56a
+guid: a547fca3b7d596c4d9bcb07a747ec5ee
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -15,7 +15,7 @@ TextureImporter:
       213: 21300006
     second: SmallDustPuff_3
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
@@ -69,6 +69,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
