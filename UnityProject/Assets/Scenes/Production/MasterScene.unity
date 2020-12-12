@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_allowDebug: 1
-  m_initialScene: Splash
+  m_initialScene: SplashScene-Smithy
   m_transitionLayer: {fileID: 1374715587}
   m_curtain: {fileID: 0}
 --- !u!4 &867499517
