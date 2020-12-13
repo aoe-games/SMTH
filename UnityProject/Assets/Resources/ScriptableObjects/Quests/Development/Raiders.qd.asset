@@ -10,12 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4ee6bac486611444a74a60fdce795e1, type: 3}
-  m_Name: Geoffrey.qd
+  m_Name: Raiders.qd
   m_EditorClassIdentifier: 
-  m_id: geoffrey
-  m_rewards: []
-  m_enemyParty: {fileID: 11400000, guid: e7ada568c7bd40a46865fc099f7a2fb3, type: 2}
+  m_id: raiders
+  m_enemyParty: {fileID: 11400000, guid: 383c705dc5bcd9f4db1550f95960989a, type: 2}
+  m_hours: 0
+  m_minutes: 0
+  m_seconds: 0
+  m_rewards:
+  - m_id: 
+    type: 1
+    m_value: 300
   m_visibilityConditions:
   - m_type: 0
-    m_id: raiders
+    m_id: woodlands
     m_value: 0

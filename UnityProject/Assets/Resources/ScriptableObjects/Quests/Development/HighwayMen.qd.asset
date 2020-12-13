@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: HighwayMen.qd
   m_EditorClassIdentifier: 
   m_id: highway_men
+  m_enemyParty: {fileID: 11400000, guid: 894c9160c93f3544baf1ae9e6f39b100, type: 2}
+  m_hours: 0
+  m_minutes: 0
+  m_seconds: 0
   m_rewards:
   - m_id: asd
     type: 0
     m_value: 0
-  m_enemyParty: {fileID: 11400000, guid: 894c9160c93f3544baf1ae9e6f39b100, type: 2}
   m_visibilityConditions:
   - m_type: 0
     m_id: the_swarm

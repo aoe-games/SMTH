@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c334cccb44be74e4cb717adc69bc8818, type: 3}
-  m_Name: DevQuestDatabase
+  m_Name: QuestDatabase
   m_EditorClassIdentifier: 
   m_questList:
-  - {fileID: 11400000, guid: 268912534d6e24f45ac6f050d22f1da2, type: 2}
-  - {fileID: 11400000, guid: 4ff429710074c204d801579b5ca6e7d8, type: 2}
-  - {fileID: 11400000, guid: 220b5ee6f2c968543983c31dab8c4b37, type: 2}
-  - {fileID: 11400000, guid: adb7bee2b22970a41a3caf236d84a015, type: 2}
-  - {fileID: 11400000, guid: 97414cc94d09e2b43891fbfaf2ed26ee, type: 2}
-  - {fileID: 11400000, guid: 0363c0886a1704640b1a3ca450112e53, type: 2}
+  - {fileID: 11400000, guid: f22c0765af7c0924fb6f24df1d7c7b64, type: 2}
+  - {fileID: 11400000, guid: d8ee0d783d0ba19469f19bcf587e754f, type: 2}
+  - {fileID: 11400000, guid: 89f8e1b27b07e6148936678444c7f74d, type: 2}
+  - {fileID: 11400000, guid: 6a34db2ff81022244845ae51a010de31, type: 2}
+  - {fileID: 11400000, guid: f1bdb8959746cb344919d77ff7740ed1, type: 2}
+  - {fileID: 11400000, guid: 0954670755e03a24eae1eba995586329, type: 2}
   - {fileID: 11400000, guid: 0a7468d2f69d5d147a652eb8c06bf763, type: 2}
   - {fileID: 11400000, guid: 5d651284790a0ba4e8a6f903a657a4ad, type: 2}
