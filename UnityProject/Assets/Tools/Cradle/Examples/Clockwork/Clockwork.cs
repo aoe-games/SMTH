@@ -14,6 +14,7 @@ using UnityEngine;
 using Cradle;
 using IStoryThread = System.Collections.Generic.IEnumerable<Cradle.StoryOutput>;
 using Cradle.StoryFormats.Harlowe;
+using StorylineSystem;
 
 public partial class @Clockwork: Cradle.StoryFormats.Harlowe.HarloweStory
 {

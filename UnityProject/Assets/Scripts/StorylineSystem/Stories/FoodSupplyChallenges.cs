@@ -39,7 +39,7 @@ public partial class @FoodSupplyChallenges: Cradle.StoryFormats.Harlowe.HarloweS
 	#region Initialization
 	// ---------------
 
-	public readonly CradleCustomMacros macros1;
+	public readonly StorylineSystem.CradleCustomMacros macros1;
 	public readonly Cradle.StoryFormats.Harlowe.HarloweRuntimeMacros macros2;
 
 	@FoodSupplyChallenges()
@@ -48,12 +48,13 @@ public partial class @FoodSupplyChallenges: Cradle.StoryFormats.Harlowe.HarloweS
 
 		base.Vars = new VarDefs() { Story = this, StrictMode = true };
 
-		macros1 = new CradleCustomMacros() { Story = this };
+		macros1 = new StorylineSystem.CradleCustomMacros() { Story = this };
 		macros2 = new Cradle.StoryFormats.Harlowe.HarloweRuntimeMacros() { Story = this };
 
 		base.Init();
 		passage1_Init();
 		passage2_Init();
+		passage3_Init();
 	}
 
 	// ---------------
@@ -64,36 +65,40 @@ public partial class @FoodSupplyChallenges: Cradle.StoryFormats.Harlowe.HarloweS
 
 	void passage1_Init()
 	{
-		this.Passages[@"Don't look for trouble, trouble will find you"] = new StoryPassage(@"Don't look for trouble, trouble will find you", new string[]{ "curated", }, passage1_Main);
+		this.Passages[@"Don't look for trouble, trouble will find you"] = new StoryPassage(@"Don't look for trouble, trouble will find you", new string[]{  }, passage1_Main);
 	}
 
 	IStoryThread passage1_Main()
 	{
-		macros1.dlg("Derek");
+		macros1.LoadDialogOverlayScene("BaseSmith");
+		yield return lineBreak();
+		macros1.Dialog("Derek");
 		yield return text(" Ryan! Did you hear the commotion at the docks this morning?");
 		yield return lineBreak();
-		macros1.dlg("Ryan");
+		macros1.Dialog("Ryan");
 		yield return text(" I did not! What happened?");
 		yield return lineBreak();
-		macros1.dlg("Derek");
+		macros1.Dialog("Derek");
 		yield return text(" 3rd day in a row the fishermen\'s guild find their nets cut to pieces.");
 		yield return lineBreak();
-		macros1.dlg("Ryan");
+		macros1.Dialog("Ryan");
 		yield return text(" Seriously, in this quiet town?");
 		yield return lineBreak();
-		macros1.dlg("Derek");
+		macros1.Dialog("Derek");
 		yield return text(" Well, no so quiet anymore! Do you think this is our chance to investigate our fi" +
 		    "rst team case! Wooo!");
 		yield return lineBreak();
-		macros1.dlg("Ryan");
+		macros1.Dialog("Ryan");
 		yield return text("Calm down Derek! There\'s got to be a simple explanation to this. Let\'s chat with " +
 		    "Brug, he might be able to shine some light on this.");
 		yield return lineBreak();
-		macros1.dlg("Ryan");
+		macros1.Dialog("Ryan");
 		yield return text("Do you mind heading there now, while I wrap up some small smith jobs?");
+		yield return lineBreak();
 		yield return lineBreak();
 		yield return link("Visit Brug", "Visit Brug", null);
 		yield return lineBreak();
+		yield return link("Comeback later", "Comeback later", null);
 		yield break;
 	}
 
@@ -108,33 +113,49 @@ public partial class @FoodSupplyChallenges: Cradle.StoryFormats.Harlowe.HarloweS
 
 	IStoryThread passage2_Main()
 	{
-		macros1.loadScene("dock-warehouse");
+		macros1.LoadDialogOverlayScene("dock-warehouse");
 		yield return lineBreak();
-		macros1.dlg("Brug");
+		macros1.Dialog("Brug");
 		yield return text(" What are you kid doing here today. Move along...");
 		yield return lineBreak();
-		macros1.dlg("Derek");
+		macros1.Dialog("Derek");
 		yield return text(" Wait...! Ryan and I are looking for our first case");
 		yield return lineBreak();
-		macros1.dlg("Brug");
+		macros1.Dialog("Brug");
 		yield return text(" What first case? What are you talking about?");
 		yield return lineBreak();
-		macros1.dlg("Derek");
+		macros1.Dialog("Derek");
 		yield return text(" Well, this is the perfect opportunity to help around town and maybe make a few c" +
 		    "oins. What is reward!?");
 		yield return lineBreak();
-		macros1.dlg("Brug");
+		macros1.Dialog("Brug");
 		yield return text(" I didn\'t mention any rewards... but...");
 		yield return lineBreak();
-		macros1.dlg("Derek");
+		macros1.Dialog("Derek");
 		yield return text(" But....");
 		yield return lineBreak();
-		macros1.dlg("Brug");
-		yield return text(" But... i\'ll come up with something if you end up finding the root cause of these" +
-		    " trouble. We\'re running low on fresh fish, so we could use all the help we can.");
+		macros1.Dialog("Brug");
+		yield return text(" But... i\'ll come up with something if you end up finding the root cause for thes" +
+		    "e troubles. We\'re running low on fresh fish, so we could use all the help we can" +
+		    ".");
 		yield return lineBreak();
-		macros1.addArmor("Dave","Halberd");
+		macros1.MakeQuestAvailable("FreshFishShortage");
 		yield return lineBreak();
+		yield break;
+	}
+
+
+	// .............
+	// #3: Comeback later
+
+	void passage3_Init()
+	{
+		this.Passages[@"Comeback later"] = new StoryPassage(@"Comeback later", new string[]{  }, passage3_Main);
+	}
+
+	IStoryThread passage3_Main()
+	{
+		macros1.PauseQuest();
 		yield break;
 	}
 
