@@ -98,6 +98,8 @@ public partial class @prologue: Cradle.StoryFormats.Harlowe.HarloweStory
 		yield return text("let\'s go.");
 		yield return lineBreak();
 		macros1.addArmor("Richard","Big Sword");
+		yield return lineBreak();
+		macros1.addArmor("Dave","Big Sword");
 		yield break;
 	}
 
