@@ -15,6 +15,15 @@ public class CradleCustomMacros : Cradle.RuntimeMacros
      * This could play a sound effect from the storyline
      */
     [Cradle.RuntimeMacro]
+    public void loadScene(string sceneName)
+    {
+        Debug.Log("CradleCustomMacros loadScene");
+    }
+
+    /*
+     * This could play a sound effect from the storyline
+     */
+    [Cradle.RuntimeMacro]
     public void sfxPlay(string soundName)
     {
         Debug.Log("CradleCustomMacros sfxPlay");
