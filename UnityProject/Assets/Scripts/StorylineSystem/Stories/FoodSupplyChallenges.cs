@@ -133,6 +133,8 @@ public partial class @FoodSupplyChallenges: Cradle.StoryFormats.Harlowe.HarloweS
 		yield return text(" But... i\'ll come up with something if you end up finding the root cause of these" +
 		    " trouble. We\'re running low on fresh fish, so we could use all the help we can.");
 		yield return lineBreak();
+		macros1.addArmor("Dave","Halberd");
+		yield return lineBreak();
 		yield break;
 	}
 
