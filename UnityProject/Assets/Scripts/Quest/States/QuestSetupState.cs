@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Jalopy;
+using SMTH;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,7 +38,8 @@ public class QuestSetupState : QuestState
     ConfigurePartySelectionEventRegistration(true);
     m_partySelectionCtrl.StartSelection();
 
-    m_enemyRosterCtrl.Roster = QuestCtrl.SelectedQuestData.EnemyParty;
+    m_enemyRosterCtrl.Roster = QuestCtrl.SelectedQuestData.EnemyParty.m_partyMembers.ToArray();
+    m_enemyRosterCtrl.Title = QuestCtrl.SelectedQuestData.EnemyParty.m_name;
     m_encounterObserverView.gameObject.SetActive(false);
   }
 
@@ -59,12 +62,31 @@ public class QuestSetupState : QuestState
     }
   }
 
+  void SetHeroesInPartyUnavailable(PartyData selectedPartyData)
+  {
+    Player player = PlayerManager.Instance.GetPlayer(LocalPlayer.k_localPlayerId);
+    EntityRoster roster = player.GetComponent<PlayerRoster>().Roster;
+
+    int count = selectedPartyData.m_partyMembers.Count;
+    for (int i = 0; i < count; i++)
+    {
+      EntityData entityData = selectedPartyData.m_partyMembers[i];
+      if (entityData != null)
+      {
+        entityData.State = EntityData.EntityState.Questing;
+        roster.SetEntityData(entityData);
+      }
+    }
+  }
+
   protected void OnStartEncounterWithSelectedParties(PartyData selectedParty)
   {
     m_partySelectionCtrl.EndSelection();
     ConfigurePartySelectionEventRegistration(false);
 
     QuestCtrl.SelectedPartyData = selectedParty;
+    SetHeroesInPartyUnavailable(QuestCtrl.SelectedPartyData);
+
     SwitchState(QuestStateID.RunEncounter);
   }
  

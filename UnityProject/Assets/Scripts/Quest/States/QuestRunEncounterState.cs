@@ -27,8 +27,8 @@ public class QuestRunEncounterState : QuestState
 
   public override void OnEnter()
   {
-    m_encounterCtrl.EncounterCompleted += OnEncounterCompleted;
-    StartEncounterWithSelectedParties(QuestCtrl.SelectedPartyData);
+    m_encounterCtrl.EncounterCompleted += OnEncounterCompleted;    
+    StartEncounterWithSelectedParties(QuestCtrl.SelectedPartyData, QuestCtrl.SelectedQuestData.EnemyParty);
   }
 
   public override void OnExit()
@@ -36,7 +36,7 @@ public class QuestRunEncounterState : QuestState
     m_encounterCtrl.EncounterCompleted -= OnEncounterCompleted;
   }
   
-  protected void StartEncounterWithSelectedParties(PartyData selectedParty)
+  protected void StartEncounterWithSelectedParties(PartyData selectedParty, PartyData enemyParty)
   {
     if (selectedParty.m_partyMembers.Count < 0) return;
 
@@ -45,7 +45,7 @@ public class QuestRunEncounterState : QuestState
 
     m_parties.Clear();
     m_parties.Add(selectedParty);
-    m_parties.Add(QuestCtrl.SelectedQuestData.EnemyParty);
+    m_parties.Add(enemyParty);
 
     SetupAndExecuteEncounter();
   }

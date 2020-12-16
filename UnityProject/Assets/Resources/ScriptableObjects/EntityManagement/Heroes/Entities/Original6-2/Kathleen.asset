@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ID: kathleen_mage
   m_name: Kathleen
+  m_state: 0
   m_bruteAttack: 2
   m_bruteDefense: 2
   m_spiritAttack: 6
@@ -23,5 +24,5 @@ MonoBehaviour:
   m_speed: 9
   m_maxHealth: 9
   m_currentHealth: 9
-  m_viewCatalog: {fileID: 11400000, guid: bd5280c58eda1f64091a376b7efd6223, type: 2}
   m_actions: 0000
+  m_viewCatalog: {fileID: 11400000, guid: bd5280c58eda1f64091a376b7efd6223, type: 2}

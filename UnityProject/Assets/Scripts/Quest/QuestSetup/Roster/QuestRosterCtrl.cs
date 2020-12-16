@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+using EntityDataCollection = System.Collections.Generic.Dictionary<string, EntityData>.ValueCollection;
+
 public class QuestRosterCtrl : DataSource
 {
     #region View Elements - todo: move to view class
@@ -16,7 +18,8 @@ public class QuestRosterCtrl : DataSource
 
     #endregion
 
-    protected PartyData m_roster = null;
+    protected EntityData[] m_entityCollection = null;
+
     protected string m_entryToHighlight = string.Empty;
     protected List<string> m_unavailableEntries = new List<string>();
 
@@ -26,23 +29,29 @@ public class QuestRosterCtrl : DataSource
     /// Set's the roster data used to present the roster list.
     /// The view displaying the roster will be reset with this new data.
     /// </summary>
-    public virtual PartyData Roster
+    public virtual EntityData[] Roster
     {
-        get => m_roster;
+        get => m_entityCollection;
         set
         {
-            m_roster = value;
+            m_entityCollection = value;           
             UpdateView();
         }
     }
 
-    protected void UpdateView()
+    public string Title
     {
+      set
+      {
         if (m_partyName != null)
         {
-            m_partyName.text = m_roster.m_name;
+          m_partyName.text = value;
         }
+      }
+    }
 
+  protected void UpdateView()
+    {           
         if (m_scrollView != null)
         {
             m_scrollView.ResetView();
@@ -55,7 +64,7 @@ public class QuestRosterCtrl : DataSource
         {
             QuestRosterCellView view = m_scrollView.m_cellPrototype.GetComponent<QuestRosterCellView>();
             float portraitsPerRow = view != null ? (float)view.PortraitCount : 0f;
-            return Mathf.CeilToInt(Roster.m_partyMembers.Count / portraitsPerRow);
+            return Mathf.CeilToInt(m_entityCollection.Length / portraitsPerRow);
         }        
     }
 
@@ -70,9 +79,9 @@ public class QuestRosterCtrl : DataSource
             for (int i = 0; i < portraitCount; i++)
             {            
                 int idx = (index * portraitCount) + i;
-                if (idx < Roster.m_partyMembers.Count)
+                if (idx < m_entityCollection.Length)
                 {
-                    EntityData entityData = Roster.m_partyMembers[idx];
+                    EntityData entityData = m_entityCollection[idx];
 
                     string spriteName = entityData.RosterPortraitPath;
                     cellView.SetImageForIndex(spriteName, i);
@@ -103,6 +112,6 @@ public class QuestRosterCtrl : DataSource
 
     protected void OnRosterCellSelected(int index)
     {
-        RosterMemberSelectedEvent?.Invoke(Roster.m_partyMembers[index]);
+        RosterMemberSelectedEvent?.Invoke(m_entityCollection[index]);
     }
 }

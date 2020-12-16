@@ -7,9 +7,9 @@ using UnityEngine;
 public class PlayerRoster : PlayerComponent
 {
   [SerializeField]
-  PartyData m_playerRoster = null; // NOTE: temporary - this will come from a persistent, serialized party file
+  PartyData m_initialRosterData = null; // NOTE: temporary - this will come from a persistent, serialized party file
 
-  public PartyData RosterData { get => m_playerRoster; }
+  public EntityRoster Roster { get; } = new EntityRoster();
 
   public override void Load(Action<PlayerComponent, Exception> loadCompletedCallback)
   {
@@ -19,6 +19,13 @@ public class PlayerRoster : PlayerComponent
   private IEnumerator LoadAsync(Action<PlayerComponent, Exception> loadCompletedCallback)
   {
     yield return new WaitForSeconds(0);
+
+    foreach (EntityData entityData in m_initialRosterData.m_partyMembers)
+    {
+      Roster.SetEntityData(entityData.Clone());
+    }
+    m_initialRosterData = null;
+
     loadCompletedCallback?.Invoke(this, null);
   }
 }

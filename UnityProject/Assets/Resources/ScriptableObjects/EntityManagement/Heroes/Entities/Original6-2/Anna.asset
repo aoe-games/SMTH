@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ID: anna_technician
   m_name: Anna
+  m_state: 0
   m_bruteAttack: 2
   m_bruteDefense: 6
   m_spiritAttack: 2
@@ -23,5 +24,5 @@ MonoBehaviour:
   m_speed: 14
   m_maxHealth: 5
   m_currentHealth: 5
-  m_viewCatalog: {fileID: 11400000, guid: bd5280c58eda1f64091a376b7efd6223, type: 2}
   m_actions: 0000
+  m_viewCatalog: {fileID: 11400000, guid: bd5280c58eda1f64091a376b7efd6223, type: 2}

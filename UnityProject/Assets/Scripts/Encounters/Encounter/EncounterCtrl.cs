@@ -278,10 +278,24 @@ public class EncounterCtrl : MonoBehaviour
 
             EncounterResultDataBuilder builder =
               new EncounterResultDataBuilder()
-              .WithWinningPartyId(activeTeams);
+              .WithWinningPartyId(activeTeams)
+              .WithParticipants(GetParticipantIDs());
 
             FireEncounterCompletedEvent(builder.CreateResultData());
         }
+    }
+
+    List<string> GetParticipantIDs()
+    {
+      List<string> participants = new List<string>(m_actors.Count);
+
+      int count = m_actors.Count;
+      for (int i = 0; i < count; i++)
+      {
+        participants.Add(m_actors[i].ActorData.ID);
+      }
+
+      return participants; 
     }
 
     #endregion

@@ -57,7 +57,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2327eab4464b84947baa0976f66dba02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerRoster: {fileID: 11400000, guid: cf472eb1d5646e84db7d91fcc0d281e4, type: 2}
+  m_initialRosterData: {fileID: 11400000, guid: cf472eb1d5646e84db7d91fcc0d281e4,
+    type: 2}
 --- !u!114 &2578638163458665701
 MonoBehaviour:
   m_ObjectHideFlags: 0

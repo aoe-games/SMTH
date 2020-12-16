@@ -69,13 +69,7 @@ public class Splash : Scene
     m_splashView.SetSplashText("Press to Start");
     m_splashView.StartSelected += OnStartSelected;
   }
-
-  void AddInitialQuest(Player player)
-  {
-    QuestStateData intialQuestData = new QuestStateData("woodlands", QuestStateData.Status.Available);
-    player.GetComponent<PlayerQuestLog>().QuestStateDatabase.SetQuestState(intialQuestData);
-  }
-
+  
   public void OnStartSelected()
   {
     m_splashView.StartSelected -= OnStartSelected;

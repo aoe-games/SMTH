@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Jalopy;
+using SMTH;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,7 +28,7 @@ public class QuestResultState : QuestState
     EncounterResultData resultData = QuestCtrl.SelectedQuestStateData.ResultData;
     ResultDisplayConfig config = new ResultDisplayConfig(QuestCtrl.ResultStateForEncounterResult(resultData), resultData);
     m_questResultCtrl.SetConfig(config);
-    m_questResultCtrl.StartDisplay();
+    m_questResultCtrl.StartDisplay(); 
   }
 
   public override void OnExit()
@@ -40,23 +42,23 @@ public class QuestResultState : QuestState
     {
       case QuestStateData.Status.Resolved:
         {
-          if (QuestCtrl.ResultStateForEncounterResult(QuestCtrl.SelectedQuestStateData.ResultData) == ResultDisplayConfig.ResultState.Victory)
-          {
-            QuestStateData stateData = new QuestStateData(
-              id: QuestCtrl.SelectedQuestStateData.ID,
-              status: QuestStateData.Status.Complete,
-              resultData: QuestCtrl.SelectedQuestStateData.ResultData);
-            QuestCtrl.QuestStateDatabase.SetQuestState(stateData);
+          bool playerIsVictorious = QuestCtrl.ResultStateForEncounterResult(QuestCtrl.SelectedQuestStateData.ResultData) == ResultDisplayConfig.ResultState.Victory;
+          QuestStateData.Status status = playerIsVictorious ? QuestStateData.Status.Complete : QuestStateData.Status.Available;
 
+          QuestStateData stateData = new QuestStateData(
+              id: QuestCtrl.SelectedQuestStateData.ID,
+              status: status,
+              resultData: QuestCtrl.SelectedQuestStateData.ResultData);
+          QuestCtrl.QuestStateDatabase.SetQuestState(stateData);
+
+          UpdateHeroStates();
+
+          if (playerIsVictorious)
+          {
             SwitchState(QuestStateID.Idle);
           }
           else
           {
-            QuestStateData stateData = new QuestStateData(
-              id: QuestCtrl.SelectedQuestStateData.ID,
-              status: QuestStateData.Status.Available);
-            QuestCtrl.QuestStateDatabase.SetQuestState(stateData);
-
             SwitchState(QuestStateID.Setup);
           }
         }
@@ -66,6 +68,26 @@ public class QuestResultState : QuestState
           SwitchState(QuestStateID.Idle);
         }
         break;
+    }
+  }
+
+  protected void UpdateHeroStates()
+  {
+    IReadOnlyList<string> participantIDs = QuestCtrl.SelectedQuestStateData.ResultData.ParticipantIDs;
+
+    Player player = PlayerManager.Instance.GetPlayer(LocalPlayer.k_localPlayerId);
+    EntityRoster roster = player.GetComponent<PlayerRoster>().Roster;
+
+    int count = participantIDs.Count;
+    for (int i = 0; i < count; i++)
+    {
+      EntityData entityData = roster.GetEntityData(participantIDs[i]);
+
+      if (entityData != null)
+      {
+        entityData.State = EntityData.EntityState.Available;
+        roster.SetEntityData(entityData);
+      }
     }
   }
 }

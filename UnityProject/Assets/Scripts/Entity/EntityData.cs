@@ -6,95 +6,78 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New EntityData", menuName = "ScriptableObjects/EntityData", order = 1)]
 public class EntityData : ScriptableObject
 {
-    #region Fields
+  public enum EntityState { Available, Questing, Injured }
 
-    [SerializeField]
-    protected string m_ID;
-    [SerializeField]
-    protected string m_name;
+  #region Fields
 
-    [SerializeField]
-    protected int m_bruteAttack;
-    [SerializeField]
-    protected int m_bruteDefense;
-    [SerializeField]
-    protected int m_spiritAttack;    
-    [SerializeField]
-    protected int m_spiritDefense;
-    [SerializeField]
-    protected int m_precisionAttack;
-    [SerializeField]
-    protected int m_precisionDefense;
-    [SerializeField]
-    protected int m_speed;
-    [SerializeField]
-    protected int m_maxHealth;
-    [SerializeField]
-    protected int m_currentHealth;
+  [SerializeField]
+  protected string m_ID;
+  [SerializeField]
+  protected string m_name;
+  [SerializeField]
+  protected EntityState m_state;
 
-    [SerializeField]
-    protected ResourcePathCatalog m_viewCatalog;
+  [SerializeField]
+  protected int m_bruteAttack;
+  [SerializeField]
+  protected int m_bruteDefense;
+  [SerializeField]
+  protected int m_spiritAttack;
+  [SerializeField]
+  protected int m_spiritDefense;
+  [SerializeField]
+  protected int m_precisionAttack;
+  [SerializeField]
+  protected int m_precisionDefense;
+  [SerializeField]
+  protected int m_speed;
+  [SerializeField]
+  protected int m_maxHealth;
+  [SerializeField]
+  protected int m_currentHealth;
+  [SerializeField]
+  protected List<ActionID> m_actions;
+  [SerializeField]
+  protected ResourcePathCatalog m_viewCatalog;
 
-    // used as indeces for the view catalog path
-    public enum ViewTypes : byte
-    {
-        RosterPortrait = 0
-    }
+  // used as indeces for the view catalog path
+  public enum ViewTypes : byte
+  {
+    RosterPortrait = 0
+  }
 
-    [SerializeField]
-    protected List<ActionID> m_actions;    
+  #endregion
 
-    #endregion
+  #region Properties
 
-    #region Properties
+  public string ID { get => m_ID; set => m_ID = value; }
+  public string Name { get => m_name; set => m_name = value; }
+  public EntityState State { get => m_state; set => m_state = value; }
 
-    public string ID { get { return m_ID; } }
-    public string Name { get { return m_name; } }
+  public int BruteAttack { get => m_bruteAttack; set => m_bruteAttack = value; }
+  public int BruteDefense { get => m_bruteDefense; set => m_bruteDefense = value; }
+  public int SpiritAttack { get => m_spiritAttack; set => m_spiritAttack = value; }
+  public int SpiritDefense { get => m_spiritDefense; set => m_spiritDefense = value; }
+  public int PrecisionAttack { get => m_precisionAttack; set => m_precisionAttack = value; }
+  public int PrecisionDefense { get => m_precisionDefense; set => m_precisionDefense = value; }
 
-    public int BruteAttack { get { return m_bruteAttack; } }      
-    public int BruteDefense { get { return m_bruteDefense; } }
-    public int SpiritAttack { get { return m_spiritAttack; } }
-    public int SpiritDefense { get { return m_spiritDefense; } }
-    public int PrecisionAttack { get { return m_precisionAttack; } }
-    public int PrecisionDefense { get { return m_precisionDefense; } }
-    public int Speed { get { return m_speed; } }
-    public int MaxHealth { get { return m_maxHealth; } }
-    public int CurrentHealth { get { return m_currentHealth; } }
-    public List<ActionID> Actions { get { return m_actions; } }
+  public int Speed { get => m_speed; set => m_speed = value; }
+  public int MaxHealth { get => m_maxHealth; set => m_maxHealth = value; }
+  public int CurrentHealth { get => m_currentHealth; set => m_currentHealth = value; }
+  public List<ActionID> Actions { get => m_actions; set => m_actions = value; }
+  public ResourcePathCatalog ViewCatalog { get => m_viewCatalog; set => m_viewCatalog = value; }
 
-    public string RosterPortraitPath
-    {
-        get => m_viewCatalog.GetPath(ID, (int)ViewTypes.RosterPortrait);
-    }
+  public string RosterPortraitPath
+  {
+    get => m_viewCatalog.GetPath(ID, (int)ViewTypes.RosterPortrait);
+  }
 
-    #endregion
+  #endregion
 
-    public EntityData(
-        string id = "New Entity",
-        string name = "No Name",
-        int bruteAttack = 10,        
-        int bruteDefense = 5,
-        int spiritAttack = 10,
-        int spiritDefense = 5,
-        int precisionAttack = 10,
-        int precisionDefense = 5,
-        int speed = 5,
-        int maxHealth = 25,
-        int currentHealth = 25,
-        List<ActionID> actions = null              
-    )
-    {
-        m_ID = id;
-        m_name = name;
-        m_bruteAttack = bruteAttack;
-        m_bruteDefense = bruteDefense;
-        m_spiritAttack = spiritAttack;        
-        m_spiritDefense = spiritDefense;
-        m_precisionAttack = precisionAttack;
-        m_precisionDefense = precisionDefense;
-        m_speed = speed;
-        m_maxHealth = maxHealth;
-        m_currentHealth = currentHealth;
-        m_actions = actions;                              
-    }
+  public EntityData Clone()
+  {
+    EntityData clone = (EntityData)MemberwiseClone();
+    clone.m_actions = new List<ActionID>(m_actions);
+    return clone;
+  }
 }

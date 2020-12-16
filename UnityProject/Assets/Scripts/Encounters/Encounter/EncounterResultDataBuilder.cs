@@ -12,19 +12,26 @@ using UnityEngine;
 public class EncounterResultDataBuilder : EncounterResultData
 {
   public EncounterResultDataBuilder()
-  : base(0)
+  : base(0, null)
   {  }
 
   public EncounterResultData CreateResultData()
   {
     return new EncounterResultData (
-      WinningPartyId
+      WinningPartyId,
+      m_participantIDs
     );
   }
 
   public EncounterResultDataBuilder WithWinningPartyId(int partyId)
   {
     WinningPartyId = partyId;
+    return this;
+  }
+
+  public EncounterResultDataBuilder WithParticipants(List<string> participantIDs)
+  {
+    SetParticipantIDs(participantIDs);
     return this;
   }
 }
