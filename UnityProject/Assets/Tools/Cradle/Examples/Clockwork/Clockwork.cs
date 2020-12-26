@@ -14,7 +14,6 @@ using UnityEngine;
 using Cradle;
 using IStoryThread = System.Collections.Generic.IEnumerable<Cradle.StoryOutput>;
 using Cradle.StoryFormats.Harlowe;
-using StorylineSystem;
 
 public partial class @Clockwork: Cradle.StoryFormats.Harlowe.HarloweStory
 {
@@ -86,7 +85,7 @@ public partial class @Clockwork: Cradle.StoryFormats.Harlowe.HarloweStory
 	#region Initialization
 	// ---------------
 
-	public readonly CradleCustomMacros macros1;
+	public readonly StorylineSystem.CradleCustomMacros macros1;
 	public readonly Cradle.StoryFormats.Harlowe.HarloweRuntimeMacros macros2;
 
 	@Clockwork()
@@ -95,7 +94,7 @@ public partial class @Clockwork: Cradle.StoryFormats.Harlowe.HarloweStory
 
 		base.Vars = new VarDefs() { Story = this, StrictMode = true };
 
-		macros1 = new CradleCustomMacros() { Story = this };
+		macros1 = new StorylineSystem.CradleCustomMacros() { Story = this };
 		macros2 = new Cradle.StoryFormats.Harlowe.HarloweRuntimeMacros() { Story = this };
 
 		base.Init();

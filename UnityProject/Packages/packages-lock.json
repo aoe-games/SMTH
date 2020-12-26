@@ -50,7 +50,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.collab-proxy": {
-      "version": "1.2.16",
+      "version": "1.3.8",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
@@ -100,13 +100,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-    "com.unity.progrids": {
-      "version": "3.0.3-preview.4",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
     "com.unity.purchasing": {
       "version": "2.0.6",
       "depth": 0,
@@ -115,7 +108,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.render-pipelines.core": {
-      "version": "7.3.1",
+      "version": "8.2.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -123,12 +116,20 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.searcher": {
+      "version": "4.0.9",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
     "com.unity.shadergraph": {
-      "version": "7.3.1",
+      "version": "8.2.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.render-pipelines.core": "7.3.1"
+        "com.unity.render-pipelines.core": "8.2.0",
+        "com.unity.searcher": "4.0.9"
       },
       "url": "https://packages.unity.com"
     },
@@ -144,7 +145,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.textmeshpro": {
-      "version": "3.0.0-preview.1",
+      "version": "3.0.3",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -166,6 +167,33 @@
       "dependencies": {
         "com.unity.modules.ui": "1.0.0"
       }
+    },
+    "com.unity.ui": {
+      "version": "1.0.0-preview.6",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "nuget.moq": "1.0.0",
+        "nuget.castle-core": "1.0.1",
+        "com.unity.modules.uielementsnative": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "nuget.castle-core": {
+      "version": "1.0.1",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "nuget.moq": {
+      "version": "1.0.0",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "nuget.castle-core": "1.0.1"
+      },
+      "url": "https://packages.unity.com"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
@@ -300,6 +328,18 @@
       "depth": 0,
       "source": "builtin",
       "dependencies": {
+        "com.unity.modules.ui": "1.0.0",
+        "com.unity.modules.imgui": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0",
+        "com.unity.modules.uielementsnative": "1.0.0"
+      }
+    },
+    "com.unity.modules.uielementsnative": {
+      "version": "1.0.0",
+      "depth": 1,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0"
       }
