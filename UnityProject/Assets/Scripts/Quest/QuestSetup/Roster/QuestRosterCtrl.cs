@@ -73,6 +73,7 @@ public class QuestRosterCtrl : DataSource
         QuestRosterCellView cellView = cell as QuestRosterCellView;
         if (cellView != null)
         {
+            cellView.OnCellSelectedEvent -= OnRosterCellSelected;
             cellView.OnCellSelectedEvent += OnRosterCellSelected;
 
             int portraitCount = cellView.PortraitCount;
@@ -110,7 +111,7 @@ public class QuestRosterCtrl : DataSource
         m_scrollView.RefreshView();
     }
 
-    protected void OnRosterCellSelected(int index)
+    protected void OnRosterCellSelected(QuestRosterCellView view, int index)
     {
         RosterMemberSelectedEvent?.Invoke(m_entityCollection[index]);
     }

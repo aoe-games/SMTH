@@ -12,7 +12,7 @@ public class QuestRosterCellView : InfiniteScrollCell
     [SerializeField]
     List<QuestRosterCellPortraitView> m_portraitViews = new List<QuestRosterCellPortraitView>();
 
-    public event Action<int> OnCellSelectedEvent = null;
+    public event Action<QuestRosterCellView, int> OnCellSelectedEvent = null;
 
     public override Rect CellSize
     {
@@ -62,7 +62,7 @@ public class QuestRosterCellView : InfiniteScrollCell
 
     protected void FireCellSelectedEvent(int portraitOffset)
     {
-        OnCellSelectedEvent?.Invoke((index * PortraitCount) + portraitOffset);
+        OnCellSelectedEvent?.Invoke(this, (index * PortraitCount) + portraitOffset);
     }
 
     #endregion

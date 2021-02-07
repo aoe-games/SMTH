@@ -239,6 +239,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -273,6 +274,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
@@ -432,10 +434,10 @@ TextureImporter:
       name: colour_icons_6
       rect:
         serializedVersion: 2
-        x: 22
-        y: 220
-        width: 83
-        height: 73
+        x: 42
+        y: 233
+        width: 44
+        height: 44
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -474,10 +476,10 @@ TextureImporter:
       name: colour_icons_8
       rect:
         serializedVersion: 2
-        x: 166
-        y: 219
-        width: 83.333336
-        height: 73
+        x: 187
+        y: 231
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -600,8 +602,8 @@ TextureImporter:
       name: colour_icons_14
       rect:
         serializedVersion: 2
-        x: 183
-        y: 159
+        x: 184
+        y: 158
         width: 83
         height: 73
       alignment: 0
