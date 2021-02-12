@@ -16,13 +16,13 @@ public class PlayerInventory : PlayerComponent
 
   public override void Load(Action<PlayerComponent, Exception> loadCompletedCallback)
   {
-    StatsData statsData = new StatsData(2, 0, 5, 1, 0, 2, 2, 0);
-    EquipmentItemData equipmentData = new EquipmentItemData("broadsword_00001", "First Sword", 0, string.Empty, statsData, "Sprites/Development/Equipment/Weapons/sword_broadsword");
+    StatsData statsData = new StatsData(5, 6, 3, 1, 1, 2, 3, 1);
+    EquipmentItemData equipmentData = new EquipmentItemData("broadsword_00001", "First Sword", "The first sword created for S&L", 0, "sandra_ranger", statsData, "Sprites/Development/Equipment/Weapons/sword_broadsword");
     InventoryEntry<EquipmentItemData> entry = new InventoryEntry<EquipmentItemData>(0, 0, int.MaxValue, equipmentData);
     m_weaponInventory.AddEntry(entry);
 
-    statsData = new StatsData(2, 0, 5, 1, 0, 2, 2, 0);
-    equipmentData = new EquipmentItemData("warhammer_00001", "First Hammer", 0, string.Empty, statsData, "Sprites/Development/Equipment/Weapons/hammer_dwarven");
+    statsData = new StatsData(2, 14, 7, 1, 0, 2, 2, 0);
+    equipmentData = new EquipmentItemData("warhammer_00001", "First Hammer", "The first hammer created for S&L", 0, "dwayne_brawler", statsData, "Sprites/Development/Equipment/Weapons/hammer_dwarven");
     entry = new InventoryEntry<EquipmentItemData>(0, 0, int.MaxValue, equipmentData);
     m_weaponInventory.AddEntry(entry);
 

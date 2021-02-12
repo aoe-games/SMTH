@@ -22,6 +22,11 @@ public class EntityRoster
     EntityDataChanged?.Invoke(entityData);
   }
 
+  public EntityData this[string id]
+  {
+    get => GetEntityData(id);
+  }
+
   public EntityData GetEntityData(string ID)
   {
     EntityData entityData = null;

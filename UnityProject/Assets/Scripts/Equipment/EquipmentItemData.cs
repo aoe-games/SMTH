@@ -11,6 +11,8 @@ public class EquipmentItemData : IItemData
   [SerializeField]
   private string m_name;
   [SerializeField]
+  private string m_description;
+  [SerializeField]
   private int m_tag;
   [SerializeField]
   private string m_assignedToId;
@@ -21,6 +23,7 @@ public class EquipmentItemData : IItemData
 
   public string Id { get => m_id; }
   public string Name { get => m_name; }
+  public string Description { get => m_description; }
   public int Tag { get => m_tag; }
   public string AssignedToId { get => m_assignedToId; }
   public StatsData StatsData { get => m_statsData; }
@@ -28,7 +31,8 @@ public class EquipmentItemData : IItemData
 
   public EquipmentItemData(
     string id, 
-    string name, 
+    string name,
+    string description,
     int tag, 
     string assignedToId, 
     StatsData statsData, 
@@ -36,6 +40,7 @@ public class EquipmentItemData : IItemData
   {
     m_id = id;
     m_name = name;
+    m_description = description;
     m_tag = tag;
     m_assignedToId = assignedToId;
     m_statsData = statsData;

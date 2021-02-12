@@ -23,13 +23,16 @@ public struct StatsData
   private int m_precisionDefense;
 
   public int Speed { get => m_speed; set => m_speed = value; }
-  public int MaxHealth { get => m_maxHealth; set => m_maxHealth = value; }
+  public int Health { get => m_maxHealth; set => m_maxHealth = value; }
   public int BruteAttack { get => m_bruteAttack; set => m_bruteAttack = value; }
   public int BruteDefense { get => m_bruteDefense; set => m_bruteDefense = value; }
   public int SpiritAttack { get => m_spiritAttack; set => m_spiritAttack = value; }
   public int SpiritDefense { get => m_spiritDefense; set => m_spiritDefense = value; }
   public int PrecisionAttack { get => m_precisionAttack; set => m_precisionAttack = value; }
   public int PrecisionDefense { get => m_precisionDefense; set => m_precisionDefense = value; }
+
+  public int TotalAttack { get { return (m_bruteAttack + m_spiritAttack + m_precisionAttack); } }
+  public int TotalDefense { get { return (m_bruteDefense + m_spiritDefense + m_precisionDefense); } }
 
   public StatsData(
     int speed,
@@ -55,7 +58,7 @@ public struct StatsData
   public StatsData(StatsData copy) :
     this(
       copy.Speed,
-      copy.MaxHealth,
+      copy.Health,
       copy.BruteAttack,
       copy.BruteDefense,
       copy.SpiritAttack,
